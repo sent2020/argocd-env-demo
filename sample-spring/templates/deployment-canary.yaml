@@ -1,0 +1,66 @@
+{{ if and (not (empty .Values.istio)) (not (empty .Values.canary)) }}
+{{ if and (.Values.istio.enabled) (.Values.canary.enabled) }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "fullname" . }}-canary
+  labels:
+    draft: {{ default "draft-app" .Values.draft }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+    app: {{ template "fullname" . }}
+{{- if .Values.labels }}
+{{ toYaml .Values.labels | indent 4 }}
+{{- end }}
+{{- with .Values.annotations }}
+  annotations:
+{{ toYaml . | indent 4 }}
+{{- end }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ template "fullname" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "fullname" . }}
+        version: canary
+{{- if .Values.pod.labels }}
+{{ toYaml .Values.pod.labels | indent 8 }}
+{{- end }}
+      annotations:
+        buildID: {{ .Values.buildID }}
+{{- if .Values.pod.annotations }}
+{{ toYaml .Values.pod.annotations | indent 8 }}
+{{- end }}
+    spec:
+      containers:
+      - name: {{ .Chart.Name }}
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        ports:
+        - containerPort: {{ .Values.service.internalPort }}
+        hostNetwork: true
+        dnsPolicy: ClusterFirstWithHostNet
+        resources:
+{{ toYaml .Values.resources | indent 10 }}
+        readinessProbe:
+{{ toYaml .Values.readinessProbe | indent 10 }}
+        livenessProbe:
+{{ toYaml .Values.livenessProbe | indent 10 }}
+        env:
+          - name: PROFILE
+            value: {{ .Values.profile }}
+{{ if or .Values.configmap.enabled .Values.secret.enabled }}
+        envFrom:
+{{ end }}
+{{ if .Values.configmap.enabled }}
+          - configMapRef:
+              name: {{ template "fullname" . }}
+{{ end }}
+{{ if .Values.secret.enabled }}
+          - secretRef:
+              name: {{ template "fullname" . }}
+{{ end }}
+{{ end }}
+{{ end }}
