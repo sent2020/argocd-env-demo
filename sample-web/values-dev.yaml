@@ -23,6 +23,7 @@ service:
 
 ingress:
   enabled: true
+  basedomain:
   hosts:
     - sample-web-sample.spot.nalbam.com
   annotations:
