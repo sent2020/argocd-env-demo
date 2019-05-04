@@ -1,7 +1,3 @@
-# chart-repo: custom/sample-node
-# chart-version: latest
-# chart-ingress: true
-
 fullnameOverride: sample-node
 
 profile: dev
@@ -12,9 +8,6 @@ image:
   repository: nalbam/sample-node
   tag: alpine
 
-service:
-  type: ClusterIP
-
 ingress:
   enabled: true
   basedomain:
@@ -23,8 +16,3 @@ ingress:
   annotations:
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
-
-configmap:
-  enabled: false
-secret:
-  enabled: false
