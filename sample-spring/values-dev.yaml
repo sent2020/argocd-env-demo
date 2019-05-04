@@ -4,6 +4,8 @@
 
 profile: dev
 
+namespace: dev
+
 image:
   repository: nalbam/sample-spring
   tag: alpine

@@ -1,5 +1,6 @@
 replicaCount: 1
 profile: default
+namespace: default
 image:
   repository: nalbam/sample-spring
   tag: alpine
