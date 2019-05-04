@@ -2,6 +2,8 @@
 # chart-version: latest
 # chart-ingress: true
 
+fullnameOverride: sample-web
+
 profile: dev
 
 namespace: dev
