@@ -1,4 +1,5 @@
 replicaCount: 1
+fullnameOverride: sample-webpack
 profile: default
 namespace: default
 image:

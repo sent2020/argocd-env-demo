@@ -1,4 +1,5 @@
 replicaCount: 1
+fullnameOverride: sample-node
 profile: default
 namespace: default
 image:
