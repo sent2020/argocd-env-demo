@@ -6,13 +6,13 @@ namespace: dev
 
 image:
   repository: nalbam/sample-node
-  tag: alpine
+  tag: v0.0.19
 
 ingress:
   enabled: true
   basedomain:
   hosts:
-    - sample-node-dev.demo.nalbam.com
+    - sample-node-dev.dev.opsnow.com
   annotations:
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
