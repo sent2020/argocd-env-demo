@@ -113,6 +113,9 @@ _build_deploy_pr() {
 
     NEW_BRANCH="${TG_PROJECT}-${TG_PHASE}-${TG_VERSION}"
 
+    _command "git branch -a"
+    git branch -a
+
     _command "git branch ${NEW_BRANCH} ${BRANCH}"
     git branch ${NEW_BRANCH} ${BRANCH}
 
