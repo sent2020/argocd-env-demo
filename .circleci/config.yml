@@ -11,6 +11,7 @@ jobs:
       - run:
           name: Build
           command: |
+            pip3 install git-pull-request
             bash ./build.sh
 
 # workflows:
