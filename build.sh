@@ -103,8 +103,8 @@ _build_phase() {
         #     ${CIRCLE_API}
 
         curl -X POST \
-            --header "Content-Type: application/json" \
-            --data "${PAYLOAD}" "${CIRCLE_API}"
+            -H "Content-Type: application/json" \
+            -d "${PAYLOAD}" "${CIRCLE_URL}"
 
         _result "${PHASE}"
     done
