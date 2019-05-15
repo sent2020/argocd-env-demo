@@ -88,22 +88,23 @@ _build_phase() {
     LIST=$(ls ${RUN_PATH}/${TG_PROJECT} | grep 'values-' | grep '.yaml' | cut -d'-' -f2 | cut -d'.' -f1)
 
     for PHASE in ${LIST}; do
-        # PAYLOAD="{\"build_parameters\":{"
-        # PAYLOAD="${PAYLOAD}\"TG_USERNAME\":\"${TG_USERNAME}\","
-        # PAYLOAD="${PAYLOAD}\"TG_PROJECT\":\"${TG_PROJECT}\","
-        # PAYLOAD="${PAYLOAD}\"TG_VERSION\":\"${TG_VERSION}\","
-        # PAYLOAD="${PAYLOAD}\"TG_PHASE\":\"${PHASE}\""
-        # PAYLOAD="${PAYLOAD}}}"
+        PAYLOAD="{\"build_parameters\":{"
+        PAYLOAD="${PAYLOAD}\"TG_USERNAME\":\"${TG_USERNAME}\","
+        PAYLOAD="${PAYLOAD}\"TG_PROJECT\":\"${TG_PROJECT}\","
+        PAYLOAD="${PAYLOAD}\"TG_VERSION\":\"${TG_VERSION}\","
+        PAYLOAD="${PAYLOAD}\"TG_PHASE\":\"${PHASE}\""
+        PAYLOAD="${PAYLOAD}}}"
 
-        curl -u ${PERSONAL_TOKEN}: \
-            -d build_parameters[TG_USERNAME]=${TG_USERNAME} \
-            -d build_parameters[TG_PROJECT]=${TG_PROJECT} \
-            -d build_parameters[TG_VERSION]=${TG_VERSION} \
-            -d build_parameters[TG_PHASE]=${PHASE} \
-            ${CIRCLE_API}
+        # curl -u ${PERSONAL_TOKEN}: \
+        #     -d build_parameters[TG_USERNAME]=${TG_USERNAME} \
+        #     -d build_parameters[TG_PROJECT]=${TG_PROJECT} \
+        #     -d build_parameters[TG_VERSION]=${TG_VERSION} \
+        #     -d build_parameters[TG_PHASE]=${PHASE} \
+        #     ${CIRCLE_API}
 
-        # curl -X POST --header "Content-Type: application/json" \
-        #     -d "${PAYLOAD}" "${CIRCLE_URL}"
+        curl -X POST \
+            --header "Content-Type: application/json" \
+            --data "${PAYLOAD}" "${CIRCLE_API}"
 
         _result "${PHASE}"
     done
