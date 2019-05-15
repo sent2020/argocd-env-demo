@@ -5,13 +5,12 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/python
+      - image: opspresso/builder
     steps:
       - checkout
       - run:
           name: Build
           command: |
-            pip3 install git-pull-request
             bash ./build.sh
 
 # workflows:
