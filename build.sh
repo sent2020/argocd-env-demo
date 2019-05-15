@@ -130,18 +130,18 @@ _build_deploy_pr() {
         fi
     done < ${LIST}
 
-    if [ "${HAS}" != "true" ]; then
-        _command "git branch ${NEW_BRANCH} ${BRANCH}"
-        git branch ${NEW_BRANCH} ${BRANCH}
+    if [ "${HAS}" == "true" ]; then
+        _success "${NEW_BRANCH}"
     fi
+
+    _command "git branch ${NEW_BRANCH} ${BRANCH}"
+    git branch ${NEW_BRANCH} ${BRANCH}
 
     _command "git checkout ${NEW_BRANCH}"
     git checkout ${NEW_BRANCH}
 
-    if [ "${HAS}" != "true" ]; then
-        _command "git pull origin ${NEW_BRANCH}"
-        git pull origin ${NEW_BRANCH}
-    fi
+    _command "git pull origin ${NEW_BRANCH}"
+    git pull origin ${NEW_BRANCH}
 
     _command "git branch -v"
     git branch -v
@@ -149,24 +149,22 @@ _build_deploy_pr() {
     _command "replace ${TG_VERSION}"
     _replace "s/tag: .*/tag: ${TG_VERSION}/g" ${RUN_PATH}/${TG_PROJECT}/values-${TG_PHASE}.yaml
 
-    if [[ $(git status --porcelain) ]]; then
-        _command "git add --all"
-        git add --all
+    _command "git add --all"
+    git add --all
 
-        _command "git commit -m \"deploy ${TG_PROJECT} ${TG_PHASE} ${TG_VERSION}\""
-        git commit -m "deploy ${TG_PROJECT} ${TG_PHASE} ${TG_VERSION}"
+    _command "git commit -m \"deploy ${TG_PROJECT} ${TG_PHASE} ${TG_VERSION}\""
+    git commit -m "deploy ${TG_PROJECT} ${TG_PHASE} ${TG_VERSION}"
 
-        _command "git push github.com/${USERNAME}/${REPONAME} ${NEW_BRANCH}"
-        git push -q https://${GITHUB_TOKEN}@github.com/${USERNAME}/${REPONAME}.git ${NEW_BRANCH}
+    _command "git push github.com/${USERNAME}/${REPONAME} ${NEW_BRANCH}"
+    git push -q https://${GITHUB_TOKEN}@github.com/${USERNAME}/${REPONAME}.git ${NEW_BRANCH}
 
-        echo "machine github.com login ${USERNAME} password ${GITHUB_TOKEN}" >> ~/.netrc
-        chmod 600 ~/.netrc
+    echo "machine github.com login ${USERNAME} password ${GITHUB_TOKEN}" >> ~/.netrc
+    chmod 600 ~/.netrc
 
-        _command "git pull-request"
-        git pull-request
+    _command "git pull-request"
+    git pull-request
 
-        rm -rf ~/.netrc
-    fi
+    rm -rf ~/.netrc
 }
 
 if [ "${TG_PHASE}" == "" ]; then
