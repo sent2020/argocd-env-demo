@@ -67,8 +67,8 @@ _replace() {
 ################################################################################
 
 _prepare() {
-    if [ "${CIRCLECI_TOKEN}" == "" ]; then
-        _error
+    if [ "${PERSONAL_TOKEN}" == "" ]; then
+        _error "Empty PERSONAL_TOKEN"
     fi
     if [ "${TG_USERNAME}" == "" ] || [ "${TG_PROJECT}" == "" ] || [ "${TG_VERSION}" == "" ]; then
         _success
@@ -80,7 +80,7 @@ _prepare() {
 
 _build_phase() {
     CIRCLE_API="https://circleci.com/api/v1.1/project/github/${USERNAME}/${REPONAME}"
-    CIRCLE_URL="${CIRCLE_API}?circle-token=${CIRCLECI_TOKEN}"
+    CIRCLE_URL="${CIRCLE_API}?circle-token=${PERSONAL_TOKEN}"
 
     LIST=$(ls ${RUN_PATH}/${TG_PROJECT} | grep 'values-' | grep '.yaml' | cut -d'-' -f2 | cut -d'.' -f1)
 
@@ -91,6 +91,10 @@ _build_phase() {
         PAYLOAD="${PAYLOAD}\"TG_VERSION\":\"${TG_VERSION}\","
         PAYLOAD="${PAYLOAD}\"TG_PHASE\":\"${PHASE}\""
         PAYLOAD="${PAYLOAD}}}"
+
+        # curl -u ${PERSONAL_TOKEN}: \
+        #     -d build_parameters[CIRCLE_JOB]=build \
+        #     ${CIRCLE_API}
 
         curl -X POST --header "Content-Type: application/json" \
             -d "${PAYLOAD}" "${CIRCLE_URL}"
