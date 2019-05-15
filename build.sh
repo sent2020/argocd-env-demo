@@ -16,6 +16,7 @@ BRANCH=${CIRCLE_BRANCH:-master}
 TG_USERNAME="${TG_USERNAME}"
 TG_PROJECT="${TG_PROJECT}"
 TG_VERSION="${TG_VERSION}"
+TG_PHASE="${TG_PHASE}"
 
 GIT_USERNAME="bot"
 GIT_USEREMAIL="bot@nalbam.com"
@@ -65,6 +66,82 @@ _replace() {
 
 ################################################################################
 
+_prepare() {
+    if [ "${CIRCLECI_TOKEN}" == "" ]; then
+        _error
+    fi
+    if [ "${TG_USERNAME}" == "" ] || [ "${TG_PROJECT}" == "" ] || [ "${TG_VERSION}" == "" ]; then
+        _success
+    fi
+    if [ ! -d "${RUN_PATH}/${TG_PROJECT}" ]; then
+        _error
+    fi
+}
+
+_build_phase() {
+    CIRCLE_API="https://circleci.com/api/v1.1/project/github/${USERNAME}/${REPONAME}"
+    CIRCLE_URL="${CIRCLE_API}?circle-token=${CIRCLECI_TOKEN}"
+
+    LIST=$(ls ${RUN_PATH}/${TG_PROJECT} | grep 'values-' | grep '.yaml' | cut -d'-' -f2 | cut -d'.' -f1)
+
+    for PHASE in ${LIST}; do
+        PAYLOAD="{\"build_parameters\":{"
+        PAYLOAD="${PAYLOAD}\"TG_USERNAME\":\"${TG_USERNAME}\","
+        PAYLOAD="${PAYLOAD}\"TG_PROJECT\":\"${TG_PROJECT}\","
+        PAYLOAD="${PAYLOAD}\"TG_VERSION\":\"${TG_VERSION}\","
+        PAYLOAD="${PAYLOAD}\"TG_PHASE\":\"${PHASE}\""
+        PAYLOAD="${PAYLOAD}}}"
+
+        curl -X POST --header "Content-Type: application/json" \
+            -d "${PAYLOAD}" "${CIRCLE_URL}"
+
+        _result "${PHASE}"
+    done
+}
+
+_build_deploy_pr() {
+    if [ ! -f ${RUN_PATH}/${TG_PROJECT}/values-${TG_PHASE}.yaml ]; then
+        _error
+    fi
+
+    git config --global user.name "${GIT_USERNAME}"
+    git config --global user.email "${GIT_USEREMAIL}"
+
+    NEW_BRANCH="${TG_PHASE}-${TG_VERSION}"
+
+    _command "git branch ${NEW_BRANCH} ${BRANCH}"
+    git branch ${NEW_BRANCH} ${BRANCH}
+
+    _command "git checkout ${NEW_BRANCH}"
+    git checkout ${NEW_BRANCH}
+
+    _command "replace ${TG_VERSION}"
+    _replace "s/tag: .*/tag: ${TG_VERSION}/g" ${RUN_PATH}/${TG_PROJECT}/values-${TG_PHASE}.yaml
+
+    _command "git add --all"
+    git add --all
+
+    _command "git commit -m \"deploy ${TG_PHASE} ${TG_VERSION}\""
+    git commit -m "deploy ${TG_PHASE} ${TG_VERSION}"
+
+    machine github.com login ${USERNAME} password ${GITHUB_TOKEN}
+
+    # _command "git push github.com/${USERNAME}/${REPONAME} ${NEW_BRANCH}"
+    # git push -q https://${GITHUB_TOKEN}@github.com/${USERNAME}/${REPONAME}.git ${NEW_BRANCH}
+
+    _command "git push origin ${NEW_BRANCH}"
+    git push origin ${NEW_BRANCH}
+
+    _command "git pull-request"
+    git pull-request
+}
+
 _result "${TG_USERNAME}/${TG_PROJECT}:${TG_VERSION}"
+
+if [ "${TG_PHASE}" == "" ]; then
+    _build_phase
+else
+    _build_deploy_pr
+fi
 
 _success
