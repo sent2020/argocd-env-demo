@@ -113,17 +113,38 @@ _build_deploy_pr() {
 
     NEW_BRANCH="${TG_PROJECT}-${TG_PHASE}-${TG_VERSION}"
 
-    _command "git branch -a"
-    git branch -a
+    HAS="false"
+    LIST="/tmp/branch-list"
+    git branch -a > ${LIST}
 
-    _command "git branch ${NEW_BRANCH} ${BRANCH}"
-    git branch ${NEW_BRANCH} ${BRANCH}
+    while read VAR; do
+        ARR=(${VAR})
+        if [ -z ${ARR[1]} ]; then
+            if [ "${ARR[0]}" == "${NEW_BRANCH}" ]; then
+                HAS="true"
+            fi
+        else
+            if [ "${ARR[1]}" == "${NEW_BRANCH}" ]; then
+                HAS="true"
+            fi
+        fi
+    done < ${LIST}
+
+    if [ "${HAS}" != "true" ]; then
+        _command "git branch ${NEW_BRANCH} ${BRANCH}"
+        git branch ${NEW_BRANCH} ${BRANCH}
+    fi
 
     _command "git checkout ${NEW_BRANCH}"
     git checkout ${NEW_BRANCH}
 
-    _command "git pull origin ${NEW_BRANCH}"
-    git pull origin ${NEW_BRANCH}
+    if [ "${HAS}" != "true" ]; then
+        _command "git pull origin ${NEW_BRANCH}"
+        git pull origin ${NEW_BRANCH}
+    fi
+
+    _command "git branch -v"
+    git branch -v
 
     _command "replace ${TG_VERSION}"
     _replace "s/tag: .*/tag: ${TG_VERSION}/g" ${RUN_PATH}/${TG_PROJECT}/values-${TG_PHASE}.yaml
