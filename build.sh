@@ -143,8 +143,8 @@ _build_deploy_pr() {
     _command "git pull origin ${NEW_BRANCH}"
     git pull origin ${NEW_BRANCH}
 
-    _command "git branch -v"
-    git branch -v
+    # _command "git branch -v"
+    # git branch -v
 
     _command "replace ${TG_VERSION}"
     _replace "s/tag: .*/tag: ${TG_VERSION}/g" ${RUN_PATH}/${TG_PROJECT}/values-${TG_PHASE}.yaml
