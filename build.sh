@@ -111,7 +111,7 @@ _build_deploy_pr() {
     git config --global user.name "${GIT_USERNAME}"
     git config --global user.email "${GIT_USEREMAIL}"
 
-    NEW_BRANCH="${TG_PHASE}-${TG_VERSION}"
+    NEW_BRANCH="${TG_PROJECT}-${TG_PHASE}-${TG_VERSION}"
 
     _command "git branch ${NEW_BRANCH} ${BRANCH}"
     git branch ${NEW_BRANCH} ${BRANCH}
