@@ -158,8 +158,6 @@ _build_deploy_pr() {
     # _command "git push github.com/${USERNAME}/${REPONAME} ${NEW_BRANCH}"
     # git push -q https://${GITHUB_TOKEN}@github.com/${USERNAME}/${REPONAME}.git ${NEW_BRANCH}
 
-    hub
-
     _command "hub push origin ${NEW_BRANCH}"
     hub push origin ${NEW_BRANCH}
 
