@@ -155,22 +155,14 @@ _build_deploy_pr() {
     _command "git commit -m \"deploy ${TG_PROJECT} ${TG_PHASE} ${TG_VERSION}\""
     git commit -m "deploy ${TG_PROJECT} ${TG_PHASE} ${TG_VERSION}"
 
-    # _command "git push github.com/${USERNAME}/${REPONAME} ${NEW_BRANCH}"
-    # git push -q https://${GITHUB_TOKEN}@github.com/${USERNAME}/${REPONAME}.git ${NEW_BRANCH}
+    _command "git push github.com/${USERNAME}/${REPONAME} ${NEW_BRANCH}"
+    git push -q https://${GITHUB_TOKEN}@github.com/${USERNAME}/${REPONAME}.git ${NEW_BRANCH}
 
-    _command "hub push origin ${NEW_BRANCH}"
-    hub push origin ${NEW_BRANCH}
+    # _command "hub push origin ${NEW_BRANCH}"
+    # hub push origin ${NEW_BRANCH}
 
-    _command "hub pull-request --base ${USERNAME}:master --head ${USERNAME}:${NEW_BRANCH}"
-    hub pull-request --base ${USERNAME}:master --head ${USERNAME}:${NEW_BRANCH}
-
-    # echo "machine github.com login ${USERNAME} password ${GITHUB_TOKEN}" >> ~/.netrc
-    # chmod 600 ~/.netrc
-
-    # _command "git pull-request"
-    # git pull-request
-
-    # rm -rf ~/.netrc
+    _command "hub pull-request -b ${USERNAME}:master -h ${USERNAME}:${NEW_BRANCH}"
+    hub pull-request -b ${USERNAME}:master -h ${USERNAME}:${NEW_BRANCH}
 }
 
 if [ "${TG_PHASE}" == "" ]; then
