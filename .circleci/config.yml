@@ -13,8 +13,8 @@ jobs:
           command: |
             bash ./build.sh
 
-workflows:
-  version: 2
-  apply:
-    jobs:
-      - build
+# workflows:
+#   version: 2
+#   apply:
+#     jobs:
+#       - build
