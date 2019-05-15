@@ -7,9 +7,6 @@ jobs:
     docker:
       - image: opspresso/builder
     steps:
-      - add_ssh_keys:
-          fingerprints:
-            - "0f:7c:d3:cf:b8:b7:cd:36:88:20:e0:53:82:fe:0f:12"
       - checkout
       - run:
           name: Build
@@ -21,3 +18,5 @@ jobs:
 #   apply:
 #     jobs:
 #       - build
+
+# https://circleci.com/docs/2.0/add-ssh-key/
