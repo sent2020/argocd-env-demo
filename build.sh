@@ -13,9 +13,9 @@ REPONAME=${CIRCLE_PROJECT_REPONAME:-argocd-env-demo}
 
 BRANCH=${CIRCLE_BRANCH:-master}
 
-NAME=
-PHASE=
-VERSION=
+TG_USERNAME="${TG_USERNAME}"
+TG_PROJECT="${TG_PROJECT}"
+TG_VERSION="${TG_VERSION}"
 
 GIT_USERNAME="bot"
 GIT_USEREMAIL="bot@nalbam.com"
@@ -64,5 +64,7 @@ _replace() {
 }
 
 ################################################################################
+
+_result "${TG_USERNAME}/${TG_PROJECT}:${TG_VERSION}"
 
 _success
