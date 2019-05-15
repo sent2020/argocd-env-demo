@@ -162,8 +162,8 @@ _build_deploy_pr() {
     # _command "hub push origin ${NEW_BRANCH}"
     # hub push origin ${NEW_BRANCH}
 
-    _command "hub pull-request -f -b ${USERNAME}:master -h ${USERNAME}:${NEW_BRANCH} -m \"${MESSAGE}\""
-    hub pull-request -f -b ${USERNAME}:master -h ${USERNAME}:${NEW_BRANCH} -m "${MESSAGE}"
+    _command "hub pull-request -f -b ${USERNAME}:master -h ${USERNAME}:${NEW_BRANCH} --no-edit"
+    hub pull-request -f -b ${USERNAME}:master -h ${USERNAME}:${NEW_BRANCH} --no-edit
 }
 
 if [ "${TG_PHASE}" == "" ]; then
