@@ -126,8 +126,8 @@ _build_deploy_pr() {
         _command "git add --all"
         git add --all
 
-        _command "git commit -m \"deploy ${TG_PHASE} ${TG_VERSION}\""
-        git commit -m "deploy ${TG_PHASE} ${TG_VERSION}"
+        _command "git commit -m \"deploy ${TG_PROJECT} ${TG_PHASE} ${TG_VERSION}\""
+        git commit -m "deploy ${TG_PROJECT} ${TG_PHASE} ${TG_VERSION}"
 
         _command "git push github.com/${USERNAME}/${REPONAME} ${NEW_BRANCH}"
         git push -q https://${GITHUB_TOKEN}@github.com/${USERNAME}/${REPONAME}.git ${NEW_BRANCH}
