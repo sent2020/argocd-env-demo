@@ -132,13 +132,13 @@ _build_deploy_pr() {
         _command "git push github.com/${USERNAME}/${REPONAME} ${NEW_BRANCH}"
         git push -q https://${GITHUB_TOKEN}@github.com/${USERNAME}/${REPONAME}.git ${NEW_BRANCH}
 
-        echo "machine github.com login ${USERNAME} password ${GITHUB_TOKEN}" > ~/.netrc
-        chmod 600 ~/.netrc
+        # echo "machine github.com login ${USERNAME} password ${GITHUB_TOKEN}" > ~/.netrc
+        # chmod 600 ~/.netrc
 
         _command "git pull-request"
         git pull-request
 
-        rm -rf ~/.netrc
+        # rm -rf ~/.netrc
     fi
 }
 
