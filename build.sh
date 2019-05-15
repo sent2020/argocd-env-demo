@@ -140,8 +140,8 @@ _build_deploy_pr() {
     _command "git checkout ${NEW_BRANCH}"
     git checkout ${NEW_BRANCH}
 
-    _command "git pull origin ${NEW_BRANCH}"
-    git pull origin ${NEW_BRANCH}
+    # _command "git pull origin ${NEW_BRANCH}"
+    # git pull origin ${NEW_BRANCH}
 
     # _command "git branch -v"
     # git branch -v
