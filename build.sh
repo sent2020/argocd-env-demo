@@ -88,19 +88,22 @@ _build_phase() {
     LIST=$(ls ${RUN_PATH}/${TG_PROJECT} | grep 'values-' | grep '.yaml' | cut -d'-' -f2 | cut -d'.' -f1)
 
     for PHASE in ${LIST}; do
-        PAYLOAD="{\"build_parameters\":{"
-        PAYLOAD="${PAYLOAD}\"TG_USERNAME\":\"${TG_USERNAME}\","
-        PAYLOAD="${PAYLOAD}\"TG_PROJECT\":\"${TG_PROJECT}\","
-        PAYLOAD="${PAYLOAD}\"TG_VERSION\":\"${TG_VERSION}\","
-        PAYLOAD="${PAYLOAD}\"TG_PHASE\":\"${PHASE}\""
-        PAYLOAD="${PAYLOAD}}}"
+        # PAYLOAD="{\"build_parameters\":{"
+        # PAYLOAD="${PAYLOAD}\"TG_USERNAME\":\"${TG_USERNAME}\","
+        # PAYLOAD="${PAYLOAD}\"TG_PROJECT\":\"${TG_PROJECT}\","
+        # PAYLOAD="${PAYLOAD}\"TG_VERSION\":\"${TG_VERSION}\","
+        # PAYLOAD="${PAYLOAD}\"TG_PHASE\":\"${PHASE}\""
+        # PAYLOAD="${PAYLOAD}}}"
 
-        # curl -u ${PERSONAL_TOKEN}: \
-        #     -d build_parameters[CIRCLE_JOB]=build \
-        #     ${CIRCLE_API}
+        curl -u ${PERSONAL_TOKEN}: \
+            -d build_parameters[TG_USERNAME]=${TG_USERNAME} \
+            -d build_parameters[TG_PROJECT]=${TG_PROJECT} \
+            -d build_parameters[TG_VERSION]=${TG_VERSION} \
+            -d build_parameters[TG_PHASE]=${PHASE} \
+            ${CIRCLE_API}
 
-        curl -X POST --header "Content-Type: application/json" \
-            -d "${PAYLOAD}" "${CIRCLE_URL}"
+        # curl -X POST --header "Content-Type: application/json" \
+        #     -d "${PAYLOAD}" "${CIRCLE_URL}"
 
         _result "${PHASE}"
     done
@@ -131,13 +134,13 @@ _build_deploy_pr() {
     _command "git commit -m \"deploy ${TG_PHASE} ${TG_VERSION}\""
     git commit -m "deploy ${TG_PHASE} ${TG_VERSION}"
 
-    machine github.com login ${USERNAME} password ${GITHUB_TOKEN}
+    _command "git push github.com/${USERNAME}/${REPONAME} ${NEW_BRANCH}"
+    git push -q https://${GITHUB_TOKEN}@github.com/${USERNAME}/${REPONAME}.git ${NEW_BRANCH}
 
-    # _command "git push github.com/${USERNAME}/${REPONAME} ${NEW_BRANCH}"
-    # git push -q https://${GITHUB_TOKEN}@github.com/${USERNAME}/${REPONAME}.git ${NEW_BRANCH}
+    # machine github.com login ${USERNAME} password ${GITHUB_TOKEN}
 
-    _command "git push origin ${NEW_BRANCH}"
-    git push origin ${NEW_BRANCH}
+    # _command "git push origin ${NEW_BRANCH}"
+    # git push origin ${NEW_BRANCH}
 
     _command "git pull-request"
     git pull-request
