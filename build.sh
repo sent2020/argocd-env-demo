@@ -67,15 +67,18 @@ _replace() {
 ################################################################################
 
 _prepare() {
-    if [ "${PERSONAL_TOKEN}" == "" ]; then
-        _error "Empty PERSONAL_TOKEN"
-    fi
     if [ "${TG_USERNAME}" == "" ] || [ "${TG_PROJECT}" == "" ] || [ "${TG_VERSION}" == "" ]; then
         _success
     fi
-    if [ ! -d "${RUN_PATH}/${TG_PROJECT}" ]; then
-        _error
+
+    if [ "${PERSONAL_TOKEN}" == "" ]; then
+        _error "Not found PERSONAL_TOKEN"
     fi
+    if [ ! -d "${RUN_PATH}/${TG_PROJECT}" ]; then
+        _error "Not found ${TG_PROJECT}"
+    fi
+
+    _result "${TG_USERNAME}/${TG_PROJECT}:${TG_VERSION}"
 }
 
 _build_phase() {
@@ -105,7 +108,7 @@ _build_phase() {
 
 _build_deploy_pr() {
     if [ ! -f ${RUN_PATH}/${TG_PROJECT}/values-${TG_PHASE}.yaml ]; then
-        _error
+        _error "Not found values-${TG_PHASE}.yaml"
     fi
 
     git config --global user.name "${GIT_USERNAME}"
@@ -139,8 +142,6 @@ _build_deploy_pr() {
     _command "git pull-request"
     git pull-request
 }
-
-_result "${TG_USERNAME}/${TG_PROJECT}:${TG_VERSION}"
 
 if [ "${TG_PHASE}" == "" ]; then
     _build_phase
