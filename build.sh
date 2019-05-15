@@ -139,7 +139,7 @@ _build_deploy_pr() {
         # git push origin ${NEW_BRANCH}
 
         _command "git pull-request"
-        git pull-request -q https://${GITHUB_TOKEN}@github.com/${USERNAME}/${REPONAME}.git
+        git pull-request
 
         rm -rf ~/.netrc
     fi
