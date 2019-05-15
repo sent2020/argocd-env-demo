@@ -155,11 +155,13 @@ _build_deploy_pr() {
     _command "git commit -m \"deploy ${TG_PROJECT} ${TG_PHASE} ${TG_VERSION}\""
     git commit -m "deploy ${TG_PROJECT} ${TG_PHASE} ${TG_VERSION}"
 
-    _command "hub push origin ${NEW_BRANCH}"
-    hub push origin ${NEW_BRANCH}
-
     # _command "git push github.com/${USERNAME}/${REPONAME} ${NEW_BRANCH}"
     # git push -q https://${GITHUB_TOKEN}@github.com/${USERNAME}/${REPONAME}.git ${NEW_BRANCH}
+
+    hub
+
+    _command "hub push origin ${NEW_BRANCH}"
+    hub push origin ${NEW_BRANCH}
 
     _command "hub pull-request --base ${USERNAME}:master --head ${USERNAME}:${NEW_BRANCH}"
     hub pull-request --base ${USERNAME}:master --head ${USERNAME}:${NEW_BRANCH}
