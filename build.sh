@@ -121,12 +121,19 @@ _build_deploy_pr() {
     _command "git add --all"
     git add --all
 
-    _command "git commit -m $(cat ${RUN_PATH}/target/message)"
-    git commit -m "$(cat ${RUN_PATH}/target/message)"
+    _command "git commit -m \"deploy ${TG_PHASE} ${TG_VERSION}\""
+    git commit -m "deploy ${TG_PHASE} ${TG_VERSION}"
 
-    _command "git push github.com/${USERNAME}/${REPONAME} ${NEW_BRANCH}"
-    git push -q https://${GITHUB_TOKEN}@github.com/${USERNAME}/${REPONAME}.git ${NEW_BRANCH}
+    machine github.com login ${USERNAME} password ${GITHUB_TOKEN}
 
+    # _command "git push github.com/${USERNAME}/${REPONAME} ${NEW_BRANCH}"
+    # git push -q https://${GITHUB_TOKEN}@github.com/${USERNAME}/${REPONAME}.git ${NEW_BRANCH}
+
+    _command "git push origin ${NEW_BRANCH}"
+    git push origin ${NEW_BRANCH}
+
+    _command "git pull-request"
+    git pull-request
 }
 
 _result "${TG_USERNAME}/${TG_PROJECT}:${TG_VERSION}"
