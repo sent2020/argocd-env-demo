@@ -135,9 +135,6 @@ _build_deploy_pr() {
         echo "machine github.com login ${USERNAME} password ${GITHUB_TOKEN}" > ~/.netrc
         chmod 600 ~/.netrc
 
-        # _command "git push origin ${NEW_BRANCH}"
-        # git push origin ${NEW_BRANCH}
-
         _command "git pull-request"
         git pull-request
 
