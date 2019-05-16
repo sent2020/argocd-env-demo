@@ -71,10 +71,10 @@ _prepare() {
         _success
     fi
 
-    TEST='^(([v\d]+\.)*)(\d+)(.*)$'
-    if ! [[ ${TG_VERSION} =~ ${TEST} ]]; then
-        _success
-    fi
+    # TEST='^(([v\d]+\.)*)(\d+)(.*)$'
+    # if ! [[ ${TG_VERSION} =~ ${TEST} ]]; then
+    #     _success
+    # fi
 
     if [ "${PERSONAL_TOKEN}" == "" ]; then
         _error "Not found PERSONAL_TOKEN"
