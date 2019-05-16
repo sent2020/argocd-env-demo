@@ -17,18 +17,12 @@ ingress:
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
 
-readinessProbe:
-  httpGet:
-    path: /
-    port: 8080
-  initialDelaySeconds: 45
-  periodSeconds: 10
-  failureThreshold: 3
+configmap:
+  enabled: true
+  data:
+    MESSAGE: "hello dev world"
 
-livenessProbe:
-  httpGet:
-    path: /
-    port: 8080
-  initialDelaySeconds: 45
-  periodSeconds: 10
-  failureThreshold: 3
+secret:
+  enabled: true
+  data:
+    SECRET: c2VjcmV0IHdvcmxkCg==

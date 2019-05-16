@@ -2,10 +2,10 @@ replicaCount: 1
 
 profile: default
 
-namespace: development
+namespace: default
 
 image:
-  repository: docker-registry.127.0.0.1.nip.io:30500/sample-webpack
+  repository: nalbam/sample-webpack
   tag: latest
   pullPolicy: Always
 
@@ -90,8 +90,16 @@ tolerations: []
 
 affinity: {}
 
+env: {}
+  # - name: MESSAGE
+  #   value: "hello world"
+
 configmap:
   enabled: false
+  data: {}
+    # MESSAGE: "hello world"
 
 secret:
   enabled: false
+  data: {}
+    # SECRET: c2VjcmV0IHdvcmxkCg==
