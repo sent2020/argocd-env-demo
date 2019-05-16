@@ -1,0 +1,6 @@
+commonLabels:
+  app: sample-dev
+
+resources:
+- limit-range.yaml
+- resource-quota.yaml
