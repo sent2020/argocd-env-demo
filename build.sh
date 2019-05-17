@@ -86,6 +86,14 @@ _prepare() {
 _build_phase() {
     RELEASES=${RUN_PATH}/target/releases
     curl -s "https://api.github.com/repos/${USERNAME}/${REPONAME}/releases" > ${RELEASES}
+    PRERELEASE="$(cat ${RELEASES} | jq -r --arg VERSION "$TG_VERSION" '.[] | select(.tag_name==$VERSION) | "\(.draft) \(.prerelease)"')"
+
+    # draft prerelease
+    _result "PRERELEASE: \"${PRERELEASE}\""
+
+    if [ "${PRERELEASE}" != "false false" ]; then
+        _success
+    fi
 
     CIRCLE_API="https://circleci.com/api/v1.1/project/github/${USERNAME}/${REPONAME}"
     CIRCLE_URL="${CIRCLE_API}?circle-token=${PERSONAL_TOKEN}"
@@ -93,25 +101,18 @@ _build_phase() {
     LIST=$(ls ${RUN_PATH}/${TG_PROJECT} | grep 'values-' | grep '.yaml' | cut -d'-' -f2 | cut -d'.' -f1)
 
     for PHASE in ${LIST}; do
-        PRERELEASE="$(cat ${RELEASES} | jq -r --arg VERSION "$TG_VERSION" '.[] | select(.tag_name==$VERSION) | "\(.draft) \(.prerelease)"')"
+        PAYLOAD="{\"build_parameters\":{"
+        PAYLOAD="${PAYLOAD}\"TG_USERNAME\":\"${TG_USERNAME}\","
+        PAYLOAD="${PAYLOAD}\"TG_PROJECT\":\"${TG_PROJECT}\","
+        PAYLOAD="${PAYLOAD}\"TG_VERSION\":\"${TG_VERSION}\","
+        PAYLOAD="${PAYLOAD}\"TG_PHASE\":\"${PHASE}\""
+        PAYLOAD="${PAYLOAD}}}"
 
-        _result "${PRERELEASE}"
+        curl -X POST \
+            -H "Content-Type: application/json" \
+            -d "${PAYLOAD}" "${CIRCLE_URL}"
 
-        # draft prerelease
-        if [ "${PRERELEASE}" == "false false" ]; then
-            PAYLOAD="{\"build_parameters\":{"
-            PAYLOAD="${PAYLOAD}\"TG_USERNAME\":\"${TG_USERNAME}\","
-            PAYLOAD="${PAYLOAD}\"TG_PROJECT\":\"${TG_PROJECT}\","
-            PAYLOAD="${PAYLOAD}\"TG_VERSION\":\"${TG_VERSION}\","
-            PAYLOAD="${PAYLOAD}\"TG_PHASE\":\"${PHASE}\""
-            PAYLOAD="${PAYLOAD}}}"
-
-            curl -X POST \
-                -H "Content-Type: application/json" \
-                -d "${PAYLOAD}" "${CIRCLE_URL}"
-
-            _result "${PHASE}"
-        fi
+        _result "${PHASE}"
     done
 }
 
