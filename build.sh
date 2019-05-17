@@ -86,7 +86,10 @@ _prepare() {
 _build_phase() {
     RELEASES=${RUN_PATH}/target/releases
     curl -s "https://api.github.com/repos/${USERNAME}/${REPONAME}/releases" > ${RELEASES}
-    PRERELEASE="$(cat ${RELEASES} | jq -r --arg VERSION "$TG_VERSION" '.[] | select(.tag_name==$VERSION) | "\(.draft) \(.prerelease)"')"
+
+    grep "${TG_VERSION}" ${RELEASES}
+
+    PRERELEASE="$(cat ${RELEASES} | jq -r --arg VERSION "${TG_VERSION}" '.[] | select(.tag_name==$VERSION) | "\(.draft) \(.prerelease)"')"
 
     # draft prerelease
     _result "PRERELEASE: \"${PRERELEASE}\""
