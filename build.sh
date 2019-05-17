@@ -78,18 +78,16 @@ _prepare() {
         _error "Not found ${TG_PROJECT}"
     fi
 
-    mkdir -p ${RUN_PATH}/target
-
     _result "${TG_USERNAME}/${TG_PROJECT}:${TG_VERSION}"
 }
 
 _build_phase() {
-    RELEASES=${RUN_PATH}/target/releases
-    curl -s "https://api.github.com/repos/${USERNAME}/${REPONAME}/releases" > ${RELEASES}
+    TMP=/tmp/releases
+    curl -s "https://api.github.com/repos/${USERNAME}/${REPONAME}/releases" > ${TMP}
 
-    grep "${TG_VERSION}" ${RELEASES}
+    grep "${TG_VERSION}" ${TMP}
 
-    PRERELEASE="$(cat ${RELEASES} | jq -r --arg VERSION "${TG_VERSION}" '.[] | select(.tag_name==$VERSION) | "\(.draft) \(.prerelease)"')"
+    PRERELEASE="$(cat ${TMP} | jq -r --arg VERSION "${TG_VERSION}" '.[] | select(.tag_name==$VERSION) | "\(.draft) \(.prerelease)"')"
 
     # draft prerelease
     _result "PRERELEASE: \"${PRERELEASE}\""
