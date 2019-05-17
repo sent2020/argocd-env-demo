@@ -71,11 +71,6 @@ _prepare() {
         _success
     fi
 
-    # TEST='^(([v\d]+\.)*)(\d+)(.*)$'
-    # if ! [[ ${TG_VERSION} =~ ${TEST} ]]; then
-    #     _success
-    # fi
-
     if [ "${PERSONAL_TOKEN}" == "" ]; then
         _error "Not found PERSONAL_TOKEN"
     fi
@@ -98,20 +93,23 @@ _build_phase() {
     LIST=$(ls ${RUN_PATH}/${TG_PROJECT} | grep 'values-' | grep '.yaml' | cut -d'-' -f2 | cut -d'.' -f1)
 
     for PHASE in ${LIST}; do
-        TYPE="$(cat ${RELEASES} | jq -r '.[] | select(.tag_name=="${TG_VERSION}") | "\(.draft) \(.prerelease)"')"
+        PRERELEASE="$(cat ${RELEASES} | jq -r --arg VERSION "$TG_VERSION" '.[] | select(.tag_name==$VERSION) | "\(.draft) \(.prerelease)"')"
 
-        PAYLOAD="{\"build_parameters\":{"
-        PAYLOAD="${PAYLOAD}\"TG_USERNAME\":\"${TG_USERNAME}\","
-        PAYLOAD="${PAYLOAD}\"TG_PROJECT\":\"${TG_PROJECT}\","
-        PAYLOAD="${PAYLOAD}\"TG_VERSION\":\"${TG_VERSION}\","
-        PAYLOAD="${PAYLOAD}\"TG_PHASE\":\"${PHASE}\""
-        PAYLOAD="${PAYLOAD}}}"
+        # draft prerelease
+        if [ "${PRERELEASE}" == "false false" ]; then
+            PAYLOAD="{\"build_parameters\":{"
+            PAYLOAD="${PAYLOAD}\"TG_USERNAME\":\"${TG_USERNAME}\","
+            PAYLOAD="${PAYLOAD}\"TG_PROJECT\":\"${TG_PROJECT}\","
+            PAYLOAD="${PAYLOAD}\"TG_VERSION\":\"${TG_VERSION}\","
+            PAYLOAD="${PAYLOAD}\"TG_PHASE\":\"${PHASE}\""
+            PAYLOAD="${PAYLOAD}}}"
 
-        curl -X POST \
-            -H "Content-Type: application/json" \
-            -d "${PAYLOAD}" "${CIRCLE_URL}"
+            curl -X POST \
+                -H "Content-Type: application/json" \
+                -d "${PAYLOAD}" "${CIRCLE_URL}"
 
-        _result "${PHASE}"
+            _result "${PHASE}"
+        fi
     done
 }
 
