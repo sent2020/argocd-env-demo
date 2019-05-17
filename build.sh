@@ -95,6 +95,8 @@ _build_phase() {
     for PHASE in ${LIST}; do
         PRERELEASE="$(cat ${RELEASES} | jq -r --arg VERSION "$TG_VERSION" '.[] | select(.tag_name==$VERSION) | "\(.draft) \(.prerelease)"')"
 
+        _result "${PRERELEASE}"
+
         # draft prerelease
         if [ "${PRERELEASE}" == "false false" ]; then
             PAYLOAD="{\"build_parameters\":{"
