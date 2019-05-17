@@ -176,6 +176,8 @@ _build_deploy_pr() {
     hub pull-request -f -b ${USERNAME}:master -h ${USERNAME}:${NEW_BRANCH} --no-edit
 }
 
+_prepare
+
 if [ "${TG_PHASE}" == "" ]; then
     _build_phase
 else
