@@ -83,16 +83,23 @@ _prepare() {
         _error "Not found ${TG_PROJECT}"
     fi
 
+    mkdir -p ${RUN_PATH}/target
+
     _result "${TG_USERNAME}/${TG_PROJECT}:${TG_VERSION}"
 }
 
 _build_phase() {
+    RELEASES=${RUN_PATH}/target/releases
+    curl -s "https://api.github.com/repos/${USERNAME}/${REPONAME}/releases" > ${RELEASES}
+
     CIRCLE_API="https://circleci.com/api/v1.1/project/github/${USERNAME}/${REPONAME}"
     CIRCLE_URL="${CIRCLE_API}?circle-token=${PERSONAL_TOKEN}"
 
     LIST=$(ls ${RUN_PATH}/${TG_PROJECT} | grep 'values-' | grep '.yaml' | cut -d'-' -f2 | cut -d'.' -f1)
 
     for PHASE in ${LIST}; do
+        TYPE="$(cat ${RELEASES} | jq -r '.[] | select(.tag_name=="${TG_VERSION}") | "\(.draft) \(.prerelease)"')"
+
         PAYLOAD="{\"build_parameters\":{"
         PAYLOAD="${PAYLOAD}\"TG_USERNAME\":\"${TG_USERNAME}\","
         PAYLOAD="${PAYLOAD}\"TG_PROJECT\":\"${TG_PROJECT}\","
