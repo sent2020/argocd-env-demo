@@ -82,16 +82,11 @@ _prepare() {
 }
 
 _build_phase() {
+    # version check
     TMP=/tmp/releases
-
-    curl -sL "https://api.github.com/repos/${USERNAME}/${REPONAME}/releases"
-    curl -sL "https://api.github.com/repos/${USERNAME}/${REPONAME}/releases" > ${TMP}
-
-    grep "${TG_VERSION}" ${TMP}
-
+    curl -sL "https://api.github.com/repos/${TG_USERNAME}/${TG_PROJECT}/releases" > ${TMP}
     PRERELEASE="$(cat ${TMP} | jq -r --arg VERSION "${TG_VERSION}" '.[] | select(.tag_name==$VERSION) | "\(.draft) \(.prerelease)"')"
 
-    # draft prerelease
     _result "PRERELEASE: \"${PRERELEASE}\""
 
     if [ "${PRERELEASE}" != "false false" ]; then
