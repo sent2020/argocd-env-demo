@@ -6,7 +6,7 @@ namespace: sample-dev
 
 image:
   repository: nalbam/sample-tomcat
-  tag: v0.0.23
+  tag: v0.0.27
 
 ingress:
   enabled: true
