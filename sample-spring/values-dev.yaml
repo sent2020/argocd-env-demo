@@ -6,7 +6,7 @@ namespace: sample-dev
 
 image:
   repository: nalbam/sample-spring
-  tag: v0.0.32
+  tag: v0.0.33
 
 ingress:
   enabled: true
