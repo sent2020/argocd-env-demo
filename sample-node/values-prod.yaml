@@ -6,7 +6,7 @@ namespace: sample-prod
 
 image:
   repository: nalbam/sample-node
-  tag: v0.0.48
+  tag: v0.0.49
 
 ingress:
   enabled: true
