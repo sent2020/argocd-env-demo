@@ -1,11 +1,4 @@
-# chart-repo: stable/cluster-autoscaler
-# chart-version: 0.12.1
-# chart-node: master
-
 nameOverride: cluster-autoscaler
-
-# podAnnotations:
-#   cluster-autoscaler.kubernetes.io/safe-to-evict: "true"
 
 autoDiscovery:
   enabled: true
@@ -22,13 +15,6 @@ extraArgs:
   scale-down-utilization-threshold: 0.75
   skip-nodes-with-local-storage: false
   skip-nodes-with-system-pods: false
-
-#:MASTER:nodeSelector:
-#:MASTER:  kubernetes.io/role: master
-
-#:MASTER:tolerations:
-#:MASTER:  - effect: NoSchedule
-#:MASTER:    key: node-role.kubernetes.io/master
 
 sslCertPath: /etc/ssl/certs/ca-bundle.crt
 
