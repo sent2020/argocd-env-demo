@@ -6,7 +6,7 @@ namespace: sample-dev
 
 image:
   repository: nalbam/sample-webpack
-  tag: v0.0.30
+  tag: v0.0.31
 
 ingress:
   enabled: true
