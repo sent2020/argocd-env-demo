@@ -13,6 +13,7 @@ ingress:
   basedomain:
   hosts:
     - sample-node-dev.demo.nalbam.com
+    - sample-node-dev.demo.mzdev.be
   annotations:
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
