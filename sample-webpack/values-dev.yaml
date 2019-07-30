@@ -13,6 +13,7 @@ ingress:
   basedomain:
   hosts:
     - sample-webpack-dev.demo.nalbam.com
+    - sample-webpack-dev.demo.mzdev.be
   annotations:
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
