@@ -114,7 +114,7 @@ _build_phase() {
     done
 }
 
-_build_deploy_pr() {
+_build_deploy() {
     if [ ! -f ${RUN_PATH}/${TG_PROJECT}/values-${TG_PHASE}.yaml ]; then
         _error "Not found values-${TG_PHASE}.yaml"
     fi
@@ -176,7 +176,7 @@ _prepare
 if [ "${TG_PHASE}" == "" ]; then
     _build_phase
 else
-    _build_deploy_pr
+    _build_deploy
 fi
 
 _success
