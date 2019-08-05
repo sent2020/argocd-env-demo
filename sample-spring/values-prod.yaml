@@ -1,0 +1,36 @@
+fullnameOverride: sample-spring
+
+profile: prod
+
+namespace: sample-prod
+
+image:
+  repository: nalbam/sample-spring
+  tag: v0.0.46
+
+ingress:
+  enabled: true
+  basedomain:
+  hosts:
+    - sample-spring.demo.nalbam.com
+    - sample-spring.demo.mzdev.be
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+
+autoscaling:
+  enabled: true
+  min: 1
+  max: 5
+  cpu: 60
+  mem: 60
+
+configmap:
+  enabled: true
+  data:
+    MESSAGE: "hello prod world"
+
+secret:
+  enabled: true
+  data:
+    SECRET: "c2VjcmV0IHdvcmxkCg=="
