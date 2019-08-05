@@ -46,11 +46,11 @@ autoscaling:
 
 resources:
   requests:
-    cpu: 1024m
+    cpu: 1000m
     memory: 1024Mi
   limits:
-    cpu: 1228m
-    memory: 1228Mi
+    cpu: 1200m
+    memory: 1280Mi
 
 readinessProbe:
   httpGet:
