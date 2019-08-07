@@ -13,10 +13,14 @@ jobs:
           command: |
             bash ./build.sh
 
-# workflows:
-#   version: 2
-#   apply:
-#     jobs:
-#       - build
+workflows:
+  version: 2
+  apply:
+    jobs:
+      - build:
+          filters:
+            branches:
+              only:
+                - master
 
 # https://circleci.com/docs/2.0/add-ssh-key/
