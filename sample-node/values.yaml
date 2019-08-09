@@ -35,6 +35,9 @@ ingress:
     # nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
   labels: {}
 
+certificate:
+  enabled: false
+
 autoscaling:
   enabled: false
   min: 1
