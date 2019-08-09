@@ -20,12 +20,6 @@ ingress:
       hosts:
         - sample-node-dev.demo.mzdev.be
 
-certificate:
-  enabled: true
-  issuerRef:
-    name: letsencrypt-issuer-staging
-    kind: ClusterIssuer
-
 configmap:
   enabled: true
   data:
