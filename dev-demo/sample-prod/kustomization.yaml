@@ -2,6 +2,7 @@ commonLabels:
   app: sample-prod
 
 resources:
+- certificate.yaml
 - issuer.yaml
 # - limit-range.yaml
 # - resource-quota.yaml

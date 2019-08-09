@@ -18,7 +18,7 @@ ingress:
 
 certificate:
   enabled: true
-  name: letsencrypt-staging
+  secretName: sample-dev-tls
 
 configmap:
   enabled: true
