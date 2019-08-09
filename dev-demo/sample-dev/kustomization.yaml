@@ -4,4 +4,4 @@ commonLabels:
 resources:
 - limit-range.yaml
 - resource-quota.yaml
-- role-binding.yml
+- role-binding.yaml
