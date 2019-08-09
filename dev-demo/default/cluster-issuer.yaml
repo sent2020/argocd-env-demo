@@ -23,3 +23,8 @@ spec:
     privateKeySecretRef:
       name: letsencrypt-prod
     http01: {}
+    # dns01:
+    #   providers:
+    #   - name: route53
+    #     route53:
+    #       region: us-east-1
