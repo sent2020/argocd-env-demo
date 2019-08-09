@@ -1,0 +1,17 @@
+apiVersion: certmanager.k8s.io/v1alpha1
+kind: Certificate
+metadata:
+  name: monitor-tls
+spec:
+  secretName: monitor-tls
+  issuerRef:
+    name: letsencrypt-issuer-staging
+    kind: ClusterIssuer
+  dnsNames:
+    - grafana-monitor.demo.mzdev.be
+  acme:
+    config:
+      - http01:
+          ingressClass: nginx
+        domains:
+          - grafana-monitor.demo.mzdev.be
