@@ -10,7 +10,6 @@ image:
 
 ingress:
   enabled: true
-  basedomain:
   hosts:
     - sample-webpack-dev.demo.nalbam.com
     - sample-webpack-dev.demo.mzdev.be

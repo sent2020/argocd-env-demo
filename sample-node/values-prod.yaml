@@ -10,7 +10,6 @@ image:
 
 ingress:
   enabled: true
-  basedomain:
   hosts:
     - sample-node.demo.nalbam.com
     - sample-node.demo.mzdev.be
@@ -19,6 +18,10 @@ ingress:
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
     certmanager.k8s.io/issuer: "letsencrypt-prod"
     certmanager.k8s.io/acme-challenge-type: http01
+
+certificate:
+  enabled: true
+  name: letsencrypt-prod
 
 autoscaling:
   enabled: true

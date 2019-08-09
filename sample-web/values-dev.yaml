@@ -10,7 +10,6 @@ image:
 
 ingress:
   enabled: true
-  basedomain:
   hosts:
     - sample-web-dev.demo.nalbam.com
     - sample-web-dev.demo.mzdev.be

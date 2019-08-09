@@ -27,8 +27,6 @@ service:
 
 ingress:
   enabled: true
-  subdomain: sample-node
-  basedomain: 127.0.0.1.nip.io
   hosts: {}
   # hosts:
   #   - sample-node.opsnow.com
@@ -37,8 +35,12 @@ ingress:
     # nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
   labels: {}
 
+certificate:
+  enabled: false
+  name: letsencrypt-prod
+
 autoscaling:
-  enabled: true
+  enabled: false
   min: 1
   max: 5
   cpu: 80
