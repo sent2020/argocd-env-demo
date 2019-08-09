@@ -13,7 +13,7 @@ spec:
   secretName: {{ include "fullname" . }}-tls
   issuerRef:
     name: {{ .Values.certificate.name }}
-    kind: ClusterIssuer
+    kind: Issuer
   dnsNames:
 {{ range .Values.ingress.hosts }}
   - {{ . }}

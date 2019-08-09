@@ -29,4 +29,12 @@ spec:
           serviceName: {{ $fullName }}
           servicePort: {{ $servicePort }}
 {{ end }}
+{{ if .Values.certificate.enabled }}
+  tls:
+  - hosts:
+{{ range .Values.ingress.hosts }}
+    - {{ . }}
+{{ end }}
+    secretName: {{ include "fullname" . }}-tls
+{{ end }}
 {{ end }}
