@@ -19,6 +19,10 @@ ingress:
     certmanager.k8s.io/issuer: "letsencrypt-prod"
     certmanager.k8s.io/acme-challenge-type: http01
 
+certificate:
+  enabled: true
+  name: letsencrypt-prod
+
 autoscaling:
   enabled: true
   min: 1
