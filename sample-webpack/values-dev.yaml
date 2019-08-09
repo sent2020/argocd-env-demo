@@ -16,6 +16,10 @@ ingress:
     kubernetes.io/ingress.class: nginx
     # nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
 
+certificate:
+  enabled: true
+  secretName: sample-dev-tls
+
 autoscaling:
   enabled: false
   min: 1

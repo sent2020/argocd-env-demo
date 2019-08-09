@@ -18,7 +18,7 @@ ingress:
 
 certificate:
   enabled: true
-  name: letsencrypt-prod
+  secretName: sample-prod-tls
 
 autoscaling:
   enabled: true
