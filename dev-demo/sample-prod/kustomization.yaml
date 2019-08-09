@@ -3,7 +3,7 @@ commonLabels:
 
 resources:
 - certificate.yaml
-- issuer.yaml
+# - issuer.yaml
 # - limit-range.yaml
 # - resource-quota.yaml
 - role-binding.yaml

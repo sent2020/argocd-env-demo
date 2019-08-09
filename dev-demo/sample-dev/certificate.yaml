@@ -7,8 +7,8 @@ metadata:
 spec:
   secretName: sample-dev-tls
   issuerRef:
-    name: letsencrypt-staging
-    kind: Issuer
+    name: letsencrypt-issuer-staging
+    kind: ClusterIssuer
   dnsNames:
     - sample-node-dev.demo.mzdev.be
     - sample-spring-dev.demo.mzdev.be
