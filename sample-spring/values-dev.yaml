@@ -10,7 +10,6 @@ image:
 
 ingress:
   enabled: true
-  basedomain:
   hosts:
     - sample-spring-dev.demo.nalbam.com
     - sample-spring-dev.demo.mzdev.be

@@ -27,8 +27,6 @@ service:
 
 ingress:
   enabled: true
-  subdomain: sample-web
-  basedomain: 127.0.0.1.nip.io
   hosts: {}
   # hosts:
   #   - sample-web.opsnow.com

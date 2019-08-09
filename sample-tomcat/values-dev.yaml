@@ -10,7 +10,6 @@ image:
 
 ingress:
   enabled: true
-  basedomain:
   hosts:
     - sample-tomcat-dev.demo.nalbam.com
     - sample-tomcat-dev.demo.mzdev.be
