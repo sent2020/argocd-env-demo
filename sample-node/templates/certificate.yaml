@@ -21,7 +21,6 @@ spec:
   acme:
     config:
     - http01:
-        ingress: {{ include "fullname" . }}
         ingressClass: nginx
       domains:
 {{ range .Values.ingress.hosts }}
