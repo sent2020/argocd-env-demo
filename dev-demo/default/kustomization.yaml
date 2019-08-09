@@ -2,5 +2,6 @@ commonLabels:
   app: default
 
 resources:
-- cluster-issuer.yaml
+# - cluster-issuer.yaml
 - cluster-role.yaml
+- issuer.yaml
