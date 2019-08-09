@@ -4,4 +4,3 @@ commonLabels:
 resources:
 # - cluster-issuer.yaml
 - cluster-role.yaml
-- issuer.yaml
