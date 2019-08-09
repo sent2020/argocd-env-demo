@@ -8,7 +8,11 @@ spec:
     email: me@nalbam.com
     privateKeySecretRef:
       name: letsencrypt-staging
-    http01: {}
+    # http01: {}
+    solvers:
+    - http01:
+        ingress:
+          class: nginx
 
 ---
 
@@ -22,7 +26,11 @@ spec:
     email: me@nalbam.com
     privateKeySecretRef:
       name: letsencrypt-prod
-    http01: {}
+    # http01: {}
+    solvers:
+    - http01:
+        ingress:
+          class: nginx
     # dns01:
     #   providers:
     #   - name: route53
