@@ -14,7 +14,12 @@ ingress:
     - sample-web-dev.demo.mzdev.be
   annotations:
     kubernetes.io/ingress.class: nginx
-    # nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    certmanager.k8s.io/cluster-issuer: "letsencrypt-staging"
+  tls:
+    - secretName: sample-web-tls
+      hosts:
+        - sample-web-dev.demo.mzdev.be
 
 autoscaling:
   enabled: false
