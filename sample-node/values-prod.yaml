@@ -15,9 +15,9 @@ ingress:
   annotations:
     kubernetes.io/ingress.class: nginx
     # nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
-    # certmanager.k8s.io/cluster-issuer: "letsencrypt-prod"
+    certmanager.k8s.io/cluster-issuer: "letsencrypt-prod"
   tls:
-    - secretName: sample-prod-tls
+    - secretName: sample-node-tls
       hosts:
         - sample-node.demo.mzdev.be
 

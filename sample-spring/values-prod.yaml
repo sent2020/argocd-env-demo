@@ -17,7 +17,7 @@ ingress:
     # nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
     # certmanager.k8s.io/cluster-issuer: "letsencrypt-prod"
   tls:
-    - secretName: sample-prod-tls
+    - secretName: sample-spring-tls
       hosts:
         - sample-spring.demo.mzdev.be
 
