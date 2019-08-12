@@ -9,9 +9,11 @@ spec:
     kind: ClusterIssuer
   dnsNames:
     - argocd-devops.demo.mzdev.be
+    - argocd-demo.mzdev.be
   acme:
     config:
       - http01:
           ingressClass: nginx
         domains:
           - argocd-devops.demo.mzdev.be
+          - argocd-demo.mzdev.be
