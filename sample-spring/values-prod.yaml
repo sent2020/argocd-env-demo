@@ -13,7 +13,6 @@ ingress:
   hosts:
     - sample-spring.demo.mzdev.be
   annotations:
-    # kubernetes.io/tls-acme: "true"
     kubernetes.io/ingress.class: nginx
     # nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
     # certmanager.k8s.io/cluster-issuer: "letsencrypt-prod"
