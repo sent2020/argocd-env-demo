@@ -1,7 +1,7 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: coruscant:config-admin
+  name: opspresso:config-admin
 rules:
 - apiGroups: [""]
   resources: ["configmaps", "secrets"]
