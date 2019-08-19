@@ -21,10 +21,6 @@ ingress:
       hosts:
         - sample-spring.demo.mzdev.be
 
-certificate:
-  enabled: true
-  secretName: sample-prod-tls
-
 autoscaling:
   enabled: true
   min: 1

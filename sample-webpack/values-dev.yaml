@@ -21,13 +21,6 @@ ingress:
       hosts:
         - sample-webpack-dev.demo.mzdev.be
 
-autoscaling:
-  enabled: false
-  min: 1
-  max: 5
-  cpu: 60
-  mem: 60
-
 configmap:
   enabled: true
   data:
