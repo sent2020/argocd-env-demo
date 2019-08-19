@@ -25,8 +25,8 @@ autoscaling:
   enabled: true
   min: 1
   max: 5
-  cpu: 60
-  mem: 60
+  cpu: 80
+  mem: 80
 
 configmap:
   enabled: true
