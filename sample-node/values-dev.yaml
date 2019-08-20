@@ -2,7 +2,7 @@ fullnameOverride: sample-node
 
 profile: dev
 
-namespace: sample-dev
+namespace: demo-dev
 
 image:
   repository: nalbam/sample-node

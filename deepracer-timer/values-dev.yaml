@@ -2,7 +2,7 @@ fullnameOverride: deepracer-timer
 
 profile: dev
 
-namespace: sample-dev
+namespace: demo-dev
 
 image:
   repository: nalbam/deepracer-timer

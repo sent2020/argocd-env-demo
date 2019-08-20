@@ -2,7 +2,7 @@ fullnameOverride: sample-spring
 
 profile: prod
 
-namespace: sample-prod
+namespace: demo-prod
 
 image:
   repository: nalbam/sample-spring
