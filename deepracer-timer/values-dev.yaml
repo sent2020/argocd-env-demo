@@ -17,9 +17,12 @@ ingress:
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
     certmanager.k8s.io/cluster-issuer: "letsencrypt-staging"
   tls:
-    - secretName: deepracer-timer-tls
+    - secretName: deepracer-timer-mzdev-tls
       hosts:
         - deepracer-timer-dev.demo.mzdev.be
+    - secretName: deepracer-timer-nalbam-tls
+      hosts:
+        - deepracer-timer-dev.demo.nalbam.com
 
 configmap:
   enabled: true
