@@ -12,14 +12,18 @@ ingress:
   enabled: true
   hosts:
     - sample-webpack-dev.demo.mzdev.be
+    - sample-webpack-dev.demo.nalbam.com
   annotations:
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
     certmanager.k8s.io/cluster-issuer: "letsencrypt-staging"
   tls:
-    - secretName: sample-webpack-tls
+    - secretName: sample-webpack-mzdev-tls
       hosts:
         - sample-webpack-dev.demo.mzdev.be
+    - secretName: sample-webpack-nalbam-tls
+      hosts:
+        - sample-webpack-dev.demo.nalbam.com
 
 configmap:
   enabled: true

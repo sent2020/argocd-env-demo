@@ -12,14 +12,18 @@ ingress:
   enabled: true
   hosts:
     - sample-tomcat-dev.demo.mzdev.be
+    - sample-tomcat-dev.demo.nalbam.com
   annotations:
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
     certmanager.k8s.io/cluster-issuer: "letsencrypt-staging"
   tls:
-    - secretName: sample-tomcat-tls
+    - secretName: sample-tomcat-mzdev-tls
       hosts:
         - sample-tomcat-dev.demo.mzdev.be
+    - secretName: sample-tomcat-nalbam-tls
+      hosts:
+        - sample-tomcat-dev.demo.nalbam.com
 
 configmap:
   enabled: true
