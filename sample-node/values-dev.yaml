@@ -18,9 +18,11 @@ ingress:
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
     certmanager.k8s.io/cluster-issuer: "letsencrypt-staging"
   tls:
-    - secretName: sample-node-tls
+    - secretName: sample-node-mzdev-tls
       hosts:
         - sample-node-dev.demo.mzdev.be
+    - secretName: sample-node-nalbam-tls
+      hosts:
         - sample-node-dev.demo.nalbam.com
 
 autoscaling:
