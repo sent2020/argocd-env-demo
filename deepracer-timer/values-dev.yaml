@@ -6,7 +6,7 @@ namespace: demo-dev
 
 image:
   repository: nalbam/deepracer-timer
-  tag: v0.0.9
+  tag: v0.0.12
 
 ingress:
   enabled: true
