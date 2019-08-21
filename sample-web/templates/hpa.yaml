@@ -31,8 +31,8 @@ spec:
 {{ end }}
 {{ if .Values.autoscaling.requests }}
     - type: Pods
-      resource:
-        name: http_requests
+      pods:
+        metricName: http_requests
         targetAverageValue: {{ .Values.autoscaling.requests }}
 {{ end }}
 {{ end }}

@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: LimitRange
 metadata:
-  name: sample-dev-limits
+  name: demo-prod-limits
 spec:
   limits:
   - default:
