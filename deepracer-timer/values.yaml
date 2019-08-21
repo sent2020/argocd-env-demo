@@ -41,7 +41,7 @@ autoscaling:
   max: 5
   cpu: 80
   memory: 80
-  requests: 1000
+  requests:
 
 resources:
   requests:
