@@ -24,13 +24,3 @@ ingress:
     - secretName: deepracer-timer-nalbam-tls
       hosts:
         - deepracer-timer-dev.demo.nalbam.com
-
-configmap:
-  enabled: true
-  data:
-    MESSAGE: "hello dev world"
-
-secret:
-  enabled: true
-  data:
-    SECRET: "c2VjcmV0IHdvcmxkCg=="
