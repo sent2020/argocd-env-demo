@@ -30,7 +30,7 @@ spec:
         targetAverageValue: {{ .Values.autoscaling.memory }}
 {{ end }}
 {{ if .Values.autoscaling.requests }}
-    - type: Pod
+    - type: Pods
       resource:
         name: http_requests
         targetAverageValue: {{ .Values.autoscaling.requests }}
