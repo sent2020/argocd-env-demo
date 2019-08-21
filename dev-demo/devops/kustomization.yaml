@@ -1,5 +1,0 @@
-commonLabels:
-  app: devops
-
-resources:
-- certificate.yaml
