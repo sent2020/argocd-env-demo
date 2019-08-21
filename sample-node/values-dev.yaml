@@ -25,13 +25,6 @@ ingress:
       hosts:
         - sample-node-dev.demo.nalbam.com
 
-autoscaling:
-  enabled: true
-  min: 1
-  max: 5
-  cpu: 80
-  mem: 80
-
 configmap:
   enabled: true
   data:
