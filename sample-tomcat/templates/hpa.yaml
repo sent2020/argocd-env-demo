@@ -21,7 +21,7 @@ spec:
     - type: Resource
       resource:
         name: memory
-        targetAverageValue: {{ .Values.autoscaling.memory }}
+        targetAverageUtilization: {{ .Values.autoscaling.memory }}
 {{ end }}
 {{ if .Values.autoscaling.cpu }}
     - type: Resource
