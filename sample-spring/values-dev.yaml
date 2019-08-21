@@ -24,6 +24,9 @@ ingress:
       hosts:
         - sample-spring-dev.demo.nalbam.com
 
+autoscaling:
+  enabled: true
+
 configmap:
   enabled: true
   data:
