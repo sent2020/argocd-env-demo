@@ -25,6 +25,9 @@ ingress:
       hosts:
         - sample-node-dev.demo.nalbam.com
 
+autoscaling:
+  enabled: true
+
 configmap:
   enabled: true
   data:
