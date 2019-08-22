@@ -1,0 +1,8 @@
+commonLabels:
+  app: deepracer-timer-dev
+
+resources:
+- ../base
+
+patchesStrategicMerge:
+- deployment.yaml
