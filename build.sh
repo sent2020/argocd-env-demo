@@ -17,6 +17,7 @@ TG_USERNAME="${TG_USERNAME}"
 TG_PROJECT="${TG_PROJECT}"
 TG_VERSION="${TG_VERSION}"
 TG_PHASE="${TG_PHASE}"
+TG_TYPE="${TG_TYPE}"
 
 GIT_USERNAME="bot"
 GIT_USEREMAIL="bot@nalbam.com"
@@ -93,17 +94,25 @@ _build_phase() {
         _success
     fi
 
+    if [ ! -d ${RUN_PATH}/${TG_PROJECT} ]; then
+        _success
+    fi
+
     CIRCLE_API="https://circleci.com/api/v1.1/project/github/${USERNAME}/${REPONAME}"
     CIRCLE_URL="${CIRCLE_API}?circle-token=${PERSONAL_TOKEN}"
 
-    LIST=$(ls ${RUN_PATH}/${TG_PROJECT} | grep 'values-' | grep '.yaml' | cut -d'-' -f2 | cut -d'.' -f1)
+    pushd ${RUN_PATH}/${TG_PROJECT}
+
+    # find kustomize
+    LIST=$(ls -d */kustomization.yaml | cut -d'/' -f1)
 
     for PHASE in ${LIST}; do
         PAYLOAD="{\"build_parameters\":{"
         PAYLOAD="${PAYLOAD}\"TG_USERNAME\":\"${TG_USERNAME}\","
         PAYLOAD="${PAYLOAD}\"TG_PROJECT\":\"${TG_PROJECT}\","
         PAYLOAD="${PAYLOAD}\"TG_VERSION\":\"${TG_VERSION}\","
-        PAYLOAD="${PAYLOAD}\"TG_PHASE\":\"${PHASE}\""
+        PAYLOAD="${PAYLOAD}\"TG_PHASE\":\"${PHASE}\","
+        PAYLOAD="${PAYLOAD}\"TG_TYPE\":\"kustomize\""
         PAYLOAD="${PAYLOAD}}}"
 
         curl -X POST \
@@ -112,11 +121,40 @@ _build_phase() {
 
         _result "${PHASE}"
     done
+
+    # find helm chart
+    LIST=$(ls | grep 'values-' | grep '.yaml' | cut -d'-' -f2 | cut -d'.' -f1)
+
+    for PHASE in ${LIST}; do
+        PAYLOAD="{\"build_parameters\":{"
+        PAYLOAD="${PAYLOAD}\"TG_USERNAME\":\"${TG_USERNAME}\","
+        PAYLOAD="${PAYLOAD}\"TG_PROJECT\":\"${TG_PROJECT}\","
+        PAYLOAD="${PAYLOAD}\"TG_VERSION\":\"${TG_VERSION}\","
+        PAYLOAD="${PAYLOAD}\"TG_PHASE\":\"${PHASE}\","
+        PAYLOAD="${PAYLOAD}\"TG_TYPE\":\"helm\""
+        PAYLOAD="${PAYLOAD}}}"
+
+        curl -X POST \
+            -H "Content-Type: application/json" \
+            -d "${PAYLOAD}" "${CIRCLE_URL}"
+
+        _result "${PHASE}"
+    done
+
+    popd
 }
 
 _build_deploy() {
-    if [ ! -f ${RUN_PATH}/${TG_PROJECT}/values-${TG_PHASE}.yaml ]; then
-        _error "Not found values-${TG_PHASE}.yaml"
+    if [ "${TG_TYPE}" == "kustomize" ]; then
+        if [ ! -f ${RUN_PATH}/${TG_PROJECT}/${TG_PHASE}/kustomization.yaml ]; then
+            _error "Not found ${TG_PROJECT}/${TG_PHASE}/kustomization.yaml"
+        fi
+    else if [ "${TG_TYPE}" == "helm" ]; then
+        if [ ! -f ${RUN_PATH}/${TG_PROJECT}/values-${TG_PHASE}.yaml ]; then
+            _error "Not found ${TG_PROJECT}/values-${TG_PHASE}.yaml"
+        fi
+    else
+        _error "${TG_PROJECT} ${TG_TYPE}"
     fi
 
     git config --global user.name "${GIT_USERNAME}"
@@ -153,7 +191,14 @@ _build_deploy() {
     git checkout ${NEW_BRANCH}
 
     _command "replace ${TG_VERSION}"
-    _replace "s/tag: .*/tag: ${TG_VERSION}/g" ${RUN_PATH}/${TG_PROJECT}/values-${TG_PHASE}.yaml
+    if [ "${TG_TYPE}" == "kustomize" ]; then
+        TARGET=${RUN_PATH}/${TG_PROJECT}/${TG_PHASE}/deployment.yaml
+        _replace "s/image: .*/image: ${TG_USERNAME}/${TG_PROJECT}:${TG_VERSION}/g" ${TARGET}
+    else if [ "${TG_TYPE}" == "helm" ]; then
+        TARGET=${RUN_PATH}/${TG_PROJECT}/values-${TG_PHASE}.yaml
+        _replace "s/repository: .*/repository: ${TG_USERNAME}/${TG_PROJECT}/g" ${TARGET}
+        _replace "s/tag: .*/tag: ${TG_VERSION}/g" ${TARGET}
+    fi
 
     _command "git add --all"
     git add --all
@@ -173,10 +218,10 @@ _build_deploy() {
 
 _prepare
 
-if [ "${TG_PHASE}" == "" ]; then
-    _build_phase
-else
+if [ "${TG_TYPE}" != "" ]; then
     _build_deploy
+else
+    _build_phase
 fi
 
 _success
