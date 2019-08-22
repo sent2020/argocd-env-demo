@@ -1,0 +1,34 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  labels:
+    app: deepracer-timer
+    app.kubernetes.io/name: deepracer-timer
+  name: deepracer-timer
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    certmanager.k8s.io/cluster-issuer: "letsencrypt-prod"
+spec:
+  rules:
+    - host: deepracer-timer-dev.demo.mzdev.be
+      http:
+        paths:
+          - backend:
+              serviceName: deepracer-timer
+              servicePort: 80
+            path: /
+    - host: deepracer-timer-dev.demo.nalbam.com
+      http:
+        paths:
+          - backend:
+              serviceName: deepracer-timer
+              servicePort: 80
+            path: /
+  tls:
+    - hosts:
+        - deepracer-timer-dev.demo.mzdev.be
+      secretName: deepracer-timer-mzdev-tls
+    - hosts:
+        - deepracer-timer-dev.demo.nalbam.com
+      secretName: deepracer-timer-nalbam-tls

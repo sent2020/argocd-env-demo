@@ -1,0 +1,9 @@
+commonLabels:
+  app: deepracer-timer-dev
+
+resources:
+- ../base
+- ingress.yaml
+
+patchesStrategicMerge:
+- deployment.yaml
