@@ -8,8 +8,8 @@ CMD=${1:-$CIRCLE_JOB}
 
 RUN_PATH=${2:-$SHELL_DIR}
 
-USERNAME=${CIRCLE_PROJECT_USERNAME}
-REPONAME=${CIRCLE_PROJECT_REPONAME}
+USERNAME=${CIRCLE_PROJECT_USERNAME:-opspresso}
+REPONAME=${CIRCLE_PROJECT_REPONAME:-ardocd-env-demo}
 
 BRANCH=${CIRCLE_BRANCH:-master}
 
@@ -149,7 +149,7 @@ _build_deploy() {
         if [ ! -f ${RUN_PATH}/${TG_PROJECT}/${TG_PHASE}/kustomization.yaml ]; then
             _error "Not found ${TG_PROJECT}/${TG_PHASE}/kustomization.yaml"
         fi
-    else if [ "${TG_TYPE}" == "helm" ]; then
+    elif [ "${TG_TYPE}" == "helm" ]; then
         if [ ! -f ${RUN_PATH}/${TG_PROJECT}/values-${TG_PHASE}.yaml ]; then
             _error "Not found ${TG_PROJECT}/values-${TG_PHASE}.yaml"
         fi
@@ -193,10 +193,10 @@ _build_deploy() {
     _command "replace ${TG_VERSION}"
     if [ "${TG_TYPE}" == "kustomize" ]; then
         TARGET=${RUN_PATH}/${TG_PROJECT}/${TG_PHASE}/deployment.yaml
-        _replace "s/image: .*/image: ${TG_USERNAME}/${TG_PROJECT}:${TG_VERSION}/g" ${TARGET}
-    else if [ "${TG_TYPE}" == "helm" ]; then
+        _replace "s/image: .*/image: ${TG_USERNAME}\/${TG_PROJECT}:${TG_VERSION}/g" ${TARGET}
+    elif [ "${TG_TYPE}" == "helm" ]; then
         TARGET=${RUN_PATH}/${TG_PROJECT}/values-${TG_PHASE}.yaml
-        _replace "s/repository: .*/repository: ${TG_USERNAME}/${TG_PROJECT}/g" ${TARGET}
+        _replace "s/repository: .*/repository: ${TG_USERNAME}\/${TG_PROJECT}/g" ${TARGET}
         _replace "s/tag: .*/tag: ${TG_VERSION}/g" ${TARGET}
     fi
 
@@ -218,10 +218,10 @@ _build_deploy() {
 
 _prepare
 
-if [ "${TG_TYPE}" != "" ]; then
-    _build_deploy
-else
+if [ "${TG_TYPE}" == "" ]; then
     _build_phase
+else
+    _build_deploy
 fi
 
 _success
