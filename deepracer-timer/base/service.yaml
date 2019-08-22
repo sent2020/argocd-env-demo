@@ -3,6 +3,7 @@ kind: Service
 metadata:
   labels:
     app: deepracer-timer
+    app.kubernetes.io/name: deepracer-timer
   name: deepracer-timer
 spec:
   type: ClusterIP

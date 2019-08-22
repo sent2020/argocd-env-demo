@@ -3,6 +3,7 @@ commonLabels:
 
 resources:
 - ../base
+- ingress.yaml
 
 patchesStrategicMerge:
 - deployment.yaml
