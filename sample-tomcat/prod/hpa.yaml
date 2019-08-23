@@ -1,0 +1,15 @@
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  labels:
+    app: sample-tomcat
+    app.kubernetes.io/name: sample-tomcat
+  name: sample-tomcat
+spec:
+  maxReplicas: 5
+  minReplicas: 1
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: sample-tomcat
+  targetCPUUtilizationPercentage: 80

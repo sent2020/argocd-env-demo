@@ -1,0 +1,34 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  labels:
+    app: sample-tomcat
+    app.kubernetes.io/name: sample-tomcat
+  name: sample-tomcat
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    certmanager.k8s.io/cluster-issuer: "letsencrypt-prod"
+spec:
+  rules:
+    - host: sample-tomcat.demo.mzdev.be
+      http:
+        paths:
+          - backend:
+              serviceName: sample-tomcat
+              servicePort: 80
+            path: /
+    - host: sample-tomcat.demo.nalbam.com
+      http:
+        paths:
+          - backend:
+              serviceName: sample-tomcat
+              servicePort: 80
+            path: /
+  tls:
+    - hosts:
+        - sample-tomcat.demo.mzdev.be
+      secretName: sample-tomcat-mzdev-tls
+    - hosts:
+        - sample-tomcat.demo.nalbam.com
+      secretName: sample-tomcat-nalbam-tls
