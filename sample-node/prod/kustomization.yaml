@@ -3,11 +3,8 @@ resources:
 - ../base/service.yaml
 - ../base/deployment-redis.yaml
 - ../base/service-redis.yaml
+- configmap.yaml
 - ingress.yaml
 - hpa.yaml
 patchesStrategicMerge:
 - deployment.yaml
-configMapGenerator:
-- name: sample-node
-  files:
-  - config.env
