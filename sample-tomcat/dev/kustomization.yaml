@@ -1,8 +1,6 @@
 resources:
 - ../base/deployment.yaml
 - ../base/service.yaml
-- ../base/deployment-redis.yaml
-- ../base/service-redis.yaml
 - configmap.yaml
 - ingress.yaml
 # - hpa.yaml
