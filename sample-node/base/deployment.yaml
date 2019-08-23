@@ -2,15 +2,15 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: deepracer-timer
-    app.kubernetes.io/name: deepracer-timer
-  name: deepracer-timer
+    app: sample-node
+    app.kubernetes.io/name: sample-node
+  name: sample-node
 spec:
   replicas: 1
   revisionHistoryLimit: 10
   selector:
     matchLabels:
-      app: deepracer-timer
+      app: sample-node
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -19,11 +19,11 @@ spec:
   template:
     metadata:
       labels:
-        app: deepracer-timer
-        app.kubernetes.io/name: deepracer-timer
+        app: sample-node
+        app.kubernetes.io/name: sample-node
     spec:
       containers:
-        - image: nalbam/deepracer-timer:v0.0.1
+        - image: nalbam/sample-node:v0.0.1
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 3
@@ -35,7 +35,7 @@ spec:
             periodSeconds: 10
             successThreshold: 1
             timeoutSeconds: 1
-          name: deepracer-timer
+          name: sample-node
           ports:
             - containerPort: 3000
               protocol: TCP
