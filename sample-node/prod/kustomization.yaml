@@ -7,3 +7,7 @@ resources:
 - hpa.yaml
 patchesStrategicMerge:
 - deployment.yaml
+configMapGenerator:
+- name: sample-node
+  files:
+  - config.env

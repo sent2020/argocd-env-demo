@@ -1,0 +1,34 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  labels:
+    app: sample-spring
+    app.kubernetes.io/name: sample-spring
+  name: sample-spring
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    certmanager.k8s.io/cluster-issuer: "letsencrypt-prod"
+spec:
+  rules:
+    - host: sample-spring-dev.demo.mzdev.be
+      http:
+        paths:
+          - backend:
+              serviceName: sample-spring
+              servicePort: 80
+            path: /
+    - host: sample-spring-dev.demo.nalbam.com
+      http:
+        paths:
+          - backend:
+              serviceName: sample-spring
+              servicePort: 80
+            path: /
+  tls:
+    - hosts:
+        - sample-spring-dev.demo.mzdev.be
+      secretName: sample-spring-mzdev-tls
+    - hosts:
+        - sample-spring-dev.demo.nalbam.com
+      secretName: sample-spring-nalbam-tls

@@ -8,6 +8,6 @@ resources:
 patchesStrategicMerge:
 - deployment.yaml
 configMapGenerator:
-- name: sample-node
+- name: sample-spring
   files:
   - config.env
