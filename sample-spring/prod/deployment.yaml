@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sample-spring
+spec:
+  template:
+    spec:
+      containers:
+        - image: nalbam/sample-spring:v0.1.10
+          name: sample-spring
+          resources:
+            limits:
+              cpu: 120m
+              memory: 153Mi
+            requests:
+              cpu: 100m
+              memory: 128Mi
+          envFrom:
+            - configMapRef:
+                name: sample-spring
