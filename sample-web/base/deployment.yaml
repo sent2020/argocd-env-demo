@@ -2,15 +2,15 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: sample-spring
-    app.kubernetes.io/name: sample-spring
-  name: sample-spring
+    app: sample-web
+    app.kubernetes.io/name: sample-web
+  name: sample-web
 spec:
   replicas: 1
   revisionHistoryLimit: 10
   selector:
     matchLabels:
-      app: sample-spring
+      app: sample-web
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -19,40 +19,40 @@ spec:
   template:
     metadata:
       labels:
-        app: sample-spring
-        app.kubernetes.io/name: sample-spring
+        app: sample-web
+        app.kubernetes.io/name: sample-web
     spec:
       containers:
-        - image: nalbam/sample-spring:v0.0.1
+        - image: nalbam/sample-web:v0.0.1
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 3
             httpGet:
               path: /
-              port: 8080
+              port: 80
               scheme: HTTP
-            initialDelaySeconds: 60
+            initialDelaySeconds: 3
             periodSeconds: 10
             successThreshold: 1
             timeoutSeconds: 1
-          name: sample-spring
+          name: sample-web
           ports:
-            - containerPort: 8080
+            - containerPort: 80
               protocol: TCP
           readinessProbe:
             failureThreshold: 3
             httpGet:
               path: /
-              port: 8080
+              port: 80
               scheme: HTTP
-            initialDelaySeconds: 60
+            initialDelaySeconds: 3
             periodSeconds: 10
             successThreshold: 1
             timeoutSeconds: 1
           resources:
             limits:
-              cpu: 1000m
-              memory: 1024Mi
+              cpu: 120m
+              memory: 153Mi
             requests:
-              cpu: 1200m
-              memory: 1228Mi
+              cpu: 100m
+              memory: 128Mi

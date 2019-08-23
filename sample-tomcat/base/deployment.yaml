@@ -2,15 +2,15 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: sample-spring
-    app.kubernetes.io/name: sample-spring
-  name: sample-spring
+    app: sample-tomcat
+    app.kubernetes.io/name: sample-tomcat
+  name: sample-tomcat
 spec:
   replicas: 1
   revisionHistoryLimit: 10
   selector:
     matchLabels:
-      app: sample-spring
+      app: sample-tomcat
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -19,11 +19,11 @@ spec:
   template:
     metadata:
       labels:
-        app: sample-spring
-        app.kubernetes.io/name: sample-spring
+        app: sample-tomcat
+        app.kubernetes.io/name: sample-tomcat
     spec:
       containers:
-        - image: nalbam/sample-spring:v0.0.1
+        - image: nalbam/sample-tomcat:v0.0.1
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 3
@@ -35,7 +35,7 @@ spec:
             periodSeconds: 10
             successThreshold: 1
             timeoutSeconds: 1
-          name: sample-spring
+          name: sample-tomcat
           ports:
             - containerPort: 8080
               protocol: TCP

@@ -1,0 +1,15 @@
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  labels:
+    app: sample-webpack
+    app.kubernetes.io/name: sample-webpack
+  name: sample-webpack
+spec:
+  maxReplicas: 5
+  minReplicas: 1
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: sample-webpack
+  targetCPUUtilizationPercentage: 80

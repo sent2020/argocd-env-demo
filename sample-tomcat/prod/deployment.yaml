@@ -1,13 +1,13 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: sample-spring
+  name: sample-tomcat
 spec:
   template:
     spec:
       containers:
-        - image: nalbam/sample-spring:v0.1.10
-          name: sample-spring
+        - image: nalbam/sample-tomcat:v0.1.2
+          name: sample-tomcat
           resources:
             limits:
               cpu: 1000m
@@ -17,4 +17,4 @@ spec:
               memory: 1228Mi
           envFrom:
             - configMapRef:
-                name: sample-spring
+                name: sample-tomcat

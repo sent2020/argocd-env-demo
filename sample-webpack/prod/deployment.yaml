@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sample-webpack
+spec:
+  template:
+    spec:
+      containers:
+        - image: nalbam/sample-webpack:v0.1.2
+          name: sample-webpack
+          resources:
+            limits:
+              cpu: 120m
+              memory: 153Mi
+            requests:
+              cpu: 100m
+              memory: 128Mi
+          envFrom:
+            - configMapRef:
+                name: sample-webpack
