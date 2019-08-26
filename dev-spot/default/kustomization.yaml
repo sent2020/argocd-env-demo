@@ -1,0 +1,4 @@
+resources:
+- cluster-issuer.yaml
+- cluster-role.yaml
+- namespace.yaml

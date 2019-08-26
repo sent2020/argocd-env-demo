@@ -8,4 +8,4 @@ metadata:
 data:
   PROFILE: prod
   VERSION: v0.0.0
-  MESSAGE: hello prod world
+  MESSAGE: hello prod-demo world

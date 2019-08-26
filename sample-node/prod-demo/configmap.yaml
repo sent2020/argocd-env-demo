@@ -6,6 +6,6 @@ metadata:
     app.kubernetes.io/name: sample-node
   name: sample-node
 data:
-  PROFILE: dev
+  PROFILE: prod
   VERSION: v0.0.0
-  MESSAGE: hello dev world
+  MESSAGE: hello prod-demo world
