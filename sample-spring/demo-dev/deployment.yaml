@@ -6,7 +6,7 @@ spec:
   template:
     spec:
       containers:
-        - image: nalbam/sample-spring:v0.1.10
+        - image: nalbam/sample-spring:v0.1.12
           name: sample-spring
           resources:
             limits:
