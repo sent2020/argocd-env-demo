@@ -11,7 +11,7 @@ metadata:
     certmanager.k8s.io/cluster-issuer: "letsencrypt-prod"
 spec:
   rules:
-    - host: sample-spring.spot.mzdev.be
+    - host: sample-spring-dev.spot.mzdev.be
       http:
         paths:
           - backend:
@@ -20,5 +20,5 @@ spec:
             path: /
   tls:
     - hosts:
-        - sample-spring.spot.mzdev.be
+        - sample-spring-dev.spot.mzdev.be
       secretName: sample-spring-mzdev-tls
