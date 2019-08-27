@@ -6,7 +6,7 @@ spec:
   template:
     spec:
       containers:
-        - image: nalbam/sample-tomcat:v0.1.2
+        - image: nalbam/sample-tomcat:v0.1.5
           name: sample-tomcat
           resources:
             limits:
