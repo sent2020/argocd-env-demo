@@ -83,6 +83,10 @@ _prepare() {
 }
 
 _build_phase() {
+    if [ ! -d ${RUN_PATH}/${TG_PROJECT} ]; then
+        _success
+    fi
+
     # version check
     TMP=/tmp/releases
     curl -sL "https://api.github.com/repos/${TG_USERNAME}/${TG_PROJECT}/releases" > ${TMP}
@@ -90,13 +94,10 @@ _build_phase() {
 
     _result "PRERELEASE: \"${PRERELEASE}\""
 
-    if [ "${PRERELEASE}" != "false false" ]; then
-        _success
-    fi
-
-    if [ ! -d ${RUN_PATH}/${TG_PROJECT} ]; then
-        _success
-    fi
+    # # prerelease
+    # if [ "${PRERELEASE}" != "false false" ]; then
+    #     _success
+    # fi
 
     CIRCLE_API="https://circleci.com/api/v1.1/project/github/${USERNAME}/${REPONAME}"
     CIRCLE_URL="${CIRCLE_API}?circle-token=${PERSONAL_TOKEN}"
