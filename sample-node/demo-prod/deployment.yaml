@@ -6,7 +6,7 @@ spec:
   template:
     spec:
       containers:
-        - image: nalbam/sample-node:v0.1.12
+        - image: nalbam/sample-node:v0.1.14
           name: sample-node
           resources:
             limits:
