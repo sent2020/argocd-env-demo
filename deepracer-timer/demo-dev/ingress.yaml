@@ -18,17 +18,17 @@ spec:
               serviceName: deepracer-timer
               servicePort: 80
             path: /
-    - host: deepracer-timer-dev.demo.nalbam.com
-      http:
-        paths:
-          - backend:
-              serviceName: deepracer-timer
-              servicePort: 80
-            path: /
+    # - host: deepracer-timer-dev.demo.nalbam.com
+    #   http:
+    #     paths:
+    #       - backend:
+    #           serviceName: deepracer-timer
+    #           servicePort: 80
+    #         path: /
   tls:
     - hosts:
         - deepracer-timer-dev.demo.mzdev.be
       secretName: deepracer-timer-mzdev-tls
-    - hosts:
-        - deepracer-timer-dev.demo.nalbam.com
-      secretName: deepracer-timer-nalbam-tls
+    # - hosts:
+    #     - deepracer-timer-dev.demo.nalbam.com
+    #   secretName: deepracer-timer-nalbam-tls

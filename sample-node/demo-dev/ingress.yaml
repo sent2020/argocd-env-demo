@@ -18,17 +18,17 @@ spec:
               serviceName: sample-node
               servicePort: 80
             path: /
-    - host: sample-node-dev.demo.nalbam.com
-      http:
-        paths:
-          - backend:
-              serviceName: sample-node
-              servicePort: 80
-            path: /
+    # - host: sample-node-dev.demo.nalbam.com
+    #   http:
+    #     paths:
+    #       - backend:
+    #           serviceName: sample-node
+    #           servicePort: 80
+    #         path: /
   tls:
     - hosts:
         - sample-node-dev.demo.mzdev.be
       secretName: sample-node-mzdev-tls
-    - hosts:
-        - sample-node-dev.demo.nalbam.com
-      secretName: sample-node-nalbam-tls
+    # - hosts:
+    #     - sample-node-dev.demo.nalbam.com
+    #   secretName: sample-node-nalbam-tls
