@@ -6,7 +6,7 @@ spec:
   template:
     spec:
       containers:
-        - image: nalbam/deepracer-timer:v0.0.29
+        - image: nalbam/deepracer-timer:v0.0.33
           name: deepracer-timer
           resources:
             limits:
