@@ -1,0 +1,23 @@
+prometheus:
+  enabled: true
+
+  server:
+    persistentVolume:
+      enabled: true
+      accessModes:
+        - ReadWriteOnce
+      size: 8Gi
+      storageClass: "efs"
+      existingClaim: prometheus-server
+
+  alertmanager:
+    persistentVolume:
+      enabled: true
+      accessModes:
+        - ReadWriteOnce
+      size: 2Gi
+      storageClass: "efs"
+      existingClaim: prometheus-alertmanager
+
+  kubeStateMetrics:
+    enabled: false
