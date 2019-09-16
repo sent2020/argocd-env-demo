@@ -1,5 +1,3 @@
-# chart-repo: stable/metrics-server
-
 metricsServer:
   enabled: true
 

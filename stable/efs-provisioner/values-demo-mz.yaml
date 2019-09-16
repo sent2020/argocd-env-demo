@@ -1,0 +1,16 @@
+efsProvisioner:
+  enabled: true
+
+  efsProvisioner:
+    efsFileSystemId: fs-16108a77
+    awsRegion: ap-northeast-2
+    path: /shared
+    provisionerName: seoul-dev-demo-eks/efs
+    storageClass:
+      name: efs
+      isDefault: false
+      gidAllocate:
+        enabled: true
+        gidMin: 40000
+        gidMax: 50000
+      reclaimPolicy: Retain
