@@ -1,0 +1,6 @@
+dependencies:
+- name: kube2iam
+  repository: https://kubernetes-charts.storage.googleapis.com/
+  version: 2.0.1
+digest: sha256:5e8ffed8ccdb61e4539ef5d64a7ecb924dd797296942eccd8b2fdab12f9b6f7b
+generated: "2019-09-16T10:36:04.311804+09:00"
