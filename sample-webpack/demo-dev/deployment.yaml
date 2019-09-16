@@ -6,7 +6,7 @@ spec:
   template:
     spec:
       containers:
-        - image: nalbam/sample-webpack:v0.1.5
+        - image: nalbam/sample-webpack:v0.1.7
           name: sample-webpack
           resources:
             limits:
