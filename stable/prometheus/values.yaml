@@ -8,7 +8,7 @@ prometheus:
         - ReadWriteOnce
       size: 8Gi
       # storageClass: "efs"
-      existingClaim: prometheus-server
+      # existingClaim: prometheus-server
 
   alertmanager:
     persistentVolume:
@@ -17,7 +17,7 @@ prometheus:
         - ReadWriteOnce
       size: 2Gi
       # storageClass: "efs"
-      existingClaim: prometheus-alertmanager
+      # existingClaim: prometheus-alertmanager
 
   kubeStateMetrics:
     enabled: KUBE_STATE_METRICS
