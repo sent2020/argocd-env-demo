@@ -1,2 +1,4 @@
 certManager:
   enabled: true
+
+email: me@nalbam.com
