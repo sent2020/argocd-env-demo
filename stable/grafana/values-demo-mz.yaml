@@ -30,7 +30,7 @@ grafana:
       - ReadWriteOnce
     size: 5Gi
     storageClassName: "efs"
-    existingClaim: grafana
+    # existingClaim: grafana
 
   datasources:
     datasources.yaml:
