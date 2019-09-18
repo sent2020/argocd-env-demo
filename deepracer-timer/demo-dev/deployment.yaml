@@ -23,7 +23,7 @@ spec:
         app.kubernetes.io/name: deepracer-timer
     spec:
       containers:
-        - image: nalbam/deepracer-timer:v0.1.27
+        - image: nalbam/deepracer-timer:v0.1.28
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 3
