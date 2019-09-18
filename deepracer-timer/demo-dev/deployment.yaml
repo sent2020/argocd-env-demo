@@ -3,6 +3,9 @@ kind: Deployment
 metadata:
   name: deepracer-timer
 spec:
+  selector:
+    matchLabels:
+      app: deepracer-timer
   template:
     spec:
       containers:

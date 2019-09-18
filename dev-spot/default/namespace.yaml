@@ -4,7 +4,6 @@ metadata:
   name: spot-dev
 
 ---
-
 apiVersion: v1
 kind: Namespace
 metadata:
