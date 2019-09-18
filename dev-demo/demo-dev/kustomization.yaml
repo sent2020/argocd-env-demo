@@ -1,4 +1,4 @@
 resources:
-# - limit-range.yaml
-# - resource-quota.yaml
-- role-binding.yaml
+  # - limit-range.yaml
+  # - resource-quota.yaml
+  - role-binding.yaml

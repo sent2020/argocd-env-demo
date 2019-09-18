@@ -7,6 +7,6 @@ roleRef:
   kind: ClusterRole
   name: opspresso:config-admin
 subjects:
-- apiGroup: rbac.authorization.k8s.io
-  kind: User
-  name: developer
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: developer
