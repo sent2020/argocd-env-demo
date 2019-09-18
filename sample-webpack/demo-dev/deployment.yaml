@@ -3,7 +3,14 @@ kind: Deployment
 metadata:
   name: sample-webpack
 spec:
+  selector:
+    matchLabels:
+      app: sample-webpack
   template:
+    metadata:
+      labels:
+        app: sample-webpack
+        app.kubernetes.io/name: sample-webpack
     spec:
       containers:
         - image: nalbam/sample-webpack:v0.1.7

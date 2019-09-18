@@ -3,7 +3,14 @@ kind: Deployment
 metadata:
   name: sample-spring
 spec:
+  selector:
+    matchLabels:
+      app: sample-spring
   template:
+    metadata:
+      labels:
+        app: sample-spring
+        app.kubernetes.io/name: sample-spring
     spec:
       containers:
         - image: nalbam/sample-spring:v0.1.19
