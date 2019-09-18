@@ -3,7 +3,14 @@ kind: Deployment
 metadata:
   name: sample-tomcat
 spec:
+  selector:
+    matchLabels:
+      app: sample-tomcat
   template:
+    metadata:
+      labels:
+        app: sample-tomcat
+        app.kubernetes.io/name: sample-tomcat
     spec:
       containers:
         - image: nalbam/sample-tomcat:v0.1.7

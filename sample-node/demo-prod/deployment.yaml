@@ -7,6 +7,10 @@ spec:
     matchLabels:
       app: sample-node
   template:
+    metadata:
+      labels:
+        app: sample-node
+        app.kubernetes.io/name: sample-node
     spec:
       containers:
         - image: nalbam/sample-node:v0.1.17

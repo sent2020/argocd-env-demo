@@ -7,6 +7,10 @@ spec:
     matchLabels:
       app: deepracer-timer
   template:
+    metadata:
+      labels:
+        app: deepracer-timer
+        app.kubernetes.io/name: deepracer-timer
     spec:
       containers:
         - image: nalbam/deepracer-timer:v0.1.27
