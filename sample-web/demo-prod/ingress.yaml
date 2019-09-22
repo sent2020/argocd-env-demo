@@ -16,19 +16,19 @@ spec:
         paths:
           - backend:
               serviceName: sample-web
-              servicePort: 80
+              servicePort: "80"
             path: /
-    - host: sample-web.demo.nalbam.com
-      http:
-        paths:
-          - backend:
-              serviceName: sample-web
-              servicePort: 80
-            path: /
+    # - host: sample-web.demo.nalbam.com
+    #   http:
+    #     paths:
+    #       - backend:
+    #           serviceName: sample-web
+    #           servicePort: "80"
+    #         path: /
   tls:
     - hosts:
         - sample-web.demo.mzdev.be
       secretName: sample-web-mzdev-tls
-    - hosts:
-        - sample-web.demo.nalbam.com
-      secretName: sample-web-nalbam-tls
+    # - hosts:
+    #     - sample-web.demo.nalbam.com
+    #   secretName: sample-web-nalbam-tls

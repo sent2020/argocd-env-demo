@@ -16,14 +16,14 @@ spec:
         paths:
           - backend:
               serviceName: deepracer-timer
-              servicePort: 80
+              servicePort: "80"
             path: /
     # - host: deepracer-timer-dev.demo.nalbam.com
     #   http:
     #     paths:
     #       - backend:
     #           serviceName: deepracer-timer
-    #           servicePort: 80
+    #           servicePort: "80"
     #         path: /
   tls:
     - hosts:

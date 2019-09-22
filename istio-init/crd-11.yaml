@@ -16,8 +16,7 @@ spec:
     plural: sidecars
     singular: sidecar
     categories:
-    - istio-io
-    - networking-istio-io
+      - istio-io
+      - networking-istio-io
   scope: Namespaced
   version: v1alpha3
----

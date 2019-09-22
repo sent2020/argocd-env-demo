@@ -9,7 +9,7 @@ spec:
     requests.memory: 1Gi
     limits.cpu: "2"
     limits.memory: 2Gi
-    requests.nvidia.com/gpu: 4
+    requests.nvidia.com/gpu: "4"
 #    configmaps: "10"
 #    persistentvolumeclaims: "4"
 #    replicationcontrollers: "20"

@@ -16,14 +16,14 @@ spec:
         paths:
           - backend:
               serviceName: sample-spring
-              servicePort: 80
+              servicePort: "80"
             path: /
     # - host: sample-spring-dev.demo.nalbam.com
     #   http:
     #     paths:
     #       - backend:
     #           serviceName: sample-spring
-    #           servicePort: 80
+    #           servicePort: "80"
     #         path: /
   tls:
     - hosts:
