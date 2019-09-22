@@ -16,14 +16,14 @@ spec:
         paths:
           - backend:
               serviceName: sample-webpack
-              servicePort: 80
+              servicePort: "80"
             path: /
     # - host: sample-webpack-dev.demo.nalbam.com
     #   http:
     #     paths:
     #       - backend:
     #           serviceName: sample-webpack
-    #           servicePort: 80
+    #           servicePort: "80"
     #         path: /
   tls:
     - hosts:
