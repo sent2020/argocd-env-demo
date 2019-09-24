@@ -16,14 +16,14 @@ spec:
         paths:
           - backend:
               serviceName: nalbam-docs
-              servicePort: "80"
+              servicePort: 80
             path: /
     # - host: nalbam-docs-dev.demo.nalbam.com
     #   http:
     #     paths:
     #       - backend:
     #           serviceName: nalbam-docs
-    #           servicePort: "80"
+    #           servicePort: 80
     #         path: /
   tls:
     - hosts:

@@ -11,6 +11,6 @@ spec:
     - name: redis
       port: 6379
       protocol: TCP
-      targetPort: "6379"
+      targetPort: 6379
   selector:
     app: sample-node-redis
