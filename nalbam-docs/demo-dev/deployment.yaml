@@ -23,13 +23,13 @@ spec:
         app.kubernetes.io/name: nalbam-docs
     spec:
       containers:
-        - image: nalbam/docs:v0.0.11
+        - image: nalbam/docs:v0.0.12
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 3
             httpGet:
               path: /
-              port: 3000
+              port: 1948
               scheme: HTTP
             initialDelaySeconds: 3
             periodSeconds: 10
@@ -37,13 +37,13 @@ spec:
             timeoutSeconds: 1
           name: nalbam-docs
           ports:
-            - containerPort: 3000
+            - containerPort: 1948
               protocol: TCP
           readinessProbe:
             failureThreshold: 3
             httpGet:
               path: /
-              port: 3000
+              port: 1948
               scheme: HTTP
             initialDelaySeconds: 3
             periodSeconds: 10
