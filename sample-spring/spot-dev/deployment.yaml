@@ -13,7 +13,7 @@ spec:
         app.kubernetes.io/name: sample-spring
     spec:
       containers:
-        - image: nalbam/sample-spring:v0.1.19
+        - image: nalbam/sample-spring:v0.1.20
           name: sample-spring
           resources:
             limits:
