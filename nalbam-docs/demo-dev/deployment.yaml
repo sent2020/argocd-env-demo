@@ -23,7 +23,7 @@ spec:
         app.kubernetes.io/name: nalbam-docs
     spec:
       containers:
-        - image: nalbam/docs:v0.0.16
+        - image: nalbam/docs:v0.0.20
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 3
