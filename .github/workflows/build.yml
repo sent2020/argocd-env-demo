@@ -1,8 +1,6 @@
 name: build
 
-on:
-  dispatches:
-    types: [build]
+on: repository_dispatch
 
 jobs:
   build:
