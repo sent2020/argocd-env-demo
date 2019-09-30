@@ -1,6 +1,8 @@
-name: GitOps-main
+name: build
 
-on: repository_dispatch
+on:
+  dispatches:
+    types: [build]
 
 jobs:
   build:
