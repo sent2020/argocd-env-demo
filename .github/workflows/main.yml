@@ -1,6 +1,6 @@
 name: GitOps-main
 
-on: deploy
+on: repository_dispatch
 
 jobs:
   build:
