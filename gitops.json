@@ -1,6 +1,6 @@
 {
     "items": [{
-        "repo": "nalbam/deepracer-timer",
+        "id": "deepracer-timer",
         "path": "deepracer-timer",
         "stages": ["demo-dev"],
         "targets": [{
@@ -8,7 +8,7 @@
             "path": "- image: nalbam/deepracer-timer:"
         }]
     }, {
-        "repo": "nalbam/docs",
+        "id": "nalbam-docs",
         "path": "nalbam-docs",
         "stages": ["demo-dev"],
         "targets": [{
@@ -16,7 +16,7 @@
             "path": "- image: nalbam/docs:"
         }]
     }, {
-        "repo": "nalbam/sample-node",
+        "id": "sample-node",
         "path": "sample-node",
         "stages": ["demo-dev", "demo-prod", "spot-dev"],
         "targets": [{
@@ -24,7 +24,7 @@
             "path": "- image: nalbam/sample-node:"
         }]
     }, {
-        "repo": "nalbam/sample-spring",
+        "id": "sample-spring",
         "path": "sample-spring",
         "stages": ["demo-dev", "demo-prod", "spot-dev"],
         "targets": [{
@@ -32,7 +32,7 @@
             "path": "- image: nalbam/sample-spring:"
         }]
     }, {
-        "repo": "nalbam/sample-tomcat",
+        "id": "sample-tomcat",
         "path": "sample-tomcat",
         "stages": ["demo-dev", "demo-prod", "spot-dev"],
         "targets": [{
@@ -40,7 +40,7 @@
             "path": "- image: nalbam/sample-tomcat:"
         }]
     }, {
-        "repo": "nalbam/sample-web",
+        "id": "sample-web",
         "path": "sample-web",
         "stages": ["demo-dev", "demo-prod", "spot-dev"],
         "targets": [{
@@ -48,7 +48,7 @@
             "path": "- image: nalbam/sample-web:"
         }]
     }, {
-        "repo": "nalbam/sample-webpack",
+        "id": "sample-webpack",
         "path": "sample-webpack",
         "stages": ["demo-dev", "demo-prod", "spot-dev"],
         "targets": [{
