@@ -1,9 +1,6 @@
-name: Build-Push
+name: build
 
-on:
-  push:
-    branches:
-      - master
+on: repository_dispatch
 
 jobs:
   build:
@@ -15,5 +12,7 @@ jobs:
           fetch-depth: 1
 
       - name: Package
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          bash ./package.sh
+          bash ./gitops.sh
