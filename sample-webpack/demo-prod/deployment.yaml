@@ -13,7 +13,7 @@ spec:
         app.kubernetes.io/name: sample-webpack
     spec:
       containers:
-        - image: nalbam/sample-webpack:v0.1.7
+        - image: nalbam/sample-webpack:v0.1.8
           name: sample-webpack
           resources:
             limits:
