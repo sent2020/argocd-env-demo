@@ -1,5 +1,5 @@
 resources:
-  - ../../base
+  - ../base
   - configmap.yaml
   - ingress.yaml
   # - hpa.yaml

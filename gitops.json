@@ -34,7 +34,7 @@
     }, {
         "id": "sample-tomcat",
         "path": "sample-tomcat",
-        "stages": ["demo-dev", "demo-prod", "spot-dev"],
+        "stages": ["demo-dev", "demo-prod"],
         "targets": [{
             "file": "deployment.yaml",
             "path": "- image: nalbam/sample-tomcat:"
@@ -42,7 +42,7 @@
     }, {
         "id": "sample-web",
         "path": "sample-web",
-        "stages": ["demo-dev", "demo-prod", "spot-dev"],
+        "stages": ["demo-dev", "demo-prod"],
         "targets": [{
             "file": "deployment.yaml",
             "path": "- image: nalbam/sample-web:"
@@ -50,7 +50,7 @@
     }, {
         "id": "sample-webpack",
         "path": "sample-webpack",
-        "stages": ["demo-dev", "demo-prod", "spot-dev"],
+        "stages": ["demo-dev", "demo-prod"],
         "targets": [{
             "file": "deployment.yaml",
             "path": "- image: nalbam/sample-webpack:"
