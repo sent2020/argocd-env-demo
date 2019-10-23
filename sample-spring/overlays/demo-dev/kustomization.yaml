@@ -1,8 +1,7 @@
 resources:
-  - ../base/deployment.yaml
-  - ../base/service.yaml
+  - ../../base
   - configmap.yaml
   - ingress.yaml
-  - hpa.yaml
+  # - hpa.yaml
 patchesStrategicMerge:
   - deployment.yaml
