@@ -193,6 +193,9 @@ _build_deploy() {
 
     _command "replace ${TG_VERSION}"
     if [ "${TG_TYPE}" == "kustomize" ]; then
+        TARGET=${RUN_PATH}/${TG_PROJECT}/${TG_PHASE}/configmap.yaml
+        _replace "s/VERSION: .*/VERSION: ${TG_VERSION}/g" ${TARGET}
+
         TARGET=${RUN_PATH}/${TG_PROJECT}/${TG_PHASE}/deployment.yaml
         _replace "s/image: .*/image: ${TG_USERNAME}\/${TG_PROJECT}:${TG_VERSION}/g" ${TARGET}
     elif [ "${TG_TYPE}" == "helm" ]; then
