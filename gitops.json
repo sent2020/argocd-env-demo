@@ -20,6 +20,9 @@
         "path": "sample-node",
         "stages": ["demo-dev", "demo-prod", "spot-dev"],
         "targets": [{
+            "file": "configmap.yaml",
+            "path": "VERSION:"
+        }, {
             "file": "deployment.yaml",
             "path": "- image: nalbam/sample-node:"
         }]
@@ -28,6 +31,9 @@
         "path": "sample-spring",
         "stages": ["demo-dev", "demo-prod", "spot-dev"],
         "targets": [{
+            "file": "configmap.yaml",
+            "path": "VERSION:"
+        }, {
             "file": "deployment.yaml",
             "path": "- image: nalbam/sample-spring:"
         }]
@@ -36,6 +42,9 @@
         "path": "sample-tomcat",
         "stages": ["demo-dev", "demo-prod"],
         "targets": [{
+            "file": "configmap.yaml",
+            "path": "VERSION:"
+        }, {
             "file": "deployment.yaml",
             "path": "- image: nalbam/sample-tomcat:"
         }]
@@ -44,6 +53,9 @@
         "path": "sample-web",
         "stages": ["demo-dev", "demo-prod"],
         "targets": [{
+            "file": "configmap.yaml",
+            "path": "VERSION:"
+        }, {
             "file": "deployment.yaml",
             "path": "- image: nalbam/sample-web:"
         }]
@@ -52,6 +64,9 @@
         "path": "sample-webpack",
         "stages": ["demo-dev", "demo-prod"],
         "targets": [{
+            "file": "configmap.yaml",
+            "path": "VERSION:"
+        }, {
             "file": "deployment.yaml",
             "path": "- image: nalbam/sample-webpack:"
         }]
