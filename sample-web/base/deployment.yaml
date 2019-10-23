@@ -23,7 +23,7 @@ spec:
         app.kubernetes.io/name: sample-web
     spec:
       containers:
-        - image: nalbam/sample-web:v0.0.1
+        - image: nalbam/sample-web:v0.2.1
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 3
