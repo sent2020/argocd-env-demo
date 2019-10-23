@@ -13,7 +13,7 @@ spec:
         app.kubernetes.io/name: sample-web
     spec:
       containers:
-        - image: nalbam/sample-web:v0.1.7
+        - image: nalbam/sample-web:v0.1.8
           name: sample-web
           resources:
             limits:
