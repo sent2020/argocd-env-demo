@@ -1,0 +1,34 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  labels:
+    app: nalbam-docs
+    app.kubernetes.io/name: nalbam-docs
+  name: nalbam-docs
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+spec:
+  rules:
+    - host: nalbam-docs.demo.mzdev.be
+      http:
+        paths:
+          - backend:
+              serviceName: nalbam-docs
+              servicePort: 80
+            path: /
+    # - host: nalbam-docs.demo.nalbam.com
+    #   http:
+    #     paths:
+    #       - backend:
+    #           serviceName: nalbam-docs
+    #           servicePort: 80
+    #         path: /
+  tls:
+    - hosts:
+        - nalbam-docs.demo.mzdev.be
+      secretName: nalbam-docs-mzdev-tls
+    # - hosts:
+    #     - nalbam-docs.demo.nalbam.com
+    #   secretName: nalbam-docs-nalbam-tls
