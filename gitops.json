@@ -2,7 +2,7 @@
     "items": [{
         "id": "deepracer-timer",
         "path": "deepracer-timer",
-        "stages": ["demo-dev"],
+        "stages": ["demo-dev", "demo-prod"],
         "targets": [{
             "file": "deployment.yaml",
             "path": "- image: nalbam/deepracer-timer:"
@@ -10,7 +10,7 @@
     }, {
         "id": "nalbam-docs",
         "path": "nalbam-docs",
-        "stages": ["demo-dev"],
+        "stages": ["demo-dev", "demo-prod"],
         "targets": [{
             "file": "deployment.yaml",
             "path": "- image: nalbam/docs:"
