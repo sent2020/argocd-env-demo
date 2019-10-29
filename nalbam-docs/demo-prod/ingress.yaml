@@ -11,14 +11,14 @@ metadata:
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
 spec:
   rules:
-    - host: nalbam-docs.demo.mzdev.be
+    - host: docs.demo.mzdev.be
       http:
         paths:
           - backend:
               serviceName: nalbam-docs
               servicePort: 80
             path: /
-    # - host: nalbam-docs.demo.nalbam.com
+    # - host: docs.demo.nalbam.com
     #   http:
     #     paths:
     #       - backend:
@@ -27,8 +27,8 @@ spec:
     #         path: /
   tls:
     - hosts:
-        - nalbam-docs.demo.mzdev.be
-      secretName: nalbam-docs-mzdev-tls
+        - docs.demo.mzdev.be
+      secretName: docs-mzdev-tls
     # - hosts:
-    #     - nalbam-docs.demo.nalbam.com
-    #   secretName: nalbam-docs-nalbam-tls
+    #     - docs.demo.nalbam.com
+    #   secretName: docs-nalbam-tls
