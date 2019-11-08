@@ -13,7 +13,7 @@ spec:
         app.kubernetes.io/name: deepracer-timer
     spec:
       containers:
-        - image: nalbam/deepracer-timer:v0.3.1
+        - image: nalbam/deepracer-timer:v0.3.3
           name: deepracer-timer
           resources:
             limits:
