@@ -1,9 +1,0 @@
-# environments:
-#   default:
-#     values:
-#       - default.yaml
-
-helmfiles:
-  - ../../helmfiles/cert-manager.yaml
-  - ../../helmfiles/metrics-server.yaml
-  - ../../helmfiles/argo.yaml
