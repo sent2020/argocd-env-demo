@@ -3,9 +3,15 @@ kind: Rollout
 metadata:
   name: sample-node
 spec:
+  replicas: 2
   selector:
     matchLabels:
       app: sample-node
+  strategy:
+    blueGreen:
+      activeService: sample-node
+      previewService: sample-node-preview
+      autoPromotionEnabled: false
   template:
     metadata:
       labels:
