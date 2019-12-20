@@ -1,0 +1,5 @@
+resources:
+  - deployment.yaml
+  - deployment-redis.yaml
+  - service.yaml
+  - service-redis.yaml
