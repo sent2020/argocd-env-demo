@@ -1,5 +1,5 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
 metadata:
   labels:
     app: sample-node
@@ -12,10 +12,31 @@ spec:
     matchLabels:
       app: sample-node
   strategy:
-    rollingUpdate:
-      maxSurge: 25%
-      maxUnavailable: 25%
-    type: RollingUpdate
+    blueGreen:
+      # activeService specifies the service to update with the new template hash at time of promotion.
+      # This field is mandatory for the blueGreen update strategy.
+      activeService: rollout-bluegreen-active
+      # previewService specifies the service to update with the new template hash before promotion.
+      # This allows the preview stack to be reachable without serving production traffic.
+      # This field is optional.
+      previewService: rollout-bluegreen-preview
+      # autoPromotionEnabled disables automated promotion of the new stack by pausing the rollout
+      # immediately before the promotion. If omitted, the default behavior is to promote the new
+      # stack as soon as the ReplicaSet are completely ready/available.
+      # Rollouts can be resumed using: `kubectl argo rollouts resume ROLLOUT`
+      autoPromotionEnabled: false
+    # canary:
+    #   steps:
+    #     - setWeight: 20
+    #     # The following pause step will pause the rollout indefinitely until manually resumed.
+    #     # Rollouts can be manually resumed by running `kubectl argo rollouts resume ROLLOUT`
+    #     - pause: {}
+    #     - setWeight: 40
+    #     - pause: { duration: 40 }
+    #     - setWeight: 60
+    #     - pause: { duration: 20 }
+    #     - setWeight: 80
+    #     - pause: { duration: 20 }
   template:
     metadata:
       labels:
