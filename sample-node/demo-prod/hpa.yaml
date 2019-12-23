@@ -7,7 +7,7 @@ metadata:
   name: sample-node
 spec:
   maxReplicas: 10
-  minReplicas: 4
+  minReplicas: 5
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
