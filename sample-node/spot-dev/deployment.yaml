@@ -11,7 +11,7 @@ spec:
     blueGreen:
       activeService: sample-node
       previewService: sample-node-preview
-      autoPromotionEnabled: false
+      # autoPromotionEnabled: false
   template:
     metadata:
       labels:
