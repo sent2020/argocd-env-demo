@@ -28,7 +28,7 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   labels:
-    app: sample-node
+    app: sample-node-preview
     app.kubernetes.io/name: sample-node
   name: sample-node-preview
   annotations:
