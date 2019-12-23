@@ -11,12 +11,13 @@ spec:
       interval: 2m
       successCondition: result >= 0.95
       failureLimit: 3
-      prometheus:
-        address: http://prometheus-server.monitor.svc.cluster.local
-        query: |
-          sum( irate(
-            nginx_ingress_controller_requests{namespace=~"{{inputs.namespace}}",service=~"{{inputs.service}}",status!~"5.*"}[2m]
-          ) ) /
-          sum( irate(
-            nginx_ingress_controller_requests{namespace=~"{{inputs.namespace}}",service=~"{{inputs.service}}"}[2m]
-          ) )
+      provider:
+        prometheus:
+          address: http://prometheus-server.monitor.svc.cluster.local
+          query: |
+            sum( irate(
+              nginx_ingress_controller_requests{namespace=~"{{inputs.namespace}}",service=~"{{inputs.service}}",status!~"5.*"}[2m]
+            ) ) /
+            sum( irate(
+              nginx_ingress_controller_requests{namespace=~"{{inputs.namespace}}",service=~"{{inputs.service}}"}[2m]
+            ) )
