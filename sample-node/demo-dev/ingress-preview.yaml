@@ -2,23 +2,23 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   labels:
-    app: sample-node
+    app: sample-node-preview
     app.kubernetes.io/name: sample-node
-  name: sample-node
+  name: sample-node-preview
   annotations:
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
 spec:
   rules:
-    - host: sample-node-dev.demo.mzdev.be
+    - host: sample-node-dev-preview.demo.mzdev.be
       http:
         paths:
           - backend:
-              serviceName: sample-node
+              serviceName: sample-node-preview
               servicePort: 80
             path: /
   tls:
     - hosts:
-        - sample-node-dev.demo.mzdev.be
-      secretName: sample-node-mzdev-tls
+        - sample-node-dev-preview.demo.mzdev.be
+      secretName: sample-node-preview-mzdev-tls
