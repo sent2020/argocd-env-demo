@@ -1,8 +1,8 @@
 resources:
   - ../base
   - configmap.yaml
-  - service-preview.yaml
-  - ingress.yaml
   - ingress-preview.yaml
+  - ingress.yaml
+  - service-preview.yaml
 patchesStrategicMerge:
   - deployment.yaml
