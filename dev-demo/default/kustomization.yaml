@@ -1,3 +1,4 @@
 resources:
   - cluster-role.yaml
   - namespace.yaml
+  - success-rate.yaml
