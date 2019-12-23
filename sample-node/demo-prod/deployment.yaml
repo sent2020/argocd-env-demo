@@ -18,7 +18,7 @@ spec:
             value: sample-node-preview
       canaryService: sample-node-preview
       steps:
-        - setWeight: 25
+        - setWeight: 20
         - pause: {}
         # - setWeight: 20
         # - pause: { duration: 30 }
