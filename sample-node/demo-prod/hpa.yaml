@@ -6,8 +6,8 @@ metadata:
     app.kubernetes.io/name: sample-node
   name: sample-node
 spec:
-  maxReplicas: 5
-  minReplicas: 1
+  maxReplicas: 10
+  minReplicas: 4
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment

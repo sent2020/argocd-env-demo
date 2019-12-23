@@ -3,27 +3,15 @@ kind: Rollout
 metadata:
   name: sample-node
 spec:
-  replicas: 10
+  replicas: 2
   selector:
     matchLabels:
       app: sample-node
   strategy:
-    # blueGreen:
-    #   activeService: sample-node
-    #   previewService: sample-node-preview
-    #   # autoPromotionEnabled: false
-    canary:
-      steps:
-        - setWeight: 20
-        # The following pause step will pause the rollout indefinitely until manually resumed.
-        # Rollouts can be manually resumed by running `kubectl argo rollouts resume ROLLOUT`
-        - pause: {}
-        - setWeight: 40
-        - pause: { duration: 40 }
-        - setWeight: 60
-        - pause: { duration: 20 }
-        - setWeight: 80
-        - pause: { duration: 20 }
+    blueGreen:
+      activeService: sample-node
+      previewService: sample-node-preview
+      # autoPromotionEnabled: false
   template:
     metadata:
       labels:
@@ -31,7 +19,7 @@ spec:
         app.kubernetes.io/name: sample-node
     spec:
       containers:
-        - image: nalbam/sample-node:v0.2.28
+        - image: nalbam/sample-node:v0.2.27
           name: sample-node
           resources:
             limits:

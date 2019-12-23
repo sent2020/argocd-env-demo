@@ -25,18 +25,18 @@ spec:
   #     # stack as soon as the ReplicaSet are completely ready/available.
   #     # Rollouts can be resumed using: `kubectl argo rollouts resume ROLLOUT`
   #     autoPromotionEnabled: false
-  #   # canary:
-  #   #   steps:
-  #   #     - setWeight: 20
-  #   #     # The following pause step will pause the rollout indefinitely until manually resumed.
-  #   #     # Rollouts can be manually resumed by running `kubectl argo rollouts resume ROLLOUT`
-  #   #     - pause: {}
-  #   #     - setWeight: 40
-  #   #     - pause: { duration: 40 }
-  #   #     - setWeight: 60
-  #   #     - pause: { duration: 20 }
-  #   #     - setWeight: 80
-  #   #     - pause: { duration: 20 }
+  #   canary:
+  #     steps:
+  #       - setWeight: 20
+  #       # The following pause step will pause the rollout indefinitely until manually resumed.
+  #       # Rollouts can be manually resumed by running `kubectl argo rollouts resume ROLLOUT`
+  #       - pause: {}
+  #       - setWeight: 40
+  #       - pause: { duration: 40 }
+  #       - setWeight: 60
+  #       - pause: { duration: 20 }
+  #       - setWeight: 80
+  #       - pause: { duration: 20 }
   template:
     metadata:
       labels:
