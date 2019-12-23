@@ -9,6 +9,13 @@ spec:
       app: sample-node
   strategy:
     canary:
+      analysis:
+        templateName: success-rate
+        arguments:
+          - name: namespace
+            value: demo-prod
+          - name: service
+            value: sample-node-preview
       canaryService: sample-node-preview
       steps:
         - setWeight: 20
