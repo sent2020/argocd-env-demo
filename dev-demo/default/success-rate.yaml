@@ -13,7 +13,7 @@ spec:
       # failureLimit: 3
       provider:
         prometheus:
-          address: http://prometheus-server.monitor:9090
+          address: http://prometheus-server.monitor
           query: >+
             sum( rate(
               nginx_ingress_controller_requests{namespace=~"{{args.namespace}}",service=~"{{args.service}}",status!~"[4-5].*"}[2m]
