@@ -7,5 +7,5 @@ metadata:
   name: sample-node
 data:
   PROFILE: dev
-  VERSION: v0.3.9
+  VERSION: v0.3.13
   MESSAGE: hello dev-demo world
