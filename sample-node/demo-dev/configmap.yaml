@@ -7,6 +7,6 @@ metadata:
   name: sample-node
 data:
   PROFILE: dev
-  VERSION: v0.3.23
+  VERSION: v0.3.24
   MESSAGE: hello dev-demo world
   FAULT_RATE: '10'
