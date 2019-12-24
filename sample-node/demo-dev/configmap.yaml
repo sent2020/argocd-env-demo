@@ -6,7 +6,7 @@ metadata:
     app.kubernetes.io/name: sample-node
   name: sample-node
 data:
-  PROFILE: 'dev'
+  PROFILE: dev
   VERSION: v0.3.22
-  MESSAGE: 'hello dev-demo world'
+  MESSAGE: hello dev-demo world
   FAULT_RATE: '10'
