@@ -35,7 +35,7 @@ spec:
         app.kubernetes.io/name: sample-node
     spec:
       containers:
-        - image: nalbam/sample-node:v0.3.6
+        - image: nalbam/sample-node:v0.3.7
           name: sample-node
           resources:
             limits:
