@@ -13,10 +13,10 @@ spec:
       failureLimit: 3
       provider:
         prometheus:
-          address: http://prometheus-server.monitor.svc.cluster.local
+          address: http://prometheus-server.monitor:9090
           query: |
             sum( irate(
-              nginx_ingress_controller_requests{namespace=~"{{inputs.namespace}}",service=~"{{inputs.service}}",status!~"5.*"}[2m]
+              nginx_ingress_controller_requests{namespace=~"{{inputs.namespace}}",service=~"{{inputs.service}}",status!~"[4-5].*"}[2m]
             ) ) /
             sum( irate(
               nginx_ingress_controller_requests{namespace=~"{{inputs.namespace}}",service=~"{{inputs.service}}"}[2m]
