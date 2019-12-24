@@ -9,13 +9,13 @@ spec:
       app: sample-node
   strategy:
     canary:
-#       analysis:
-#         templateName: success-rate
-#         arguments:
-#           - name: namespace
-#             value: demo-prod
-#           - name: service
-#             value: sample-node-preview
+      analysis:
+        templateName: success-rate
+        arguments:
+          - name: namespace
+            value: demo-prod
+          - name: service
+            value: sample-node-preview
       canaryService: sample-node-preview
       steps:
 #         - setWeight: 20
@@ -35,7 +35,7 @@ spec:
         app.kubernetes.io/name: sample-node
     spec:
       containers:
-        - image: nalbam/sample-node:v0.2.36
+        - image: nalbam/sample-node:v0.2.35
           name: sample-node
           resources:
             limits:
