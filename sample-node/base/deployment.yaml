@@ -44,7 +44,7 @@ spec:
         app.kubernetes.io/name: sample-node
     spec:
       containers:
-        - image: nalbam/sample-node:v0.3.42
+        - image: nalbam/sample-node:v0.3.43
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 3
