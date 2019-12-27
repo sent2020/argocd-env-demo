@@ -23,7 +23,7 @@ spec:
         app.kubernetes.io/name: sample-tomcat
     spec:
       containers:
-        - image: nalbam/sample-tomcat:v0.2.3
+        - image: nalbam/sample-tomcat:v0.2.4
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 3
