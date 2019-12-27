@@ -23,7 +23,7 @@ spec:
         app.kubernetes.io/name: sample-spring
     spec:
       containers:
-        - image: nalbam/sample-spring:v0.2.23
+        - image: nalbam/sample-spring:v0.2.25
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 3
