@@ -11,10 +11,10 @@ spec:
       labels:
         app: sample-spring
         app.kubernetes.io/name: sample-spring
-        version: v0.2.35
+        version: v0.2.36
     spec:
       containers:
-        - image: nalbam/sample-spring:v0.2.35
+        - image: nalbam/sample-spring:v0.2.36
           name: sample-spring
           resources:
             limits:
