@@ -21,10 +21,10 @@ spec:
       labels:
         app: sample-spring
         app.kubernetes.io/name: sample-spring
-        version: v0.2.33
+        version: v0.2.34
     spec:
       containers:
-        - image: nalbam/sample-spring:v0.2.33
+        - image: nalbam/sample-spring:v0.2.34
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 3
