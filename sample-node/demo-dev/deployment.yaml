@@ -11,10 +11,10 @@ spec:
     blueGreen:
       activeService: sample-node
       autoPromotionEnabled: false
-      autoPromotionSeconds: 30
+      autoPromotionSeconds: 10
       previewReplicaCount: 1
       previewService: sample-node-preview
-      scaleDownDelaySeconds: 10
+      scaleDownDelaySeconds: 5
   template:
     metadata:
       labels:
