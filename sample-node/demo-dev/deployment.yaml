@@ -20,10 +20,10 @@ spec:
       labels:
         app: sample-node
         app.kubernetes.io/name: sample-node
-        version: v0.3.52
+        version: v0.3.53
     spec:
       containers:
-        - image: nalbam/sample-node:v0.3.52
+        - image: nalbam/sample-node:v0.3.53
           name: sample-node
           resources:
             limits:
