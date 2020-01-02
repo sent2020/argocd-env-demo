@@ -21,6 +21,7 @@ spec:
       labels:
         app: sample-webpack
         app.kubernetes.io/name: sample-webpack
+        version: v0.2.1
     spec:
       containers:
         - image: nalbam/sample-webpack:v0.2.1

@@ -21,6 +21,7 @@ spec:
       labels:
         app: sample-tomcat
         app.kubernetes.io/name: sample-tomcat
+        version: v0.2.6
     spec:
       containers:
         - image: nalbam/sample-tomcat:v0.2.6

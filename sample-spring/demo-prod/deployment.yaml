@@ -11,6 +11,7 @@ spec:
       labels:
         app: sample-spring
         app.kubernetes.io/name: sample-spring
+        version: v0.2.32
     spec:
       containers:
         - image: nalbam/sample-spring:v0.2.32
