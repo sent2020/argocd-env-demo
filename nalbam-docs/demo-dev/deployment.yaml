@@ -21,6 +21,7 @@ spec:
       labels:
         app: nalbam-docs
         app.kubernetes.io/name: nalbam-docs
+        version: v0.0.21
     spec:
       containers:
         - image: nalbam/docs:v0.0.21
