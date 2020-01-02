@@ -3,7 +3,7 @@ kind: Rollout
 metadata:
   name: sample-node
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: sample-node
@@ -12,7 +12,7 @@ spec:
       activeService: sample-node
       autoPromotionEnabled: false
       autoPromotionSeconds: 30
-      previewReplicaCount: 2
+      previewReplicaCount: 1
       previewService: sample-node-preview
       scaleDownDelaySeconds: 10
   template:
