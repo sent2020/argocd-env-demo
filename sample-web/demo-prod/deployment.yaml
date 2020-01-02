@@ -11,6 +11,7 @@ spec:
       labels:
         app: sample-web
         app.kubernetes.io/name: sample-web
+        version: v0.2.1
     spec:
       containers:
         - image: nalbam/sample-web:v0.2.1
