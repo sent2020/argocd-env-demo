@@ -7,5 +7,5 @@ metadata:
   name: sample-spring
 data:
   PROFILE: dev
-  VERSION: v0.2.41
+  VERSION: v0.2.42
   MESSAGE: hello dev-demo world
