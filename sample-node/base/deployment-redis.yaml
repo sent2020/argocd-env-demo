@@ -21,6 +21,7 @@ spec:
       labels:
         app: sample-node-redis
         app.kubernetes.io/name: sample-node-redis
+        version: redis
     spec:
       containers:
         - image: redis
