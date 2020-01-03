@@ -7,5 +7,5 @@ metadata:
   name: sample-tomcat
 data:
   PROFILE: prod
-  VERSION: v0.3.4
+  VERSION: v0.3.6
   MESSAGE: hello prod-demo world
