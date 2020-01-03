@@ -18,11 +18,11 @@ spec:
           name: sample-spring
           resources:
             limits:
-              cpu: 1200m
-              memory: 1228Mi
+              cpu: 600m
+              memory: 614Mi
             requests:
-              cpu: 1000m
-              memory: 1024Mi
+              cpu: 500m
+              memory: 512Mi
           envFrom:
             - configMapRef:
                 name: sample-spring
