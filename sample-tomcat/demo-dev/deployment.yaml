@@ -19,10 +19,10 @@ spec:
           resources:
             limits:
               cpu: 600m
-              memory: 614Mi
+              memory: 1228Mi
             requests:
               cpu: 500m
-              memory: 512Mi
+              memory: 1024Mi
           envFrom:
             - configMapRef:
                 name: sample-tomcat
