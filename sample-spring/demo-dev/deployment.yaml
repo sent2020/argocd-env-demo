@@ -11,17 +11,17 @@ spec:
       labels:
         app: sample-spring
         app.kubernetes.io/name: sample-spring
-        version: v0.2.42
+        version: v0.2.43
     spec:
       containers:
-        - image: nalbam/sample-spring:v0.2.42
+        - image: nalbam/sample-spring:v0.2.43
           name: sample-spring
           resources:
             limits:
-              cpu: 1200m
+              cpu: 600m
               memory: 1228Mi
             requests:
-              cpu: 1000m
+              cpu: 500m
               memory: 1024Mi
           envFrom:
             - configMapRef:
