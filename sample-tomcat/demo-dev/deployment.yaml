@@ -11,10 +11,10 @@ spec:
       labels:
         app: sample-tomcat
         app.kubernetes.io/name: sample-tomcat
-        version: v0.3.7
+        version: v0.3.8
     spec:
       containers:
-        - image: nalbam/sample-tomcat:v0.3.7
+        - image: nalbam/sample-tomcat:v0.3.8
           name: sample-tomcat
           resources:
             limits:
