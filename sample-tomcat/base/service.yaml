@@ -12,5 +12,9 @@ spec:
       port: 80
       protocol: TCP
       targetPort: 8080
+    - name: jmx
+      port: 8088
+      protocol: TCP
+      targetPort: 8088
   selector:
     app: sample-tomcat
