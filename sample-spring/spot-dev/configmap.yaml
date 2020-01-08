@@ -10,4 +10,3 @@ data:
   VERSION: v0.3.20
   MESSAGE: hello spot-dev world
   JMX_ENABLED: "true"
-  JAVA_AGENT_PORT: "8081"
