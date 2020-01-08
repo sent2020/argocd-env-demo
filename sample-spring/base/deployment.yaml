@@ -40,7 +40,7 @@ spec:
           ports:
             - containerPort: 8080
               protocol: TCP
-            - containerPort: 8088
+            - containerPort: 8081
               protocol: TCP
           readinessProbe:
             failureThreshold: 3
