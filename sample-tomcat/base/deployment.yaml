@@ -40,6 +40,8 @@ spec:
           ports:
             - containerPort: 8080
               protocol: TCP
+            - containerPort: 8088
+              protocol: TCP
           readinessProbe:
             failureThreshold: 3
             httpGet:
