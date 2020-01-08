@@ -12,6 +12,9 @@ spec:
         app: sample-tomcat
         app.kubernetes.io/name: sample-tomcat
         version: v0.3.11
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8081"
     spec:
       containers:
         - image: nalbam/sample-tomcat:v0.3.11
