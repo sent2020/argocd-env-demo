@@ -7,6 +7,6 @@ metadata:
   name: sample-spring
 data:
   PROFILE: dev
-  VERSION: v0.3.18
+  VERSION: v0.3.19
   MESSAGE: hello dev-demo world
   JMX_ENABLED: "true"
