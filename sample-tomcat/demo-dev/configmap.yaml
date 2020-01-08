@@ -7,7 +7,7 @@ metadata:
   name: sample-tomcat
 data:
   PROFILE: dev
-  VERSION: v0.3.17
+  VERSION: v0.3.18
   MESSAGE: hello dev-demo world
   JMX_ENABLED: "true"
   JAVA_AGENT_PORT: "8081"
