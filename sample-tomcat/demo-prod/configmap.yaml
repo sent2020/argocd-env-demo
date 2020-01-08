@@ -9,5 +9,4 @@ data:
   PROFILE: prod
   VERSION: v0.3.18
   MESSAGE: hello prod-demo world
-  JMX_ENABLED: "true"
-  JAVA_AGENT_PORT: "8081"
+  JAVA_AGENT_ENABLED: "true"
