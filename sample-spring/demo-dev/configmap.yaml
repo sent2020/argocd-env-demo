@@ -10,3 +10,4 @@ data:
   VERSION: v0.3.20
   MESSAGE: hello dev-demo world
   JMX_ENABLED: "true"
+  JAVA_AGENT_PORT: "8081"
