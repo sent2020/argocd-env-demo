@@ -7,6 +7,6 @@ metadata:
   name: sample-tomcat
 data:
   PROFILE: dev
-  VERSION: v0.3.19
+  VERSION: v0.3.20
   MESSAGE: hello dev-demo world
   JAVA_AGENT_ENABLED: "true"
