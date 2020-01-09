@@ -11,10 +11,10 @@ spec:
       labels:
         app: deepracer-timer
         app.kubernetes.io/name: deepracer-timer
-        version: v0.3.20
+        version: v0.3.21
     spec:
       containers:
-        - image: nalbam/deepracer-timer:v0.3.20
+        - image: nalbam/deepracer-timer:v0.3.21
           name: deepracer-timer
           resources:
             limits:
