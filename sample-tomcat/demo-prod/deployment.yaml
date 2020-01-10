@@ -21,13 +21,13 @@ spec:
       labels:
         app: sample-tomcat
         app.kubernetes.io/name: sample-tomcat
-        version: v0.3.21
+        version: v0.3.22
       annotations:
         prometheus.io/scrape: "true"
         prometheus.io/port: "8081"
     spec:
       containers:
-        - image: nalbam/sample-tomcat:v0.3.21
+        - image: nalbam/sample-tomcat:v0.3.22
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 3
