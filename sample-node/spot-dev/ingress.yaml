@@ -16,7 +16,7 @@ spec:
         paths:
           - backend:
               serviceName: sample-node
-              servicePort: 80
+              servicePort: 3000
             path: /
   tls:
     - hosts:

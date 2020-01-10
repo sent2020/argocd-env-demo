@@ -16,7 +16,7 @@ spec:
         paths:
           - backend:
               serviceName: sample-tomcat
-              servicePort: 80
+              servicePort: 8080
             path: /
   tls:
     - hosts:
