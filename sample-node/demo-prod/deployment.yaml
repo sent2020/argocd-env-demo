@@ -1,9 +1,13 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Rollout
 metadata:
+  labels:
+    app: sample-node
+    app.kubernetes.io/name: sample-node
   name: sample-node
 spec:
-  replicas: 5
+  replicas: 1
+  revisionHistoryLimit: 10
   selector:
     matchLabels:
       app: sample-node
@@ -37,7 +41,31 @@ spec:
     spec:
       containers:
         - image: nalbam/sample-node:v0.3.62
+          imagePullPolicy: Always
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /
+              port: 3000
+              scheme: HTTP
+            initialDelaySeconds: 3
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
           name: sample-node
+          ports:
+            - containerPort: 3000
+              protocol: TCP
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /
+              port: 3000
+              scheme: HTTP
+            initialDelaySeconds: 3
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
           resources:
             limits:
               cpu: 120m

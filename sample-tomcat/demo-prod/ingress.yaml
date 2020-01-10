@@ -18,17 +18,7 @@ spec:
               serviceName: sample-tomcat
               servicePort: 80
             path: /
-    # - host: sample-tomcat.demo.nalbam.com
-    #   http:
-    #     paths:
-    #       - backend:
-    #           serviceName: sample-tomcat
-    #           servicePort: 80
-    #         path: /
   tls:
     - hosts:
         - sample-tomcat.demo.mzdev.be
       secretName: sample-tomcat-mzdev-tls
-    # - hosts:
-    #     - sample-tomcat.demo.nalbam.com
-    #   secretName: sample-tomcat-nalbam-tls

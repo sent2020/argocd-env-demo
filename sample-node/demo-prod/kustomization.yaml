@@ -1,9 +1,10 @@
 resources:
-  - ../base
   - configmap.yaml
+  - deployment-redis.yaml
+  - deployment.yaml
   - hpa.yaml
   - ingress-preview.yaml
   - ingress.yaml
   - service-preview.yaml
-patchesStrategicMerge:
-  - deployment.yaml
+  - service-redis.yaml
+  - service.yaml

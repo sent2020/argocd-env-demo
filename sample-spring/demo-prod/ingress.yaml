@@ -18,17 +18,7 @@ spec:
               serviceName: sample-spring
               servicePort: 80
             path: /
-    # - host: sample-spring.demo.nalbam.com
-    #   http:
-    #     paths:
-    #       - backend:
-    #           serviceName: sample-spring
-    #           servicePort: 80
-    #         path: /
   tls:
     - hosts:
         - sample-spring.demo.mzdev.be
       secretName: sample-spring-mzdev-tls
-    # - hosts:
-    #     - sample-spring.demo.nalbam.com
-    #   secretName: sample-spring-nalbam-tls
