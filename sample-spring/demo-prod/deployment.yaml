@@ -64,4 +64,4 @@ spec:
               memory: 1024Mi
           envFrom:
             - configMapRef:
-                name: sample-node
+                name: sample-spring
