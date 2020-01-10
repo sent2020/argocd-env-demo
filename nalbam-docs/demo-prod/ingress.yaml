@@ -18,17 +18,7 @@ spec:
               serviceName: nalbam-docs
               servicePort: 80
             path: /
-    # - host: docs.demo.nalbam.com
-    #   http:
-    #     paths:
-    #       - backend:
-    #           serviceName: nalbam-docs
-    #           servicePort: 80
-    #         path: /
   tls:
     - hosts:
         - docs.demo.mzdev.be
       secretName: docs-mzdev-tls
-    # - hosts:
-    #     - docs.demo.nalbam.com
-    #   secretName: docs-nalbam-tls

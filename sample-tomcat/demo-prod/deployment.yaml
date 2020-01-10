@@ -1,24 +1,57 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  labels:
+    app: sample-tomcat
+    app.kubernetes.io/name: sample-tomcat
   name: sample-tomcat
 spec:
+  replicas: 1
+  revisionHistoryLimit: 10
   selector:
     matchLabels:
       app: sample-tomcat
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
   template:
     metadata:
       labels:
         app: sample-tomcat
         app.kubernetes.io/name: sample-tomcat
         version: v0.3.20
-      annotations:
-        prometheus.io/scrape: "true"
-        prometheus.io/port: "8081"
     spec:
       containers:
         - image: nalbam/sample-tomcat:v0.3.20
+          imagePullPolicy: Always
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /
+              port: 8080
+              scheme: HTTP
+            initialDelaySeconds: 60
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
           name: sample-tomcat
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+            - containerPort: 8081
+              protocol: TCP
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /
+              port: 8080
+              scheme: HTTP
+            initialDelaySeconds: 60
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
           resources:
             limits:
               cpu: 1200m

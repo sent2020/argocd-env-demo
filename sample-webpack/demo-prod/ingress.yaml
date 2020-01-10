@@ -18,17 +18,7 @@ spec:
               serviceName: sample-webpack
               servicePort: 80
             path: /
-    # - host: sample-webpack.demo.nalbam.com
-    #   http:
-    #     paths:
-    #       - backend:
-    #           serviceName: sample-webpack
-    #           servicePort: 80
-    #         path: /
   tls:
     - hosts:
         - sample-webpack.demo.mzdev.be
       secretName: sample-webpack-mzdev-tls
-    # - hosts:
-    #     - sample-webpack.demo.nalbam.com
-    #   secretName: sample-webpack-nalbam-tls

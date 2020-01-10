@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: sample-node-redis
+    app.kubernetes.io/name: sample-node-redis
+  name: sample-node-redis
+spec:
+  type: ClusterIP
+  ports:
+    - name: redis
+      port: 6379
+      protocol: TCP
+      targetPort: 6379
+  selector:
+    app: sample-node-redis
