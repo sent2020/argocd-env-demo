@@ -4,6 +4,9 @@ OS_NAME="$(uname | awk '{print tolower($0)}')"
 
 SHELL_DIR=$(dirname $0)
 
+echo $GITHUB_EVENT_PATH
+cat $GITHUB_EVENT_PATH
+
 _deploy_pre() {
   if [ -z "${GITHUB_TOKEN}" ]; then
     _error "GITHUB_TOKEN is not set."
@@ -18,7 +21,7 @@ _deploy_pre() {
   fi
 
   if [ -z "${CONFIGURE}" ]; then
-    CONFIGURE=./gitops.json
+    CONFIGURE=${SHELL_DIR}/gitops.json
   fi
 }
 
@@ -27,7 +30,4 @@ _deploy() {
 
 }
 
-# _deploy
-
-echo $GITHUB_EVENT_PATH
-cat $GITHUB_EVENT_PATH
+_deploy
