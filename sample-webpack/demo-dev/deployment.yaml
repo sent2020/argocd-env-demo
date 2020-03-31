@@ -21,10 +21,10 @@ spec:
       labels:
         app: sample-webpack
         app.kubernetes.io/name: sample-webpack
-        version: v0.3.3
+        version: v0.3.4
     spec:
       containers:
-        - image: nalbam/sample-webpack:v0.3.3
+        - image: nalbam/sample-webpack:v0.3.4
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 3
