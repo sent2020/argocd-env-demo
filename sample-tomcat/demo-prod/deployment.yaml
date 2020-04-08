@@ -56,12 +56,12 @@ spec:
             successThreshold: 1
             timeoutSeconds: 1
           resources:
-            limits:
-              cpu: 1200m
-              memory: 1228Mi
             requests:
-              cpu: 1000m
-              memory: 1024Mi
+              cpu: 500m
+              memory: 1000Mi
+            limits:
+              cpu: 550m
+              memory: 1100Mi
           envFrom:
             - configMapRef:
                 name: sample-tomcat
