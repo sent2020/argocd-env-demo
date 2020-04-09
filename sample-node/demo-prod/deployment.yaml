@@ -26,13 +26,13 @@ spec:
         # - setWeight: 20
         # - pause: {}
         - setWeight: 20
-        - pause: { duration: 300 }
+        - pause: { duration: 180 }
         - setWeight: 40
-        - pause: { duration: 300 }
+        - pause: { duration: 180 }
         - setWeight: 60
-        - pause: { duration: 300 }
+        - pause: { duration: 180 }
         - setWeight: 80
-        - pause: { duration: 300 }
+        - pause: { duration: 180 }
   template:
     metadata:
       labels:
