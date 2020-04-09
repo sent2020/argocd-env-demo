@@ -9,7 +9,7 @@ spec:
   maxReplicas: 5
   minReplicas: 1
   scaleTargetRef:
-    apiVersion: apps/v1
-    kind: Deployment
-    name: sample-spring
+    apiVersion: argoproj.io/v1alpha1
+    kind: Rollout
+    name: sample-node
   targetCPUUtilizationPercentage: 80
