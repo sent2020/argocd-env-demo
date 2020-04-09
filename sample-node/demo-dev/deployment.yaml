@@ -14,11 +14,18 @@ spec:
   strategy:
     blueGreen:
       activeService: sample-node
-      autoPromotionEnabled: false
-      autoPromotionSeconds: 10
-      previewReplicaCount: 1
+      # autoPromotionEnabled: false
+      # autoPromotionSeconds: 30
+      # previewReplicaCount: 1
       previewService: sample-node-preview
-      scaleDownDelaySeconds: 5
+      prePromotionAnalysis:
+        templateName: success-rate
+        args:
+          - name: namespace
+            value: demo-dev
+          - name: service
+            value: sample-node-preview
+      scaleDownDelaySeconds: 10
   template:
     metadata:
       labels:
