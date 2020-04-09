@@ -18,7 +18,9 @@ spec:
           - templateName: success-rate
         startingStep: 2
         args:
-          - name: service-name
+          - name: namespace
+            value: demo-prod
+          - name: service
             value: sample-node-preview
       canaryService: sample-node-preview
       steps:
