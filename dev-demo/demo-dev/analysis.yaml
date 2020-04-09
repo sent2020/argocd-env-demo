@@ -18,5 +18,5 @@ spec:
             /
             sum(rate(nginx_ingress_controller_requests{namespace=~"{{args.namespace}}",service=~"{{args.service}}"}[2m]))
       interval: 10s
-      successCondition: result[0] > 0.50
+      successCondition: result[0] > 0.90
       # failureLimit: 3
