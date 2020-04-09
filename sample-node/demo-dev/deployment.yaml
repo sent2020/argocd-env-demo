@@ -15,7 +15,7 @@ spec:
     blueGreen:
       activeService: sample-node
       # autoPromotionEnabled: false
-      # autoPromotionSeconds: 30
+      # autoPromotionSeconds: 60
       # previewReplicaCount: 1
       previewService: sample-node-preview
       prePromotionAnalysis:
