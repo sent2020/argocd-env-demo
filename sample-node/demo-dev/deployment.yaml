@@ -25,7 +25,7 @@ spec:
             value: sample-node-preview
       # previewReplicaCount: 1
       previewService: sample-node-preview
-      scaleDownDelaySeconds: 10
+      scaleDownDelaySeconds: 30
   template:
     metadata:
       labels:
