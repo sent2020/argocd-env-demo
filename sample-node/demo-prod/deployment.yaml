@@ -14,8 +14,7 @@ spec:
   strategy:
     canary:
       analysis:
-        templates:
-          - templateName: success-rate
+        templateName: success-rate
         startingStep: 2
         args:
           - name: namespace
