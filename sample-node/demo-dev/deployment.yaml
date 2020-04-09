@@ -17,9 +17,9 @@ spec:
       # autoPromotionEnabled: true
       # autoPromotionSeconds: 60
       prePromotionAnalysis:
-        templates:
-          - templateName: success-rate
-        # templateName: success-rate
+        # templates:
+        #   - templateName: success-rate
+        templateName: success-rate
         args:
           - name: namespace
             value: demo-dev
