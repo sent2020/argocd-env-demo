@@ -17,7 +17,9 @@ spec:
       # autoPromotionEnabled: true
       # autoPromotionSeconds: 60
       prePromotionAnalysis:
-        templateName: success-rate
+        templates:
+          - templateName: success-rate
+        # templateName: success-rate
         args:
           - name: namespace
             value: demo-dev
@@ -25,7 +27,7 @@ spec:
             value: sample-node-preview
       # previewReplicaCount: 1
       previewService: sample-node-preview
-      scaleDownDelaySeconds: 10
+      # scaleDownDelaySeconds: 30
   template:
     metadata:
       labels:
