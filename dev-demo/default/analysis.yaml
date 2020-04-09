@@ -7,7 +7,7 @@ metadata:
 spec:
   args:
     - name: namespace
-    - name: ingress
+    - name: service
   metrics:
     - name: success-rate
       successCondition: result >= 0.90
@@ -15,6 +15,6 @@ spec:
         prometheus:
           address: http://prometheus-server.monitor.svc.cluster.local:9090
           query: |
-            sum(rate(nginx_ingress_controller_requests{namespace=~"{{args.namespace}}",ingress=~"{{args.ingress}}",status!~"[4-5].*"}[2m]))
+            sum(rate(nginx_ingress_controller_requests{namespace=~"{{args.namespace}}",service=~"{{args.service}}",status!~"[4-5].*"}[2m]))
             /
-            sum(rate(nginx_ingress_controller_requests{namespace=~"{{args.namespace}}",ingress=~"{{args.ingress}}"}[2m]))
+            sum(rate(nginx_ingress_controller_requests{namespace=~"{{args.namespace}}",service=~"{{args.service}}"}[2m]))
