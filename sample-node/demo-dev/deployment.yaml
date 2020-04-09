@@ -16,8 +16,6 @@ spec:
       activeService: sample-node
       # autoPromotionEnabled: false
       # autoPromotionSeconds: 60
-      # previewReplicaCount: 1
-      previewService: sample-node-preview
       prePromotionAnalysis:
         templateName: success-rate
         args:
@@ -25,6 +23,8 @@ spec:
             value: demo-dev
           - name: service
             value: sample-node-preview
+      previewReplicaCount: 1
+      previewService: sample-node-preview
       scaleDownDelaySeconds: 10
   template:
     metadata:
