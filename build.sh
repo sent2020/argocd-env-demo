@@ -4,20 +4,16 @@ OS_NAME="$(uname | awk '{print tolower($0)}')"
 
 SHELL_DIR=$(dirname $0)
 
-CMD=${1:-$CIRCLE_JOB}
-
-RUN_PATH=${2:-$SHELL_DIR}
-
 USERNAME=${CIRCLE_PROJECT_USERNAME:-opspresso}
 REPONAME=${CIRCLE_PROJECT_REPONAME:-ardocd-env-demo}
 
 BRANCH=${CIRCLE_BRANCH:-master}
 
-TG_USERNAME="${TG_USERNAME}"
-TG_PROJECT="${TG_PROJECT}"
-TG_VERSION="${TG_VERSION}"
-TG_PHASE="${TG_PHASE}"
-TG_TYPE="${TG_TYPE}"
+TG_USERNAME="${1:-$TG_USERNAME}"
+TG_PROJECT="${2:-$TG_PROJECT}"
+TG_VERSION="${3:-$TG_VERSION}"
+TG_PHASE="${4:-$TG_PHASE}"
+TG_TYPE="${5:-$TG_TYPE}"
 
 GIT_USERNAME="bot"
 GIT_USEREMAIL="bot@nalbam.com"
@@ -72,19 +68,20 @@ _prepare() {
         _success
     fi
 
-    if [ "${PERSONAL_TOKEN}" == "" ]; then
-        _error "Not found PERSONAL_TOKEN"
-    fi
-    if [ ! -d "${RUN_PATH}/${TG_PROJECT}" ]; then
+    if [ ! -d "${SHELL_DIR}/${TG_PROJECT}" ]; then
         _error "Not found ${TG_PROJECT}"
     fi
 
     _result "${TG_USERNAME}/${TG_PROJECT}:${TG_VERSION}"
 }
 
-_build_phase() {
-    if [ ! -d ${RUN_PATH}/${TG_PROJECT} ]; then
+_phase() {
+    if [ ! -d ${SHELL_DIR}/${TG_PROJECT} ]; then
         _success
+    fi
+
+    if [ "${PERSONAL_TOKEN}" == "" ]; then
+        _error "Not found PERSONAL_TOKEN"
     fi
 
     # version check
@@ -102,7 +99,7 @@ _build_phase() {
     CIRCLE_API="https://circleci.com/api/v1.1/project/github/${USERNAME}/${REPONAME}"
     CIRCLE_URL="${CIRCLE_API}?circle-token=${PERSONAL_TOKEN}"
 
-    pushd ${RUN_PATH}/${TG_PROJECT}
+    pushd ${SHELL_DIR}/${TG_PROJECT}
 
     # find kustomize
     LIST=$(ls -d */kustomization.yaml | cut -d'/' -f1)
@@ -145,13 +142,13 @@ _build_phase() {
     popd
 }
 
-_build_deploy() {
+_build() {
     if [ "${TG_TYPE}" == "kustomize" ]; then
-        if [ ! -f ${RUN_PATH}/${TG_PROJECT}/${TG_PHASE}/kustomization.yaml ]; then
+        if [ ! -f ${SHELL_DIR}/${TG_PROJECT}/${TG_PHASE}/kustomization.yaml ]; then
             _error "Not found ${TG_PROJECT}/${TG_PHASE}/kustomization.yaml"
         fi
     elif [ "${TG_TYPE}" == "helm" ]; then
-        if [ ! -f ${RUN_PATH}/${TG_PROJECT}/values-${TG_PHASE}.yaml ]; then
+        if [ ! -f ${SHELL_DIR}/${TG_PROJECT}/values-${TG_PHASE}.yaml ]; then
             _error "Not found ${TG_PROJECT}/values-${TG_PHASE}.yaml"
         fi
     else
@@ -184,7 +181,9 @@ _build_deploy() {
     if [ "${HAS}" == "true" ]; then
         _success "${NEW_BRANCH}"
     fi
+}
 
+_deploy() {
     _command "git branch ${NEW_BRANCH} ${BRANCH}"
     git branch ${NEW_BRANCH} ${BRANCH}
 
@@ -194,20 +193,20 @@ _build_deploy() {
     _command "replace ${TG_VERSION}"
     if [ "${TG_TYPE}" == "kustomize" ]; then
         # configmap
-        TARGET=${RUN_PATH}/${TG_PROJECT}/${TG_PHASE}/configmap.yaml
+        TARGET=${SHELL_DIR}/${TG_PROJECT}/${TG_PHASE}/configmap.yaml
         if [ -f ${TARGET} ]; then
             _replace "s/VERSION: .*/VERSION: ${TG_VERSION}/g" ${TARGET}
         fi
 
         # deployment
-        TARGET=${RUN_PATH}/${TG_PROJECT}/${TG_PHASE}/deployment.yaml
+        TARGET=${SHELL_DIR}/${TG_PROJECT}/${TG_PHASE}/deployment.yaml
         if [ -f ${TARGET} ]; then
             _replace "s/image: .*/image: ${TG_USERNAME}\/${TG_PROJECT}:${TG_VERSION}/g" ${TARGET}
             _replace "s/version: .*/version: ${TG_VERSION}/g" ${TARGET}
         fi
     elif [ "${TG_TYPE}" == "helm" ]; then
         # values-phase
-        TARGET=${RUN_PATH}/${TG_PROJECT}/values-${TG_PHASE}.yaml
+        TARGET=${SHELL_DIR}/${TG_PROJECT}/values-${TG_PHASE}.yaml
         if [ -f ${TARGET} ]; then
             _replace "s/repository: .*/repository: ${TG_USERNAME}\/${TG_PROJECT}/g" ${TARGET}
             _replace "s/tag: .*/tag: ${TG_VERSION}/g" ${TARGET}
@@ -233,9 +232,10 @@ _build_deploy() {
 _prepare
 
 if [ "${TG_TYPE}" == "" ]; then
-    _build_phase
+    _phase
 else
-    _build_deploy
+    _build
+    _deploy
 fi
 
 _success
