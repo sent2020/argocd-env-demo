@@ -1,5 +1,6 @@
 resources:
-  - analysis.yaml
+  - analysis-success-rate.yaml
+  - analysis-webmetric.yaml
   # - limit-range.yaml
   # - resource-quota.yaml
   - role-binding.yaml

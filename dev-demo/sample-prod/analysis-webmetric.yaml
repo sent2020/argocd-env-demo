@@ -1,0 +1,20 @@
+# https://argoproj.github.io/argo-rollouts/features/analysis/
+
+apiVersion: argoproj.io/v1alpha1
+kind: AnalysisTemplate
+metadata:
+  name: webmetric
+spec:
+  args:
+    - name: url
+  metrics:
+    - name: webmetric
+      successCondition: "true"
+      provider:
+        web:
+          url: "{{ args.url }}"
+          # timeoutSeconds: 20 # defaults to 10 seconds
+          # headers:
+          #   - key: Authorization
+          #     value: "Bearer {{ args.token }}"
+          jsonPath: "{$.results.ok}"
