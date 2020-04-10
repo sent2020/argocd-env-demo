@@ -10,6 +10,7 @@ spec:
   metrics:
     - name: webmetric
       successCondition: "true"
+      # successCondition: "asFloat(result) >= 0.90"
       provider:
         web:
           url: "{{ args.url }}"
@@ -18,3 +19,4 @@ spec:
           #   - key: Authorization
           #     value: "Bearer {{ args.token }}"
           jsonPath: "{$.results.ok}"
+          # jsonPath: "{$.results.successPercent}"
