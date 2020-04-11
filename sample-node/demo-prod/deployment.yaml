@@ -17,7 +17,7 @@ spec:
         # templates:
         #   - templateName: success-rate
         templateName: success-rate
-        # startingStep: 2
+        startingStep: 2
         args:
           - name: namespace
             value: demo-prod
