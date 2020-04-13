@@ -22,6 +22,8 @@ spec:
         - experiment:
             duration: 30
             templates:
+              - name: baseline
+                specRef: stable
               - name: canary
                 specRef: canary
             analysis:
@@ -29,7 +31,7 @@ spec:
                 templateName: webmetric
                 args:
                   - name: url
-                    value: "https://sample-node-dev-preview.demo.mzdev.be/success/99"
+                    value: "http://sample-node-dev-preview:3000/success/99"
         # - setWeight: 40
         # - pause: { duration: 30 }
         # - setWeight: 60
