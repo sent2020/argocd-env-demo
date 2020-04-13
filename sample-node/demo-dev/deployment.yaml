@@ -14,7 +14,7 @@ spec:
   strategy:
     blueGreen:
       activeService: sample-node
-      # autoPromotionEnabled: true
+      autoPromotionEnabled: true
       autoPromotionSeconds: 30
       prePromotionAnalysis:
         # templates:
