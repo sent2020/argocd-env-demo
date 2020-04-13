@@ -1,0 +1,24 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  labels:
+    app: sample-spring-preview
+    app.kubernetes.io/name: sample-spring
+  name: sample-spring-preview
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+spec:
+  rules:
+    - host: sample-spring-dev-preview.demo.mzdev.be
+      http:
+        paths:
+          - backend:
+              serviceName: sample-spring-preview
+              servicePort: 8080
+            path: /
+  tls:
+    - hosts:
+        - sample-spring-dev-preview.demo.mzdev.be
+      secretName: sample-spring-preview-mzdev-tls
