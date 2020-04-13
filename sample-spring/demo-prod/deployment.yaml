@@ -1,5 +1,5 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
 metadata:
   labels:
     app: sample-spring
@@ -12,10 +12,22 @@ spec:
     matchLabels:
       app: sample-spring
   strategy:
-    rollingUpdate:
-      maxSurge: 25%
-      maxUnavailable: 25%
-    type: RollingUpdate
+    blueGreen:
+      activeService: sample-spring
+      autoPromotionEnabled: true
+      autoPromotionSeconds: 30
+      prePromotionAnalysis:
+        # templates:
+        #   - templateName: success-rate
+        templateName: success-rate
+        args:
+          - name: namespace
+            value: demo-prod
+          - name: service
+            value: sample-spring-preview
+      # previewReplicaCount: 1
+      previewService: sample-spring-preview
+      # scaleDownDelaySeconds: 30
   template:
     metadata:
       labels:
