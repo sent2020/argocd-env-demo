@@ -11,5 +11,5 @@ spec:
   scaleTargetRef:
     apiVersion: argoproj.io/v1alpha1
     kind: Rollout
-    name: sample-node
+    name: sample-spring
   targetCPUUtilizationPercentage: 80
