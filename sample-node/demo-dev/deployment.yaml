@@ -33,10 +33,8 @@ spec:
       steps:
         # - setWeight: 10
         # - pause: {}
-        - setWeight: 50
-        - pause: { duration: 60 }
         - experiment:
-            duration: "60"
+            # duration: "60"
             templates:
               - name: canary
                 specRef: canary
@@ -45,6 +43,8 @@ spec:
                 args:
                   - name: url
                     value: "https://sample-node-dev-preview.demo.mzdev.be/success/99"
+        # - setWeight: 20
+        # - pause: { duration: 60 }
         # - setWeight: 40
         # - pause: { duration: 60 }
         # - setWeight: 60
