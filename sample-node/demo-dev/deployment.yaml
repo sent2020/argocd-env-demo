@@ -38,13 +38,10 @@ spec:
         - experiment:
             duration: 120
             templates:
-              - name: baseline
-                specRef: stable
               - name: canary
                 specRef: canary
             analysis:
-              - name: webmetric
-                templateName: webmetric
+              - templateName: webmetric
                 args:
                   - name: url
                     value: "http://sample-node-dev-preview:3000/success/99"
