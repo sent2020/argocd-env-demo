@@ -33,7 +33,7 @@ spec:
       steps:
         # - setWeight: 10
         # - pause: {}
-        - setWeight: 50
+        # - setWeight: 50
         - experiment:
             duration: 60s
             templates:
