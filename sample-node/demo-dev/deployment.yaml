@@ -43,14 +43,14 @@ spec:
                 args:
                   - name: url
                     value: "https://sample-node-dev-preview.demo.mzdev.be/success/99"
-        # - setWeight: 20
-        # - pause: { duration: 60 }
-        # - setWeight: 40
-        # - pause: { duration: 60 }
-        # - setWeight: 60
-        # - pause: { duration: 60 }
-        # - setWeight: 80
-        # - pause: { duration: 60 }
+        - setWeight: 20
+        - pause: { duration: 60 }
+        - setWeight: 40
+        - pause: { duration: 60 }
+        - setWeight: 60
+        - pause: { duration: 60 }
+        - setWeight: 80
+        - pause: { duration: 60 }
   template:
     metadata:
       labels:
