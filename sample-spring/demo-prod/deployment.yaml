@@ -15,7 +15,7 @@ spec:
     blueGreen:
       activeService: sample-spring
       autoPromotionEnabled: true
-      autoPromotionSeconds: 120
+      autoPromotionSeconds: 60
       # prePromotionAnalysis:
       #   # templates:
       #   #   - templateName: success-rate
