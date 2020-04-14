@@ -36,7 +36,7 @@ spec:
         - setWeight: 50
         - pause: { duration: 60 }
         - experiment:
-            duration: 60
+            duration: "60"
             templates:
               - name: canary
                 specRef: canary
