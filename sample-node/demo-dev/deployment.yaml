@@ -12,48 +12,48 @@ spec:
     matchLabels:
       app: sample-node
   strategy:
-    blueGreen:
-      activeService: sample-node
-      autoPromotionEnabled: true
-      autoPromotionSeconds: 120
-      prePromotionAnalysis:
-        # templates:
-        #   - templateName: success-rate
-        templateName: success-rate
-        args:
-          - name: namespace
-            value: demo-dev
-          - name: service
-            value: sample-node-preview
-      # previewReplicaCount: 1
-      previewService: sample-node-preview
-      # scaleDownDelaySeconds: 30
-    # canary:
-    #   canaryService: sample-node-preview
-    #   steps:
-    #     # - setWeight: 10
-    #     # - pause: {}
-    #     - setWeight: 50
-    #     - pause: { duration: 120 }
-    #     - experiment:
-    #         duration: 120
-    #         templates:
-    #           - name: baseline
-    #             specRef: stable
-    #           - name: canary
-    #             specRef: canary
-    #         analysis:
-    #           - name: webmetric
-    #             templateName: webmetric
-    #             args:
-    #               - name: url
-    #                 value: "http://sample-node-dev-preview:3000/success/99"
-    #     # - setWeight: 40
-    #     # - pause: { duration: 120 }
-    #     # - setWeight: 60
-    #     # - pause: { duration: 120 }
-    #     # - setWeight: 80
-    #     # - pause: { duration: 120 }
+    # blueGreen:
+    #   activeService: sample-node
+    #   autoPromotionEnabled: true
+    #   autoPromotionSeconds: 120
+    #   prePromotionAnalysis:
+    #     # templates:
+    #     #   - templateName: success-rate
+    #     templateName: success-rate
+    #     args:
+    #       - name: namespace
+    #         value: demo-dev
+    #       - name: service
+    #         value: sample-node-preview
+    #   # previewReplicaCount: 1
+    #   previewService: sample-node-preview
+    #   # scaleDownDelaySeconds: 30
+    canary:
+      canaryService: sample-node-preview
+      steps:
+        # - setWeight: 10
+        # - pause: {}
+        - setWeight: 50
+        - pause: { duration: 120 }
+        - experiment:
+            duration: 120
+            templates:
+              - name: baseline
+                specRef: stable
+              - name: canary
+                specRef: canary
+            analysis:
+              - name: webmetric
+                templateName: webmetric
+                args:
+                  - name: url
+                    value: "http://sample-node-dev-preview:3000/success/99"
+        # - setWeight: 40
+        # - pause: { duration: 120 }
+        # - setWeight: 60
+        # - pause: { duration: 120 }
+        # - setWeight: 80
+        # - pause: { duration: 120 }
   template:
     metadata:
       labels:
