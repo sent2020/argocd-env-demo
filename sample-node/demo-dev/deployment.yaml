@@ -59,10 +59,10 @@ spec:
       labels:
         app: sample-node
         app.kubernetes.io/name: sample-node
-        version: v0.3.153
+        version: v0.3.154
     spec:
       containers:
-        - image: nalbam/sample-node:v0.3.153
+        - image: nalbam/sample-node:v0.3.154
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 3
