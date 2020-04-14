@@ -34,6 +34,7 @@ spec:
         # - setWeight: 10
         # - pause: {}
         - setWeight: 50
+        - pause: { duration: 30 }
         - experiment:
             duration: 60s
             templates:
