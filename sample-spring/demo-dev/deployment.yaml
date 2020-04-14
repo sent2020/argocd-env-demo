@@ -15,16 +15,16 @@ spec:
     blueGreen:
       activeService: sample-spring
       autoPromotionEnabled: true
-      autoPromotionSeconds: 30
-      prePromotionAnalysis:
-        # templates:
-        #   - templateName: success-rate
-        templateName: success-rate
-        args:
-          - name: namespace
-            value: demo-prod
-          - name: service
-            value: sample-spring-preview
+      autoPromotionSeconds: 120
+      # prePromotionAnalysis:
+      #   # templates:
+      #   #   - templateName: success-rate
+      #   templateName: success-rate
+      #   args:
+      #     - name: namespace
+      #       value: demo-dev
+      #     - name: service
+      #       value: sample-spring-preview
       # previewReplicaCount: 1
       previewService: sample-spring-preview
       # scaleDownDelaySeconds: 30
