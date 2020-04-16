@@ -8,7 +8,7 @@ roleRef:
   name: opspresso:config-admin
 subjects:
   - apiGroup: rbac.authorization.k8s.io
-    kind: Group
+    kind: User
     name: developer
 
 ---
