@@ -22,5 +22,5 @@ roleRef:
   name: view
 subjects:
   - apiGroup: rbac.authorization.k8s.io
-    kind: Group
+    kind: User
     name: readonly
