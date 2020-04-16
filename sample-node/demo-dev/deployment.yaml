@@ -44,7 +44,7 @@ spec:
               - templateName: webmetric
                 args:
                   - name: url
-                    value: "https://sample-node-dev-preview.demo.mzdev.be/success/99"
+                    value: "http://sample-node-dev-preview:3000/success/99"
         # - setWeight: 20
         # - pause: { duration: 60 }
         # - setWeight: 40
