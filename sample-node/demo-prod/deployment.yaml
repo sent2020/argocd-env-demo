@@ -25,7 +25,7 @@ spec:
             templateName: http-benchmark
             args:
               - name: url
-                value: http://sample-node-preview:3000/success/33
+                value: http://sample-node-preview:3000/success/99
         # - experiment:
         #     duration: 30s
         #     templates:
