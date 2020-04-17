@@ -17,21 +17,28 @@ spec:
       steps:
         # - setWeight: 10
         # - pause: {}
-        # - setWeight: 25
-        # - pause: { duration: 30 }
-        - experiment:
-            duration: 30s
-            templates:
-              - name: experiment
-                specRef: canary
-            analysis:
-              - name: load-test
-                # templates:
-                #   - templateName: http-benchmark
-                templateName: http-benchmark
-                args:
-                  - name: url
-                    value: http://sample-node-preview:3000/success/33
+        - setWeight: 25
+        - pause: { duration: 30 }
+        - analysis:
+            # templates:
+            #   - templateName: http-benchmark
+            templateName: http-benchmark
+            args:
+              - name: url
+                value: http://sample-node-preview:3000/success/33
+        # - experiment:
+        #     duration: 30s
+        #     templates:
+        #       - name: experiment
+        #         specRef: canary
+        #     analysis:
+        #       - name: load-test
+        #         # templates:
+        #         #   - templateName: http-benchmark
+        #         templateName: http-benchmark
+        #         args:
+        #           - name: url
+        #             value: http://sample-node-preview:3000/success/33
         # - setWeight: 20
         # - pause: { duration: 60 }
         # - setWeight: 40

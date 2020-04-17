@@ -18,11 +18,11 @@ spec:
     #   autoPromotionSeconds: 30
     #   prePromotionAnalysis:
     #     # templates:
-    #     #   - templateName: success-rate
+    #     #   - templateName: http-benchmark
     #     templateName: http-benchmark
     #     args:
     #       - name: url
-    #         value: http://sample-node-dev-preview:3000/success/33
+    #         value: http://sample-node-preview:3000/success/33
     #   # previewReplicaCount: 1
     #   previewService: sample-node-preview
     #   # scaleDownDelaySeconds: 30
@@ -37,7 +37,7 @@ spec:
             templateName: http-benchmark
             args:
               - name: url
-                value: http://sample-node-dev-preview:3000/success/33
+                value: http://sample-node-preview:3000/success/33
   template:
     metadata:
       labels:
