@@ -1,9 +1,0 @@
-resources:
-  - configmap.yaml
-  - deployment-redis.yaml
-  - deployment.yaml
-  - ingress-preview.yaml
-  - ingress.yaml
-  - service-preview.yaml
-  - service-redis.yaml
-  - service.yaml
