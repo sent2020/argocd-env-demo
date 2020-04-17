@@ -18,14 +18,14 @@ spec:
         # - setWeight: 10
         # - pause: {}
         - setWeight: 25
-        - pause: { duration: 30 }
+        # - pause: { duration: 30 }
         - analysis:
             # templates:
             #   - templateName: http-benchmark
             templateName: http-benchmark
             args:
               - name: url
-                value: http://sample-node-preview:3000/success/33
+                value: http://sample-node-preview:3000/success/99
         # - experiment:
         #     duration: 30s
         #     templates:

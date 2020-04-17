@@ -30,14 +30,14 @@ spec:
       canaryService: sample-node-preview
       steps:
         - setWeight: 50
-        - pause: { duration: 30 }
+        # - pause: { duration: 30 }
         - analysis:
             # templates:
             #   - templateName: http-benchmark
             templateName: http-benchmark
             args:
               - name: url
-                value: http://sample-node-preview:3000/success/33
+                value: http://sample-node-preview:3000/success/99
   template:
     metadata:
       labels:
