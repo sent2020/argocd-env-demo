@@ -7,15 +7,15 @@ metadata:
   name: sample-node
 spec:
   replicas: 2
-  revisionHistoryLimit: 5
+  revisionHistoryLimit: 3
   selector:
     matchLabels:
       app: sample-node
   strategy:
     blueGreen:
       activeService: sample-node
-      # autoPromotionEnabled: true
-      # autoPromotionSeconds: 60
+      autoPromotionEnabled: false
+      autoPromotionSeconds: 30
       prePromotionAnalysis:
         # templates:
         #   - templateName: success-rate
