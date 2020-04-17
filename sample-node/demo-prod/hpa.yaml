@@ -6,8 +6,8 @@ metadata:
     app.kubernetes.io/name: sample-node
   name: sample-node
 spec:
-  maxReplicas: 10
   minReplicas: 4
+  maxReplicas: 8
   scaleTargetRef:
     apiVersion: argoproj.io/v1alpha1
     kind: Rollout
