@@ -11,7 +11,8 @@ spec:
     - name: url
   metrics:
     - name: http-benchmark
-      failureLimit: 100
+      count: 10
+      failureLimit: 5
       interval: 5s
       provider:
         job:
