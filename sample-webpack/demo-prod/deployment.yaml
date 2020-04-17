@@ -6,7 +6,7 @@ metadata:
     app.kubernetes.io/name: sample-webpack
   name: sample-webpack
 spec:
-  replicas: 1
+  # replicas: 1
   revisionHistoryLimit: 5
   selector:
     matchLabels:

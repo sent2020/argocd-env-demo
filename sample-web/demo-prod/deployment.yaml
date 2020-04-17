@@ -6,7 +6,7 @@ metadata:
     app.kubernetes.io/name: sample-web
   name: sample-web
 spec:
-  replicas: 1
+  # replicas: 1
   revisionHistoryLimit: 5
   selector:
     matchLabels:

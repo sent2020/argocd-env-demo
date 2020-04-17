@@ -6,8 +6,8 @@ metadata:
     app.kubernetes.io/name: sample-spring
   name: sample-spring
 spec:
-  maxReplicas: 5
   minReplicas: 1
+  maxReplicas: 5
   scaleTargetRef:
     apiVersion: argoproj.io/v1alpha1
     kind: Rollout
