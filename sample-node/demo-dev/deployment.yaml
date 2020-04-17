@@ -12,47 +12,36 @@ spec:
     matchLabels:
       app: sample-node
   strategy:
-    # blueGreen:
-    #   activeService: sample-node
-    #   autoPromotionEnabled: true
-    #   autoPromotionSeconds: 60
-    #   # prePromotionAnalysis:
-    #   #   # templates:
-    #   #   #   - templateName: success-rate
-    #   #   templateName: success-rate
-    #   #   args:
-    #   #     - name: namespace
-    #   #       value: demo-dev
-    #   #     - name: service
-    #   #       value: sample-node-preview
-    #   # previewReplicaCount: 1
-    #   previewService: sample-node-preview
-    #   # scaleDownDelaySeconds: 30
-    canary:
-      canaryService: sample-node-preview
-      steps:
-        # - setWeight: 10
-        # - pause: {}
-        - setWeight: 50
-        - pause: { duration: 30 }
-        - experiment:
-            duration: 60s
-            templates:
-              - name: canary
-                specRef: canary
-            analysis:
-              - templateName: webmetric
-                args:
-                  - name: url
-                    value: "http://sample-node-dev-preview:3000/success/99"
-        # - setWeight: 20
-        # - pause: { duration: 60 }
-        # - setWeight: 40
-        # - pause: { duration: 60 }
-        # - setWeight: 60
-        # - pause: { duration: 60 }
-        # - setWeight: 80
-        # - pause: { duration: 60 }
+    blueGreen:
+      activeService: sample-node
+      autoPromotionEnabled: true
+      autoPromotionSeconds: 60
+      prePromotionAnalysis:
+        # templates:
+        #   - templateName: success-rate
+        templateName: http-benchmark
+        args:
+          - name: url
+            value: https://sample-node-dev-preview.demo.mzdev.be/success/99
+      # previewReplicaCount: 1
+      previewService: sample-node-preview
+      # scaleDownDelaySeconds: 30
+    # canary:
+    #   canaryService: sample-node-preview
+    #   steps:
+    #     - experiment:
+    #         duration: 60s
+    #         templates:
+    #           - name: experiment
+    #             specRef: canary
+    #         analysis:
+    #           - name: load-test
+    #             # templates:
+    #             #   - templateName: http-benchmark
+    #             templateName: http-benchmark
+    #             args:
+    #               - name: url
+    #                 value: https://sample-node-dev-preview.demo.mzdev.be/success/99
   template:
     metadata:
       labels:
