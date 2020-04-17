@@ -31,7 +31,7 @@ spec:
                 templateName: http-benchmark
                 args:
                   - name: url
-                    value: https://sample-node-preview.demo.mzdev.be/success/33
+                    value: http://sample-node-preview:3000/success/33
         # - setWeight: 20
         # - pause: { duration: 60 }
         # - setWeight: 40

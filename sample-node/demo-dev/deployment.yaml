@@ -22,7 +22,7 @@ spec:
         templateName: http-benchmark
         args:
           - name: url
-            value: https://sample-node-dev-preview.demo.mzdev.be/success/33
+            value: http://sample-node-dev-preview:3000/success/33
       # previewReplicaCount: 1
       previewService: sample-node-preview
       # scaleDownDelaySeconds: 30
