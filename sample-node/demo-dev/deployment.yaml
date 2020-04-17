@@ -18,7 +18,7 @@ spec:
     #   autoPromotionSeconds: 30
     #   prePromotionAnalysis:
     #     # templates:
-    #     #   - templateName: success-rate
+    #     #   - templateName: http-benchmark
     #     templateName: http-benchmark
     #     args:
     #       - name: url
