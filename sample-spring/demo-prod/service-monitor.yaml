@@ -1,5 +1,5 @@
-kind: ServiceMonitor
 apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
 metadata:
   labels:
     app: sample-spring
@@ -11,4 +11,6 @@ spec:
     matchLabels:
       app: sample-spring
   endpoints:
-    - port: http
+    - interval: 30s
+      path: /actuator/prometheus
+      port: metrics
