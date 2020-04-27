@@ -7,6 +7,6 @@ metadata:
   name: sample-node
 data:
   PROFILE: prod
-  VERSION: v0.3.183
+  VERSION: v0.3.188
   MESSAGE: hello prod-demo world
   FAULT_RATE: '2'
