@@ -1,0 +1,13 @@
+kind: ServiceMonitor
+apiVersion: monitoring.coreos.com/v1
+metadata:
+  labels:
+    app: sample-node
+    app.kubernetes.io/name: sample-node
+  name: sample-node
+spec:
+  selector:
+    matchLabels:
+      app: sample-node
+  endpoints:
+    - port: http
