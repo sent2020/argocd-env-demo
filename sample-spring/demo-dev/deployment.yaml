@@ -6,7 +6,7 @@ metadata:
     app.kubernetes.io/name: sample-spring
   name: sample-spring
 spec:
-  replicas: 6
+  replicas: 1
   revisionHistoryLimit: 5
   selector:
     matchLabels:
