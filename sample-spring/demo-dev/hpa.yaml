@@ -2,16 +2,16 @@ apiVersion: autoscaling/v2beta1
 kind: HorizontalPodAutoscaler
 metadata:
   labels:
-    app: sample-node
-    app.kubernetes.io/name: sample-node
-  name: sample-node
+    app: sample-spring
+    app.kubernetes.io/name: sample-spring
+  name: sample-spring
 spec:
-  minReplicas: 2
+  minReplicas: 1
   maxReplicas: 4
   scaleTargetRef:
     apiVersion: argoproj.io/v1alpha1
     kind: Rollout
-    name: sample-node
+    name: sample-spring
   # targetCPUUtilizationPercentage: 80
   metrics:
     # use a "Pods" metric, which takes the average of the
