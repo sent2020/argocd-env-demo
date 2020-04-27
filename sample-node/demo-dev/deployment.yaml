@@ -6,7 +6,7 @@ metadata:
     app.kubernetes.io/name: sample-node
   name: sample-node
 spec:
-  replicas: 2
+  # replicas: 2
   revisionHistoryLimit: 3
   selector:
     matchLabels:

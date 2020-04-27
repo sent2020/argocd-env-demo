@@ -1,0 +1,15 @@
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  labels:
+    app: sample-node
+    app.kubernetes.io/name: sample-node
+  name: sample-node
+spec:
+  minReplicas: 2
+  maxReplicas: 4
+  scaleTargetRef:
+    apiVersion: argoproj.io/v1alpha1
+    kind: Rollout
+    name: sample-node
+  targetCPUUtilizationPercentage: 80
