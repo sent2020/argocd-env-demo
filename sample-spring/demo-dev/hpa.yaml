@@ -1,15 +1,25 @@
-apiVersion: autoscaling/v1
+apiVersion: autoscaling/v2beta1
 kind: HorizontalPodAutoscaler
 metadata:
   labels:
-    app: sample-spring
-    app.kubernetes.io/name: sample-spring
-  name: sample-spring
+    app: sample-node
+    app.kubernetes.io/name: sample-node
+  name: sample-node
 spec:
-  minReplicas: 1
-  maxReplicas: 5
+  minReplicas: 2
+  maxReplicas: 4
   scaleTargetRef:
     apiVersion: argoproj.io/v1alpha1
     kind: Rollout
-    name: sample-spring
-  targetCPUUtilizationPercentage: 80
+    name: sample-node
+  # targetCPUUtilizationPercentage: 80
+  metrics:
+    # use a "Pods" metric, which takes the average of the
+    # given metric across all pods controlled by the autoscaling target
+    - type: Pods
+      pods:
+        # use the metric that you used above: pods/http_requests
+        metricName: http_requests
+        # target 500 milli-requests per second,
+        # which is 1 request every two seconds
+        targetAverageValue: 500m
