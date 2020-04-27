@@ -1,0 +1,14 @@
+kind: ServiceMonitor
+apiVersion: monitoring.coreos.com/v1
+metadata:
+  labels:
+    app: sample-spring
+    app.kubernetes.io/name: sample-spring
+    release: prometheus-operator
+  name: sample-spring
+spec:
+  selector:
+    matchLabels:
+      app: sample-spring
+  endpoints:
+    - port: http
