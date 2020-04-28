@@ -18,8 +18,15 @@ spec:
     # given metric across all pods controlled by the autoscaling target
     - type: Pods
       pods:
-        # use the metric that you used above: pods/http_requests
-        metricName: http_requests
+        # use the metric that you used above: pods/container_network_receive_bytes
+        metricName: container_network_receive_bytes
         # target 500 milli-requests per second,
         # which is 1 request every two seconds
-        targetAverageValue: 500m
+        targetAverageValue: 2000000m
+    # - type: Object
+    #   object:
+    #     target:
+    #       kind: Service
+    #       name: sample-node
+    #     metricName: http_requests
+    #     targetValue: 500m
