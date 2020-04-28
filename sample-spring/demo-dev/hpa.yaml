@@ -22,11 +22,4 @@ spec:
         metricName: container_network_receive_bytes
         # target 500 milli-requests per second,
         # which is 1 request every two seconds
-        targetAverageValue: 2000000m
-    # - type: Object
-    #   object:
-    #     target:
-    #       kind: Service
-    #       name: sample-node
-    #     metricName: http_requests
-    #     targetValue: 500m
+        targetAverageValue: 2k
