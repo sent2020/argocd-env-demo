@@ -7,19 +7,26 @@ metadata:
   name: sample-node
 spec:
   minReplicas: 2
-  maxReplicas: 4
+  maxReplicas: 8
   scaleTargetRef:
     apiVersion: argoproj.io/v1alpha1
     kind: Rollout
     name: sample-node
   # targetCPUUtilizationPercentage: 80
   metrics:
-    # use a "Pods" metric, which takes the average of the
-    # given metric across all pods controlled by the autoscaling target
-    - type: Pods
-      pods:
-        # use the metric that you used above: pods/http_requests
+    # # use a "Pods" metric, which takes the average of the
+    # # given metric across all pods controlled by the autoscaling target
+    # - type: Pods
+    #   pods:
+    #     # use the metric that you used above: pods/http_requests
+    #     metricName: http_requests
+    #     # target 500 milli-requests per second,
+    #     # which is 1 request every two seconds
+    #     targetAverageValue: 500m
+    - type: Object
+      object:
+        target:
+          kind: Service
+          name: sample-node
         metricName: http_requests
-        # target 500 milli-requests per second,
-        # which is 1 request every two seconds
-        targetAverageValue: 500m
+        targetValue: "5"
