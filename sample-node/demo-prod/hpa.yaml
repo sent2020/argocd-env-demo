@@ -12,4 +12,9 @@ spec:
     apiVersion: argoproj.io/v1alpha1
     kind: Rollout
     name: sample-node
-  targetCPUUtilizationPercentage: 80
+  # targetCPUUtilizationPercentage: 80
+  metrics:
+    - type: Pods
+      pods:
+        metricName: container_network_receive_bytes
+        targetAverageValue: 2k
