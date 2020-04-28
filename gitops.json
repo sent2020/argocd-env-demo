@@ -18,7 +18,7 @@
     }, {
         "id": "sample-node",
         "path": "sample-node",
-        "stages": ["demo-dev", "demo-prod", "spot-dev"],
+        "stages": ["demo-dev", "demo-prod"],
         "targets": [{
             "file": "configmap.yaml",
             "path": "VERSION:"
@@ -29,7 +29,7 @@
     }, {
         "id": "sample-spring",
         "path": "sample-spring",
-        "stages": ["demo-dev", "demo-prod", "spot-dev"],
+        "stages": ["demo-dev", "demo-prod"],
         "targets": [{
             "file": "configmap.yaml",
             "path": "VERSION:"
