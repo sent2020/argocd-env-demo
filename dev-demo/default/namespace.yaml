@@ -9,7 +9,7 @@ metadata:
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: sample-dev
+  name: demo-prod
   labels:
     istio-injection: enabled
 
@@ -17,7 +17,7 @@ metadata:
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: demo-prod
+  name: sample-dev
   labels:
     istio-injection: enabled
 
