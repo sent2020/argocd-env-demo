@@ -4,7 +4,7 @@ metadata:
   name: demo-dev-quota
 spec:
   hard:
-    pods: "4"
+    pods: "8"
     requests.cpu: "1"
     requests.memory: 1Gi
     limits.cpu: "2"
