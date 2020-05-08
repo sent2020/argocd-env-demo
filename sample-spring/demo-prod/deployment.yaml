@@ -33,13 +33,13 @@ spec:
       labels:
         app: sample-spring
         app.kubernetes.io/name: sample-spring
-        version: v0.3.81
+        version: v0.3.87
       annotations:
         prometheus.io/scrape: "true"
         prometheus.io/port: "8081"
     spec:
       containers:
-        - image: nalbam/sample-spring:v0.3.81
+        - image: nalbam/sample-spring:v0.3.87
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 3
