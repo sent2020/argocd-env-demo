@@ -21,10 +21,10 @@ spec:
       labels:
         app: sample-web
         app.kubernetes.io/name: sample-web
-        version: v0.2.1
+        version: v0.4.1
     spec:
       containers:
-        - image: nalbam/sample-web:v0.2.1
+        - image: nalbam/sample-web:v0.4.1
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 3
