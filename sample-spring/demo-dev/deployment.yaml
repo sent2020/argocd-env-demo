@@ -70,10 +70,10 @@ spec:
           resources:
             requests:
               cpu: 500m
-              memory: 1G
+              memory: 1Gi
             limits:
               cpu: 550m
-              memory: 1G
+              memory: 1Gi
           envFrom:
             - configMapRef:
                 name: sample-spring
