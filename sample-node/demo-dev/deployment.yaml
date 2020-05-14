@@ -16,13 +16,13 @@ spec:
       activeService: sample-node
       autoPromotionEnabled: false
       autoPromotionSeconds: 30
-      # prePromotionAnalysis:
-      #   # templates:
-      #   #   - templateName: http-benchmark
-      #   templateName: http-benchmark
-      #   args:
-      #     - name: url
-      #       value: http://sample-node-preview:3000/success/33
+      prePromotionAnalysis:
+        # templates:
+        #   - templateName: http-benchmark
+        templateName: http-benchmark
+        args:
+          - name: url
+            value: http://sample-node-preview:3000/success/95
       # previewReplicaCount: 1
       previewService: sample-node-preview
       # scaleDownDelaySeconds: 30
