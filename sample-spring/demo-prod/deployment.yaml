@@ -12,22 +12,17 @@ spec:
     matchLabels:
       app: sample-spring
   strategy:
-    blueGreen:
-      activeService: sample-spring
-      autoPromotionEnabled: true
-      autoPromotionSeconds: 60
-      # prePromotionAnalysis:
-      #   # templates:
-      #   #   - templateName: success-rate
-      #   templateName: success-rate
-      #   args:
-      #     - name: namespace
-      #       value: demo-prod
-      #     - name: service
-      #       value: sample-spring-preview
-      # previewReplicaCount: 1
-      previewService: sample-spring-preview
-      # scaleDownDelaySeconds: 30
+    canary:
+      canaryService: sample-spring-preview
+      steps:
+        - setWeight: 25
+        - analysis:
+            # templates:
+            #   - templateName: http-benchmark
+            templateName: http-benchmark
+            args:
+              - name: url
+                value: http://sample-spring-preview:8080/success/98
   template:
     metadata:
       labels:
