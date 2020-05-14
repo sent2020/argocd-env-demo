@@ -28,10 +28,10 @@ spec:
       labels:
         app: sample-node
         app.kubernetes.io/name: sample-node
-        version: v0.4.2
+        version: v0.4.3
     spec:
       containers:
-        - image: nalbam/sample-node:v0.4.2
+        - image: nalbam/sample-node:v0.4.3
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 3
