@@ -17,4 +17,4 @@ spec:
     - type: Pods
       pods:
         metricName: container_network_receive_bytes
-        targetAverageValue: 10k
+        targetAverageValue: 100k
