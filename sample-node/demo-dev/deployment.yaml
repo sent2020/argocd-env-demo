@@ -22,7 +22,7 @@ spec:
         templateName: http-benchmark
         args:
           - name: url
-            value: http://sample-node-preview:3000/success/95
+            value: http://sample-node-preview:3000/success/98
       # previewReplicaCount: 1
       previewService: sample-node-preview
       # scaleDownDelaySeconds: 30
