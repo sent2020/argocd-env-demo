@@ -9,5 +9,5 @@ data:
   PROFILE: dev
   VERSION: v0.4.11
   MESSAGE: hello dev-demo world
-  DD_AGENT_ENABLED: "true"
-  # JAVA_AGENT_ENABLED: "true"
+  # DD_AGENT_ENABLED: "true"
+  JAVA_AGENT_ENABLED: "true"
