@@ -7,7 +7,7 @@ metadata:
   name: sample-spring
 data:
   PROFILE: prod
-  VERSION: v0.4.12
+  VERSION: v0.4.13
   MESSAGE: hello prod-demo world
   # DD_AGENT_ENABLED: "true"
   JAVA_AGENT_ENABLED: "true"
