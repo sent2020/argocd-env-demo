@@ -11,6 +11,5 @@ spec:
     matchLabels:
       app: sample-spring
   endpoints:
-    - interval: 30s
-      path: /actuator/prometheus
-      port: http
+    - interval: 15s
+      port: jmx

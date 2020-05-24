@@ -3,4 +3,6 @@ resources:
   - deployment.yaml
   - hpa.yaml
   - ingress.yaml
+  - service-monitor.yaml
+  - service-preview.yaml
   - service.yaml

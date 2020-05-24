@@ -2,14 +2,14 @@ apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
   labels:
-    app: sample-spring
-    app.kubernetes.io/name: sample-spring
+    app: sample-tomcat
+    app.kubernetes.io/name: sample-tomcat
     release: prometheus-operator
-  name: sample-spring
+  name: sample-tomcat
 spec:
   selector:
     matchLabels:
-      app: sample-spring
+      app: sample-tomcat
   endpoints:
     - interval: 15s
       port: jmx
