@@ -12,9 +12,9 @@ spec:
     apiVersion: argoproj.io/v1alpha1
     kind: Rollout
     name: sample-spring
-  targetCPUUtilizationPercentage: 80
-  # metrics:
-  #   - type: Pods
-  #     pods:
-  #       metricName: container_network_receive_bytes
-  #       targetAverageValue: 200k
+  # targetCPUUtilizationPercentage: 80
+  metrics:
+    - type: Pods
+      pods:
+        metricName: container_network_receive_bytes
+        targetAverageValue: 200k
