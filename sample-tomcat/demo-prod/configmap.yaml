@@ -9,4 +9,5 @@ data:
   PROFILE: prod
   VERSION: v0.4.2
   MESSAGE: hello prod-demo world
+  # DD_AGENT_ENABLED: "true"
   JAVA_AGENT_ENABLED: "true"
