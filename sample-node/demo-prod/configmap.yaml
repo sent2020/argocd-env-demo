@@ -9,4 +9,5 @@ data:
   PROFILE: prod
   VERSION: v0.4.9
   MESSAGE: hello prod-demo world
-  FAULT_RATE: '2'
+  FAULT_RATE: "2"
+  TRACER: "datadog"
