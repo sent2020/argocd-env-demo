@@ -10,3 +10,4 @@ data:
   VERSION: v0.4.9
   MESSAGE: hello dev-demo world
   FAULT_RATE: "5"
+  TRACER: "datadog"
