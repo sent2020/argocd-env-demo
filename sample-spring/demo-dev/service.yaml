@@ -12,7 +12,7 @@ spec:
       port: 8080
       protocol: TCP
       targetPort: 8080
-    - name: jmx
+    - name: tcp-jmx
       port: 8081
       protocol: TCP
       targetPort: 8081
