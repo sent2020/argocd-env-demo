@@ -2,8 +2,8 @@ apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
   labels:
-    app: sample-spring-preview
-    app.kubernetes.io/name: sample-spring-preview
+    app: sample-spring
+    app.kubernetes.io/name: sample-spring
   name: sample-spring-preview
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
