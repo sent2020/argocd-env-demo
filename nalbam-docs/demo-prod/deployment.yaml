@@ -38,7 +38,8 @@ spec:
             timeoutSeconds: 1
           name: nalbam-docs
           ports:
-            - containerPort: 1948
+            - name: http
+              containerPort: 1948
               protocol: TCP
           readinessProbe:
             failureThreshold: 3
