@@ -11,5 +11,6 @@ spec:
     matchLabels:
       app: sample-node
   endpoints:
-    - interval: 30s
+    - interval: 15s
+      path: /metrics
       port: http
