@@ -12,4 +12,5 @@ spec:
       app: sample-spring
   endpoints:
     - interval: 15s
-      port: jmx
+      path: /actuator/prometheus
+      port: http
