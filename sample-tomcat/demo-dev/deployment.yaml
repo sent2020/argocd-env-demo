@@ -44,7 +44,7 @@ spec:
             - name: http
               containerPort: 8080
               protocol: TCP
-            - name: jmx
+            - name: tcp-jmx
               containerPort: 8081
               protocol: TCP
           readinessProbe:
