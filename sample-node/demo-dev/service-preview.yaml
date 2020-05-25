@@ -3,7 +3,7 @@ kind: Service
 metadata:
   labels:
     app: sample-node-preview
-    app.kubernetes.io/name: sample-node-preview
+    app.kubernetes.io/name: sample-node
   name: sample-node-preview
 spec:
   type: ClusterIP
