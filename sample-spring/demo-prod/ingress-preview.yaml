@@ -3,7 +3,7 @@ kind: Ingress
 metadata:
   labels:
     app: sample-spring-preview
-    app.kubernetes.io/name: sample-spring
+    app.kubernetes.io/name: sample-spring-preview
   name: sample-spring-preview
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
