@@ -48,7 +48,8 @@ spec:
             timeoutSeconds: 1
           name: sample-node
           ports:
-            - containerPort: 3000
+            - name: http
+              containerPort: 3000
               protocol: TCP
           readinessProbe:
             failureThreshold: 3
