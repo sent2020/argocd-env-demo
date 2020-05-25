@@ -11,5 +11,5 @@ spec:
     matchLabels:
       app: sample-tomcat
   endpoints:
-    - interval: 15s
+    - interval: 10s
       port: tcp-jmx
