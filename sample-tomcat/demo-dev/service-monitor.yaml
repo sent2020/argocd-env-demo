@@ -12,5 +12,4 @@ spec:
       app: sample-tomcat
   endpoints:
     - interval: 15s
-      path: /
       port: jmx
