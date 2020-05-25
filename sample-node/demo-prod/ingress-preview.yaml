@@ -3,7 +3,7 @@ kind: Ingress
 metadata:
   labels:
     app: sample-node-preview
-    app.kubernetes.io/name: sample-node
+    app.kubernetes.io/name: sample-node-preview
   name: sample-node-preview
   annotations:
     kubernetes.io/ingress.class: nginx
