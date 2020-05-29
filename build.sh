@@ -12,6 +12,7 @@ BRANCH=${CIRCLE_BRANCH:-master}
 TG_USERNAME="${1:-$TG_USERNAME}"
 TG_PROJECT="${2:-$TG_PROJECT}"
 TG_VERSION="${3:-$TG_VERSION}"
+
 TG_PHASE="${4:-$TG_PHASE}"
 TG_TYPE="${5:-$TG_TYPE}"
 
@@ -181,9 +182,7 @@ _build() {
     if [ "${HAS}" == "true" ]; then
         _success "${NEW_BRANCH}"
     fi
-}
 
-_deploy() {
     _command "git branch ${NEW_BRANCH} ${BRANCH}"
     git branch ${NEW_BRANCH} ${BRANCH}
 
@@ -231,11 +230,10 @@ _deploy() {
 
 _prepare
 
-if [ "${TG_TYPE}" == "" ]; then
+if [ "${TG_PHASE}" == "" ]; then
     _phase
 else
     _build
-    _deploy
 fi
 
 _success

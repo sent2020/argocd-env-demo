@@ -21,10 +21,10 @@ spec:
       labels:
         app: nalbam-docs
         app.kubernetes.io/name: nalbam-docs
-        version: v0.0.21
+        version: v0.0.0
     spec:
       containers:
-        - image: nalbam/docs:v0.0.21
+        - image: nalbam/docs:v0.0.0
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 3
@@ -38,8 +38,8 @@ spec:
             timeoutSeconds: 1
           name: nalbam-docs
           ports:
-            - name: http
-              containerPort: 1948
+            - containerPort: 1948
+              name: http
               protocol: TCP
           readinessProbe:
             failureThreshold: 3
@@ -52,9 +52,9 @@ spec:
             successThreshold: 1
             timeoutSeconds: 1
           resources:
-            requests:
-              cpu: 100m
-              memory: 120Mi
             limits:
               cpu: 110m
               memory: 134Mi
+            requests:
+              cpu: 100m
+              memory: 120Mi

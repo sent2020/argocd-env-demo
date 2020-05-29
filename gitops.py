@@ -8,12 +8,19 @@ import sys
 import yaml
 
 
+REPONAME = "nalbam-docs"
+PHASE = "demo-dev"
+
+IMAGENAME = "nalbam/docs"
+VERSION = "v0.0.0"
+
+
 def parse_args():
     p = argparse.ArgumentParser(description="GitOps")
-    p.add_argument("--username", default="nalbam", help="username")
-    p.add_argument("--reponame", default="sample-node", help="reponame")
-    p.add_argument("--version", default="v0.0.0", help="version")
-    p.add_argument("--phase", default="demo-dev", help="phase")
+    p.add_argument("--reponame", default=REPONAME, help="reponame")
+    p.add_argument("--phase", default=PHASE, help="phase")
+    p.add_argument("--imagename", default=IMAGENAME, help="imagename")
+    p.add_argument("--version", default=VERSION, help="version")
     return p.parse_args()
 
 
@@ -22,31 +29,23 @@ def replace_deployment(args, cm_hasg, sec_hash):
     filehash = ""
 
     if os.path.exists(filepath):
-        doc = []
+        doc = None
 
         with open(filepath, "r") as file:
             doc = yaml.load(file, Loader=yaml.FullLoader)
-
-            image = "{}/{}:{}".format(args.username, args.reponame, args.version)
 
             doc["spec"]["template"]["metadata"]["labels"]["version"] = args.version
 
             containers = doc["spec"]["template"]["spec"]["containers"]
 
-            containers[0]["env"]["image"] = image
+            containers[0]["image"] = "{}:{}".format(args.imagename, args.version)
 
-            for i, env in enumerate(containers[0]["env"]):
-                if env["name"] == "CONFIGMAP_HASH":
-                    env["value"] = cm_hasg
-                if env["name"] == "SECRET_HASH":
-                    env["value"] = sec_hash
-
-            # print(doc["spec"]["template"]["metadata"]["labels"]["version"])
-            # print(doc["spec"]["template"]["spec"]["containers"][0]["image"])
-
-            # print(doc["spec"]["template"]["spec"]["containers"][0]["env"])
-            # print(doc["spec"]["template"]["spec"]["containers"][0]["env"][0]["name"])
-            # print(doc["spec"]["template"]["spec"]["containers"][0]["env"][1]["name"])
+            if "env" in containers[0]:
+                for i, env in enumerate(containers[0]["env"]):
+                    if env["name"] == "CONFIGMAP_HASH":
+                        env["value"] = cm_hasg
+                    if env["name"] == "SECRET_HASH":
+                        env["value"] = sec_hash
 
         if doc != None:
             with open(filepath, "w") as file:
@@ -58,7 +57,7 @@ def replace_configmap(args):
     filehash = ""
 
     if os.path.exists(filepath):
-        doc = []
+        doc = None
 
         with open(filepath, "r") as file:
             doc = yaml.load(file, Loader=yaml.FullLoader)
@@ -84,7 +83,7 @@ def replace_secret(args):
     filehash = ""
 
     if os.path.exists(filepath):
-        doc = []
+        doc = None
 
         with open(filepath, "r") as file:
             doc = yaml.load(file, Loader=yaml.FullLoader)
