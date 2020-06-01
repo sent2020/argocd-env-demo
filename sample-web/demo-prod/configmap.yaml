@@ -7,5 +7,5 @@ metadata:
   name: sample-web
 data:
   PROFILE: prod
-  VERSION: v0.4.1
+  VERSION: v0.4.2
   MESSAGE: hello prod-demo world
