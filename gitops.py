@@ -34,6 +34,7 @@ def replace_deployment(args, cm_hasg, sec_hash):
         with open(filepath, "r") as file:
             doc = yaml.load(file, Loader=yaml.FullLoader)
 
+            # replace
             doc["spec"]["template"]["metadata"]["labels"]["version"] = args.version
 
             containers = doc["spec"]["template"]["spec"]["containers"]
@@ -62,11 +63,8 @@ def replace_configmap(args):
         with open(filepath, "r") as file:
             doc = yaml.load(file, Loader=yaml.FullLoader)
 
-            print(doc["data"]["VERSION"])
-
+            # replace
             doc["data"]["VERSION"] = args.version
-
-            print(doc["data"]["VERSION"])
 
         if doc != None:
             with open(filepath, "w") as file:
