@@ -7,5 +7,5 @@ metadata:
   name: sample-webpack
 data:
   PROFILE: dev
-  VERSION: v0.3.5
+  VERSION: v0.3.6
   MESSAGE: hello dev-demo world
