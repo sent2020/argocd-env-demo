@@ -32,10 +32,30 @@ spec:
               path: /
               port: 1948
               scheme: HTTP
-            # initialDelaySeconds: 3
             periodSeconds: 10
             successThreshold: 1
             timeoutSeconds: 1
+          name: nalbam-docs
+          ports:
+            - containerPort: 1948
+              name: http
+              protocol: TCP
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /
+              port: 1948
+              scheme: HTTP
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+          resources:
+            limits:
+              cpu: 110m
+              memory: 134Mi
+            requests:
+              cpu: 100m
+              memory: 120Mi
           startupProbe:
             failureThreshold: 3
             httpGet:
@@ -46,25 +66,3 @@ spec:
             periodSeconds: 10
             successThreshold: 1
             timeoutSeconds: 1
-          name: nalbam-docs
-          ports:
-            - name: http
-              containerPort: 1948
-              protocol: TCP
-          readinessProbe:
-            failureThreshold: 3
-            httpGet:
-              path: /
-              port: 1948
-              scheme: HTTP
-            # initialDelaySeconds: 3
-            periodSeconds: 10
-            successThreshold: 1
-            timeoutSeconds: 1
-          resources:
-            requests:
-              cpu: 100m
-              memory: 120Mi
-            limits:
-              cpu: 110m
-              memory: 134Mi
