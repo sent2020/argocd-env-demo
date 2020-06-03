@@ -17,10 +17,10 @@ VERSION = "v0.0.0"
 
 def parse_args():
     p = argparse.ArgumentParser(description="GitOps")
-    p.add_argument("--reponame", default=REPONAME, help="reponame")
-    p.add_argument("--phase", default=PHASE, help="phase")
-    p.add_argument("--imagename", default=IMAGENAME, help="imagename")
-    p.add_argument("--version", default=VERSION, help="version")
+    p.add_argument("-r", "--reponame", default=REPONAME, help="reponame")
+    p.add_argument("-p", "--phase", default=PHASE, help="phase")
+    p.add_argument("-n", "--imagename", default=IMAGENAME, help="imagename")
+    p.add_argument("-v", "--version", default=VERSION, help="version")
     return p.parse_args()
 
 

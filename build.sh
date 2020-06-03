@@ -190,6 +190,9 @@ _build() {
     git checkout ${NEW_BRANCH}
 
     _command "replace ${TG_VERSION}"
+
+    # python3 gitops.py -r "${TG_USERNAME}/${TG_PROJECT}" -p ${TG_PHASE} -n ${TG_PROJECT} -v ${TG_VERSION}
+
     if [ "${TG_TYPE}" == "kustomize" ]; then
         # configmap
         TARGET=${SHELL_DIR}/${TG_PROJECT}/${TG_PHASE}/configmap.yaml
