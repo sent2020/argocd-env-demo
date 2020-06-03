@@ -14,3 +14,4 @@ spec:
       targetPort: 8080
   selector:
     app: sample-spring
+    version: v0.4.9

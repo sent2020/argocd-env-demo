@@ -68,3 +68,8 @@ spec:
           envFrom:
             - configMapRef:
                 name: sample-node
+          env:
+            - name: CONFIGMAP_HASH
+              value: "" # configmap_hash
+            - name: SECRET_HASH
+              value: "" # secret_hash

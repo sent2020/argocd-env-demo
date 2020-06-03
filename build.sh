@@ -12,6 +12,7 @@ BRANCH=${CIRCLE_BRANCH:-master}
 TG_USERNAME="${1:-$TG_USERNAME}"
 TG_PROJECT="${2:-$TG_PROJECT}"
 TG_VERSION="${3:-$TG_VERSION}"
+
 TG_PHASE="${4:-$TG_PHASE}"
 TG_TYPE="${5:-$TG_TYPE}"
 
@@ -181,9 +182,7 @@ _build() {
     if [ "${HAS}" == "true" ]; then
         _success "${NEW_BRANCH}"
     fi
-}
 
-_deploy() {
     _command "git branch ${NEW_BRANCH} ${BRANCH}"
     git branch ${NEW_BRANCH} ${BRANCH}
 
@@ -202,6 +201,12 @@ _deploy() {
         TARGET=${SHELL_DIR}/${TG_PROJECT}/${TG_PHASE}/deployment.yaml
         if [ -f ${TARGET} ]; then
             _replace "s/image: .*/image: ${TG_USERNAME}\/${TG_PROJECT}:${TG_VERSION}/g" ${TARGET}
+            _replace "s/version: .*/version: ${TG_VERSION}/g" ${TARGET}
+        fi
+
+        # service-preview
+        TARGET=${SHELL_DIR}/${TG_PROJECT}/${TG_PHASE}/service-preview.yaml
+        if [ -f ${TARGET} ]; then
             _replace "s/version: .*/version: ${TG_VERSION}/g" ${TARGET}
         fi
     elif [ "${TG_TYPE}" == "helm" ]; then
@@ -231,11 +236,10 @@ _deploy() {
 
 _prepare
 
-if [ "${TG_TYPE}" == "" ]; then
+if [ "${TG_PHASE}" == "" ]; then
     _phase
 else
     _build
-    _deploy
 fi
 
 _success
