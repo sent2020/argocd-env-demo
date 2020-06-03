@@ -53,6 +53,29 @@ def replace_deployment(args, cm_hasg, sec_hash):
                 yaml.dump(doc, file)
 
 
+def replace_service_preview(args):
+    filepath = "{}/{}/service-preview.yaml".format(args.reponame, args.phase)
+    filehash = ""
+
+    if os.path.exists(filepath):
+        doc = None
+
+        with open(filepath, "r") as file:
+            doc = yaml.load(file, Loader=yaml.FullLoader)
+
+            # replace
+            doc["spec"]["selector"]["version"] = args.version
+
+        if doc != None:
+            with open(filepath, "w") as file:
+                yaml.dump(doc, file)
+
+            with open(filepath, "rb") as file:
+                filehash = hashlib.md5(file.read()).hexdigest()
+
+    return filehash
+
+
 def replace_configmap(args):
     filepath = "{}/{}/configmap.yaml".format(args.reponame, args.phase)
     filehash = ""
@@ -103,6 +126,8 @@ def run():
     shash = replace_secret(args)
 
     replace_deployment(args, chash, shash)
+
+    replace_service_preview(args)
 
 
 if __name__ == "__main__":

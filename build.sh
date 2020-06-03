@@ -203,6 +203,12 @@ _build() {
             _replace "s/image: .*/image: ${TG_USERNAME}\/${TG_PROJECT}:${TG_VERSION}/g" ${TARGET}
             _replace "s/version: .*/version: ${TG_VERSION}/g" ${TARGET}
         fi
+
+        # service-preview
+        TARGET=${SHELL_DIR}/${TG_PROJECT}/${TG_PHASE}/service-preview.yaml
+        if [ -f ${TARGET} ]; then
+            _replace "s/version: .*/version: ${TG_VERSION}/g" ${TARGET}
+        fi
     elif [ "${TG_TYPE}" == "helm" ]; then
         # values-phase
         TARGET=${SHELL_DIR}/${TG_PROJECT}/values-${TG_PHASE}.yaml
