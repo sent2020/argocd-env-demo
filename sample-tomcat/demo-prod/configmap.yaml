@@ -7,7 +7,7 @@ metadata:
   name: sample-tomcat
 data:
   PROFILE: prod
-  VERSION: v0.4.14
+  VERSION: v0.4.14-39
   MESSAGE: hello prod-demo world
   # DD_AGENT_ENABLED: "true"
   JAVA_AGENT_ENABLED: "true"
