@@ -29,6 +29,8 @@ def replace_deployment(args, cm_hasg, sec_hash):
     filehash = ""
 
     if os.path.exists(filepath):
+        print("replace", filepath)
+
         doc = None
 
         with open(filepath, "r") as file:
@@ -58,6 +60,8 @@ def replace_service_preview(args):
     filehash = ""
 
     if os.path.exists(filepath):
+        print("replace", filepath)
+
         doc = None
 
         with open(filepath, "r") as file:
@@ -81,6 +85,8 @@ def replace_configmap(args):
     filehash = ""
 
     if os.path.exists(filepath):
+        print("replace", filepath)
+
         doc = None
 
         with open(filepath, "r") as file:
@@ -104,6 +110,8 @@ def replace_secret(args):
     filehash = ""
 
     if os.path.exists(filepath):
+        print("replace", filepath)
+
         doc = None
 
         with open(filepath, "r") as file:
@@ -119,7 +127,7 @@ def replace_secret(args):
     return filehash
 
 
-def run():
+def main():
     args = parse_args()
 
     chash = replace_configmap(args)
@@ -131,4 +139,4 @@ def run():
 
 
 if __name__ == "__main__":
-    run()
+    main()
