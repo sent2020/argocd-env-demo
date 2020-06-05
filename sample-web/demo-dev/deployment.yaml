@@ -24,53 +24,43 @@ spec:
         version: v0.4.3
     spec:
       containers:
-      - env:
-        - name: CONFIGMAP_HASH
-          value: 8622c81bc1039249a35ceb71334721a3
-        - name: SECRET_HASH
-          value: ''
-        envFrom:
-        - configMapRef:
-            name: sample-web
-        image: nalbam/sample-web:v0.4.3
-        imagePullPolicy: Always
-        livenessProbe:
-          failureThreshold: 3
-          httpGet:
-            path: /
-            port: 80
-            scheme: HTTP
-          periodSeconds: 10
-          successThreshold: 1
-          timeoutSeconds: 1
-        name: sample-web
-        ports:
-        - containerPort: 80
-          name: http
-          protocol: TCP
-        readinessProbe:
-          failureThreshold: 3
-          httpGet:
-            path: /
-            port: 80
-            scheme: HTTP
-          periodSeconds: 10
-          successThreshold: 1
-          timeoutSeconds: 1
-        resources:
-          limits:
-            cpu: 110m
-            memory: 134Mi
-          requests:
-            cpu: 100m
-            memory: 120Mi
-        startupProbe:
-          failureThreshold: 3
-          httpGet:
-            path: /
-            port: 80
-            scheme: HTTP
-          initialDelaySeconds: 3
-          periodSeconds: 10
-          successThreshold: 1
-          timeoutSeconds: 1
+        - env:
+            - name: CONFIGMAP_HASH
+              value: 8622c81bc1039249a35ceb71334721a3
+            - name: SECRET_HASH
+              value: ""
+          envFrom:
+            - configMapRef:
+                name: sample-web
+          image: nalbam/sample-web:v0.4.3
+          imagePullPolicy: Always
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /
+              port: 80
+              scheme: HTTP
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+          name: sample-web
+          ports:
+            - containerPort: 80
+              name: http
+              protocol: TCP
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /
+              port: 80
+              scheme: HTTP
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+          resources:
+            limits:
+              cpu: 110m
+              memory: 134Mi
+            requests:
+              cpu: 100m
+              memory: 120Mi

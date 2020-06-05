@@ -24,53 +24,43 @@ spec:
         version: v0.4.24
     spec:
       containers:
-      - env:
-        - name: CONFIGMAP_HASH
-          value: b5fa80547822f61079c88491cea99ab5
-        - name: SECRET_HASH
-          value: ''
-        envFrom:
-        - configMapRef:
-            name: sample-node
-        image: nalbam/sample-node:v0.4.24
-        imagePullPolicy: Always
-        livenessProbe:
-          failureThreshold: 3
-          httpGet:
-            path: /
-            port: 3000
-            scheme: HTTP
-          periodSeconds: 10
-          successThreshold: 1
-          timeoutSeconds: 1
-        name: sample-node
-        ports:
-        - containerPort: 3000
-          name: http
-          protocol: TCP
-        readinessProbe:
-          failureThreshold: 3
-          httpGet:
-            path: /
-            port: 3000
-            scheme: HTTP
-          periodSeconds: 10
-          successThreshold: 1
-          timeoutSeconds: 1
-        resources:
-          limits:
-            cpu: 110m
-            memory: 134Mi
-          requests:
-            cpu: 100m
-            memory: 120Mi
-        startupProbe:
-          failureThreshold: 3
-          httpGet:
-            path: /
-            port: 3000
-            scheme: HTTP
-          initialDelaySeconds: 3
-          periodSeconds: 10
-          successThreshold: 1
-          timeoutSeconds: 1
+        - env:
+            - name: CONFIGMAP_HASH
+              value: b5fa80547822f61079c88491cea99ab5
+            - name: SECRET_HASH
+              value: ""
+          envFrom:
+            - configMapRef:
+                name: sample-node
+          image: nalbam/sample-node:v0.4.24
+          imagePullPolicy: Always
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /
+              port: 3000
+              scheme: HTTP
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+          name: sample-node
+          ports:
+            - containerPort: 3000
+              name: http
+              protocol: TCP
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /
+              port: 3000
+              scheme: HTTP
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+          resources:
+            limits:
+              cpu: 110m
+              memory: 134Mi
+            requests:
+              cpu: 100m
+              memory: 120Mi
