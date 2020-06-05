@@ -1,9 +1,9 @@
 apiVersion: v1
 data:
-  JAVA_AGENT_ENABLED: "true"
+  JAVA_AGENT_ENABLED: 'true'
   MESSAGE: hello prod-demo world
   PROFILE: prod
-  VERSION: v0.4.15
+  VERSION: v0.4.16
 kind: ConfigMap
 metadata:
   labels:
