@@ -5,7 +5,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: opspresso/git
+      - image: opspresso/gitops
     steps:
       - checkout
       - run:

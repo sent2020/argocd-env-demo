@@ -191,35 +191,35 @@ _build() {
 
     _command "replace ${TG_VERSION}"
 
-    # python3 gitops.py -r "${TG_USERNAME}/${TG_PROJECT}" -p ${TG_PHASE} -n ${TG_PROJECT} -v ${TG_VERSION}
+    python3 gitops.py -r "${TG_USERNAME}/${TG_PROJECT}" -p ${TG_PHASE} -n ${TG_PROJECT} -v ${TG_VERSION}
 
-    if [ "${TG_TYPE}" == "kustomize" ]; then
-        # configmap
-        TARGET=${SHELL_DIR}/${TG_PROJECT}/${TG_PHASE}/configmap.yaml
-        if [ -f ${TARGET} ]; then
-            _replace "s/VERSION: .*/VERSION: ${TG_VERSION}/g" ${TARGET}
-        fi
+    # if [ "${TG_TYPE}" == "kustomize" ]; then
+    #     # configmap
+    #     TARGET=${SHELL_DIR}/${TG_PROJECT}/${TG_PHASE}/configmap.yaml
+    #     if [ -f ${TARGET} ]; then
+    #         _replace "s/VERSION: .*/VERSION: ${TG_VERSION}/g" ${TARGET}
+    #     fi
 
-        # deployment
-        TARGET=${SHELL_DIR}/${TG_PROJECT}/${TG_PHASE}/deployment.yaml
-        if [ -f ${TARGET} ]; then
-            _replace "s/image: .*/image: ${TG_USERNAME}\/${TG_PROJECT}:${TG_VERSION}/g" ${TARGET}
-            _replace "s/version: .*/version: ${TG_VERSION}/g" ${TARGET}
-        fi
+    #     # deployment
+    #     TARGET=${SHELL_DIR}/${TG_PROJECT}/${TG_PHASE}/deployment.yaml
+    #     if [ -f ${TARGET} ]; then
+    #         _replace "s/image: .*/image: ${TG_USERNAME}\/${TG_PROJECT}:${TG_VERSION}/g" ${TARGET}
+    #         _replace "s/version: .*/version: ${TG_VERSION}/g" ${TARGET}
+    #     fi
 
-        # service-preview
-        TARGET=${SHELL_DIR}/${TG_PROJECT}/${TG_PHASE}/service-preview.yaml
-        if [ -f ${TARGET} ]; then
-            _replace "s/version: .*/version: ${TG_VERSION}/g" ${TARGET}
-        fi
-    elif [ "${TG_TYPE}" == "helm" ]; then
-        # values-phase
-        TARGET=${SHELL_DIR}/${TG_PROJECT}/values-${TG_PHASE}.yaml
-        if [ -f ${TARGET} ]; then
-            _replace "s/repository: .*/repository: ${TG_USERNAME}\/${TG_PROJECT}/g" ${TARGET}
-            _replace "s/tag: .*/tag: ${TG_VERSION}/g" ${TARGET}
-        fi
-    fi
+    #     # service-preview
+    #     TARGET=${SHELL_DIR}/${TG_PROJECT}/${TG_PHASE}/service-preview.yaml
+    #     if [ -f ${TARGET} ]; then
+    #         _replace "s/version: .*/version: ${TG_VERSION}/g" ${TARGET}
+    #     fi
+    # elif [ "${TG_TYPE}" == "helm" ]; then
+    #     # values-phase
+    #     TARGET=${SHELL_DIR}/${TG_PROJECT}/values-${TG_PHASE}.yaml
+    #     if [ -f ${TARGET} ]; then
+    #         _replace "s/repository: .*/repository: ${TG_USERNAME}\/${TG_PROJECT}/g" ${TARGET}
+    #         _replace "s/tag: .*/tag: ${TG_VERSION}/g" ${TARGET}
+    #     fi
+    # fi
 
     _command "git add --all"
     git add --all
