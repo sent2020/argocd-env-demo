@@ -1,5 +1,5 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
 metadata:
   labels:
     app: sample-tomcat
@@ -18,64 +18,64 @@ spec:
   template:
     metadata:
       annotations:
-        prometheus.io/port: '8081'
-        prometheus.io/scrape: 'true'
+        prometheus.io/port: "8081"
+        prometheus.io/scrape: "true"
       labels:
         app: sample-tomcat
         app.kubernetes.io/name: sample-tomcat
         version: v0.4.15
     spec:
       containers:
-      - env:
-        - name: CONFIGMAP_HASH
-          value: de400f58f24e5444d19ac35e5e981b06
-        - name: SECRET_HASH
-          value: ''
-        envFrom:
-        - configMapRef:
-            name: sample-tomcat
-        image: nalbam/sample-tomcat:v0.4.15
-        imagePullPolicy: Always
-        livenessProbe:
-          failureThreshold: 3
-          httpGet:
-            path: /
-            port: 8080
-            scheme: HTTP
-          periodSeconds: 10
-          successThreshold: 1
-          timeoutSeconds: 1
-        name: sample-tomcat
-        ports:
-        - containerPort: 8080
-          name: http
-          protocol: TCP
-        - containerPort: 8081
-          name: tcp-jmx
-          protocol: TCP
-        readinessProbe:
-          failureThreshold: 3
-          httpGet:
-            path: /
-            port: 8080
-            scheme: HTTP
-          periodSeconds: 10
-          successThreshold: 1
-          timeoutSeconds: 1
-        resources:
-          limits:
-            cpu: 550m
-            memory: 1Gi
-          requests:
-            cpu: 500m
-            memory: 1Gi
-        startupProbe:
-          failureThreshold: 3
-          httpGet:
-            path: /
-            port: 8080
-            scheme: HTTP
-          initialDelaySeconds: 60
-          periodSeconds: 10
-          successThreshold: 1
-          timeoutSeconds: 1
+        - env:
+            - name: CONFIGMAP_HASH
+              value: de400f58f24e5444d19ac35e5e981b06
+            - name: SECRET_HASH
+              value: ""
+          envFrom:
+            - configMapRef:
+                name: sample-tomcat
+          image: nalbam/sample-tomcat:v0.4.15
+          imagePullPolicy: Always
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /
+              port: 8080
+              scheme: HTTP
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+          name: sample-tomcat
+          ports:
+            - containerPort: 8080
+              name: http
+              protocol: TCP
+            - containerPort: 8081
+              name: tcp-jmx
+              protocol: TCP
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /
+              port: 8080
+              scheme: HTTP
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+          resources:
+            limits:
+              cpu: 550m
+              memory: 1Gi
+            requests:
+              cpu: 500m
+              memory: 1Gi
+          startupProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /
+              port: 8080
+              scheme: HTTP
+            initialDelaySeconds: 60
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
