@@ -11,10 +11,15 @@ spec:
     matchLabels:
       app: sample-tomcat
   strategy:
-    rollingUpdate:
-      maxSurge: 25%
-      maxUnavailable: 25%
-    type: RollingUpdate
+    canary:
+      canaryService: sample-tomcat-preview
+      steps:
+        - setWeight: 25
+        - analysis:
+            args:
+              - name: url
+                value: http://sample-tomcat-preview:8080/success/98
+            templateName: http-benchmark
   template:
     metadata:
       annotations:
@@ -28,7 +33,7 @@ spec:
       containers:
         - env:
             - name: CONFIGMAP_HASH
-              value: de400f58f24e5444d19ac35e5e981b06
+              value: 9fb7856e3cedb577ed6f994942b4ae82
             - name: SECRET_HASH
               value: ""
           envFrom:

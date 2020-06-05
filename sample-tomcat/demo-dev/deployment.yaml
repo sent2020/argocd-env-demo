@@ -11,10 +11,11 @@ spec:
     matchLabels:
       app: sample-tomcat
   strategy:
-    rollingUpdate:
-      maxSurge: 25%
-      maxUnavailable: 25%
-    type: RollingUpdate
+    blueGreen:
+      activeService: sample-tomcat
+      autoPromotionEnabled: true
+      autoPromotionSeconds: 60
+      previewService: sample-tomcat-preview
   template:
     metadata:
       annotations:
@@ -28,7 +29,7 @@ spec:
       containers:
         - env:
             - name: CONFIGMAP_HASH
-              value: 673a7cecb5d8f490b53e4fe33b7d56a4
+              value: 24c6a5c27921fcedde43a1db0ee168de
             - name: SECRET_HASH
               value: ""
           envFrom:
