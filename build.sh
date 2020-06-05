@@ -191,7 +191,7 @@ _build() {
 
     _command "replace ${TG_VERSION}"
 
-    python3 gitops.py -r "${TG_USERNAME}/${TG_PROJECT}" -p ${TG_PHASE} -n ${TG_PROJECT} -v ${TG_VERSION}
+    python gitops.py -r "${TG_USERNAME}/${TG_PROJECT}" -p ${TG_PHASE} -n ${TG_PROJECT} -v ${TG_VERSION}
 
     # if [ "${TG_TYPE}" == "kustomize" ]; then
     #     # configmap
