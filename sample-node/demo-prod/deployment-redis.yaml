@@ -28,7 +28,7 @@ spec:
           imagePullPolicy: Always
           name: redis
           ports:
-            - name: http
+            - name: redis
               containerPort: 6379
               protocol: TCP
           resources:
