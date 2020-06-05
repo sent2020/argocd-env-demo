@@ -1,8 +1,9 @@
 resources:
   - configmap.yaml
   - deployment.yaml
-  # - hpa.yaml
+  - hpa.yaml
+  - ingress-preview.yaml
   - ingress.yaml
   - service-monitor.yaml
-  # - service-preview.yaml
+  - service-preview.yaml
   - service.yaml

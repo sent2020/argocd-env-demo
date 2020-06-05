@@ -1,5 +1,5 @@
-apiVersion: argoproj.io/v1alpha1
-kind: Rollout
+apiVersion: apps/v1
+kind: Deployment
 metadata:
   labels:
     app: nalbam-docs
@@ -56,13 +56,3 @@ spec:
             requests:
               cpu: 100m
               memory: 120Mi
-          startupProbe:
-            failureThreshold: 3
-            httpGet:
-              path: /
-              port: 1948
-              scheme: HTTP
-            initialDelaySeconds: 3
-            periodSeconds: 10
-            successThreshold: 1
-            timeoutSeconds: 1
