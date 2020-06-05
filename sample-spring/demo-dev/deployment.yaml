@@ -19,56 +19,56 @@ spec:
   template:
     metadata:
       annotations:
-        prometheus.io/port: "8081"
-        prometheus.io/scrape: "true"
+        prometheus.io/port: '8081'
+        prometheus.io/scrape: 'true'
       labels:
         app: sample-spring
         app.kubernetes.io/name: sample-spring
-        version: v0.4.15
+        version: v0.4.16
     spec:
       containers:
-        - env:
-            - name: CONFIGMAP_HASH
-              value: 24c6a5c27921fcedde43a1db0ee168de
-            - name: SECRET_HASH
-              value: ""
-          envFrom:
-            - configMapRef:
-                name: sample-spring
-          image: nalbam/sample-spring:v0.4.15
-          imagePullPolicy: Always
-          livenessProbe:
-            failureThreshold: 3
-            httpGet:
-              path: /
-              port: 8080
-              scheme: HTTP
-            initialDelaySeconds: 20
-            periodSeconds: 10
-            successThreshold: 1
-            timeoutSeconds: 1
-          name: sample-spring
-          ports:
-            - containerPort: 8080
-              name: http
-              protocol: TCP
-            - containerPort: 8081
-              name: tcp-jmx
-              protocol: TCP
-          readinessProbe:
-            failureThreshold: 3
-            httpGet:
-              path: /
-              port: 8080
-              scheme: HTTP
-            initialDelaySeconds: 20
-            periodSeconds: 10
-            successThreshold: 1
-            timeoutSeconds: 1
-          resources:
-            limits:
-              cpu: 550m
-              memory: 1Gi
-            requests:
-              cpu: 500m
-              memory: 1Gi
+      - env:
+        - name: CONFIGMAP_HASH
+          value: 5916a9b4da7b2e704166ae0d48abdfdf
+        - name: SECRET_HASH
+          value: ''
+        envFrom:
+        - configMapRef:
+            name: sample-spring
+        image: nalbam/sample-spring:v0.4.16
+        imagePullPolicy: Always
+        livenessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /
+            port: 8080
+            scheme: HTTP
+          initialDelaySeconds: 20
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+        name: sample-spring
+        ports:
+        - containerPort: 8080
+          name: http
+          protocol: TCP
+        - containerPort: 8081
+          name: tcp-jmx
+          protocol: TCP
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /
+            port: 8080
+            scheme: HTTP
+          initialDelaySeconds: 20
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+        resources:
+          limits:
+            cpu: 550m
+            memory: 1Gi
+          requests:
+            cpu: 500m
+            memory: 1Gi
