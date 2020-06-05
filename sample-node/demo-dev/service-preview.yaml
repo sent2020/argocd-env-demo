@@ -6,12 +6,12 @@ metadata:
     app.kubernetes.io/name: sample-node
   name: sample-node-preview
 spec:
-  type: ClusterIP
   ports:
-    - name: http
-      port: 3000
-      protocol: TCP
-      targetPort: 3000
+  - name: http
+    port: 3000
+    protocol: TCP
+    targetPort: 3000
   selector:
     app: sample-node
-    version: v0.4.16
+    version: v0.4.24
+  type: ClusterIP

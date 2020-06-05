@@ -1,13 +1,12 @@
 apiVersion: v1
+data:
+  FAULT_RATE: '2'
+  MESSAGE: hello prod-demo world
+  PROFILE: prod
+  VERSION: v0.4.24
 kind: ConfigMap
 metadata:
   labels:
     app: sample-node
     app.kubernetes.io/name: sample-node
   name: sample-node
-data:
-  PROFILE: prod
-  VERSION: v0.4.16
-  MESSAGE: hello prod-demo world
-  FAULT_RATE: "2"
-  # TRACER: "datadog"

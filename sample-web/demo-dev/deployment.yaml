@@ -21,58 +21,56 @@ spec:
       labels:
         app: sample-web
         app.kubernetes.io/name: sample-web
-        version: v0.4.1
+        version: v0.4.3
     spec:
       containers:
-        - image: nalbam/sample-web:v0.4.1
-          imagePullPolicy: Always
-          livenessProbe:
-            failureThreshold: 3
-            httpGet:
-              path: /
-              port: 80
-              scheme: HTTP
-            # initialDelaySeconds: 3
-            periodSeconds: 10
-            successThreshold: 1
-            timeoutSeconds: 1
-          startupProbe:
-            failureThreshold: 3
-            httpGet:
-              path: /
-              port: 80
-              scheme: HTTP
-            initialDelaySeconds: 3
-            periodSeconds: 10
-            successThreshold: 1
-            timeoutSeconds: 1
-          name: sample-web
-          ports:
-            - name: http
-              containerPort: 80
-              protocol: TCP
-          readinessProbe:
-            failureThreshold: 3
-            httpGet:
-              path: /
-              port: 80
-              scheme: HTTP
-            # initialDelaySeconds: 3
-            periodSeconds: 10
-            successThreshold: 1
-            timeoutSeconds: 1
-          resources:
-            requests:
-              cpu: 100m
-              memory: 120Mi
-            limits:
-              cpu: 110m
-              memory: 134Mi
-          envFrom:
-            - configMapRef:
-                name: sample-web
-          env:
-            - name: CONFIGMAP_HASH
-              value: "" # configmap_hash
-            - name: SECRET_HASH
-              value: "" # secret_hash
+      - env:
+        - name: CONFIGMAP_HASH
+          value: 8622c81bc1039249a35ceb71334721a3
+        - name: SECRET_HASH
+          value: ''
+        envFrom:
+        - configMapRef:
+            name: sample-web
+        image: nalbam/sample-web:v0.4.3
+        imagePullPolicy: Always
+        livenessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /
+            port: 80
+            scheme: HTTP
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+        name: sample-web
+        ports:
+        - containerPort: 80
+          name: http
+          protocol: TCP
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /
+            port: 80
+            scheme: HTTP
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+        resources:
+          limits:
+            cpu: 110m
+            memory: 134Mi
+          requests:
+            cpu: 100m
+            memory: 120Mi
+        startupProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /
+            port: 80
+            scheme: HTTP
+          initialDelaySeconds: 3
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
