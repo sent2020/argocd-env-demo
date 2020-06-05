@@ -6,12 +6,12 @@ metadata:
     app.kubernetes.io/name: sample-spring
   name: sample-spring-preview
 spec:
-  type: ClusterIP
   ports:
-    - name: http
-      port: 8080
-      protocol: TCP
-      targetPort: 8080
+  - name: http
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
   selector:
     app: sample-spring
-    version: v0.4.9
+    version: v0.4.15
+  type: ClusterIP
