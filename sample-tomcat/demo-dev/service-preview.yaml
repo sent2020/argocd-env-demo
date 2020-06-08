@@ -13,5 +13,5 @@ spec:
     targetPort: 8080
   selector:
     app: sample-tomcat
-    version: v0.4.16
+    version: v0.4.17
   type: ClusterIP
