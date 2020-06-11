@@ -11,6 +11,13 @@ metadata:
     kubernetes.io/ssl-redirect: "true"
 spec:
   rules:
+    - host: docs.demo.nalbam.com
+      http:
+        paths:
+          - backend:
+              serviceName: nalbam-docs
+              servicePort: 80
+            path: /
     - host: docs.demo.mzdev.be
       http:
         paths:
@@ -19,6 +26,9 @@ spec:
               servicePort: 80
             path: /
   tls:
+    - hosts:
+        - docs.demo.nalbam.com
+      secretName: docs-nalbam-tls
     - hosts:
         - docs.demo.mzdev.be
       secretName: docs-mzdev-tls
