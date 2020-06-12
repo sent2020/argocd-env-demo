@@ -3,7 +3,7 @@ data:
   FAULT_RATE: '5'
   MESSAGE: hello dev-demo world
   PROFILE: dev
-  VERSION: v0.4.27
+  VERSION: v0.4.28
 kind: ConfigMap
 metadata:
   labels:
