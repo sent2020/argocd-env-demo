@@ -13,5 +13,5 @@ spec:
     targetPort: 3000
   selector:
     app: sample-node
-    version: v0.4.27
+    version: v0.4.30
   type: ClusterIP
