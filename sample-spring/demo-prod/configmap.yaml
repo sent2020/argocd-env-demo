@@ -3,7 +3,7 @@ data:
   JAVA_AGENT_ENABLED: 'true'
   MESSAGE: hello prod-demo world
   PROFILE: prod
-  VERSION: v0.4.34
+  VERSION: v0.4.35
 kind: ConfigMap
 metadata:
   labels:
