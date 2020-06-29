@@ -21,4 +21,4 @@ spec:
   tls:
     - hosts:
         - docs-dev.demo.spic.me
-      secretName: docs-mzdev-tls
+      secretName: docs-nalbam-tls

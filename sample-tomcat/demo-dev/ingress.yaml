@@ -25,4 +25,4 @@ spec:
   tls:
     - hosts:
         - sample-tomcat-dev.demo.spic.me
-      secretName: sample-tomcat-mzdev-tls
+      secretName: sample-tomcat--tls
