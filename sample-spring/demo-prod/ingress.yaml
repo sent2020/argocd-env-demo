@@ -21,4 +21,4 @@ spec:
   tls:
     - hosts:
         - sample-spring.demo.spic.me
-      secretName: sample-spring--tls
+      secretName: sample-spring-tls

@@ -21,4 +21,4 @@ spec:
   tls:
     - hosts:
         - sample-webpack.demo.spic.me
-      secretName: sample-webpack--tls
+      secretName: sample-webpack-tls

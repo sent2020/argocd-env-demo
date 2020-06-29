@@ -21,4 +21,4 @@ spec:
   tls:
     - hosts:
         - sample-node.demo.spic.me
-      secretName: sample-node--tls
+      secretName: sample-node-tls
