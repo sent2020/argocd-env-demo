@@ -25,4 +25,4 @@ spec:
   tls:
     - hosts:
         - sample-spring-dev.demo.spic.me
-      secretName: sample-spring-mzdev-tls
+      secretName: sample-spring--tls
