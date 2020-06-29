@@ -11,7 +11,7 @@ metadata:
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
 spec:
   rules:
-    - host: sample-node-preview.demo.mzdev.be
+    - host: sample-node-preview.demo.spic.me
       http:
         paths:
           - backend:
@@ -20,5 +20,5 @@ spec:
             path: /
   tls:
     - hosts:
-        - sample-node-preview.demo.mzdev.be
+        - sample-node-preview.demo.spic.me
       secretName: sample-node-preview-mzdev-tls
