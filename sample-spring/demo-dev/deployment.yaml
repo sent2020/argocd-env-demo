@@ -24,18 +24,18 @@ spec:
       labels:
         app: sample-spring
         app.kubernetes.io/name: sample-spring
-        version: v0.4.42
+        version: v0.4.43
     spec:
       containers:
       - env:
         - name: CONFIGMAP_HASH
-          value: 48c259e84f3f448a2444a3df46f251d2
+          value: e79ff4131805522f2585411a207f28a1
         - name: SECRET_HASH
           value: ''
         envFrom:
         - configMapRef:
             name: sample-spring
-        image: nalbam/sample-spring:v0.4.42
+        image: nalbam/sample-spring:v0.4.43
         imagePullPolicy: Always
         livenessProbe:
           failureThreshold: 3
