@@ -25,18 +25,18 @@ spec:
       labels:
         app: sample-node
         app.kubernetes.io/name: sample-node
-        version: v0.4.44
+        version: v0.4.45
     spec:
       containers:
       - env:
         - name: CONFIGMAP_HASH
-          value: 0b2d1d95effeead8f47ff02683d2e5bb
+          value: 97888283c98e190cf0a5c63a6ea3617c
         - name: SECRET_HASH
           value: ''
         envFrom:
         - configMapRef:
             name: sample-node
-        image: nalbam/sample-node:v0.4.44
+        image: nalbam/sample-node:v0.4.45
         imagePullPolicy: Always
         livenessProbe:
           failureThreshold: 3
