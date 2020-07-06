@@ -11,7 +11,7 @@ metadata:
     kubernetes.io/ssl-redirect: "true"
 spec:
   rules:
-    - host: sample-web.demo.spic.me
+    - host: sample-web.demo.mzdev.be
       http:
         paths:
           - backend:
@@ -20,5 +20,5 @@ spec:
             path: /
   tls:
     - hosts:
-        - sample-web.demo.spic.me
+        - sample-web.demo.mzdev.be
       secretName: sample-web-tls
