@@ -3,7 +3,7 @@ data:
   FAULT_RATE: '2'
   MESSAGE: hello prod-demo world
   PROFILE: prod
-  VERSION: v0.4.52
+  VERSION: v0.4.54
 kind: ConfigMap
 metadata:
   labels:
