@@ -5,7 +5,7 @@ OS_NAME="$(uname | awk '{print tolower($0)}')"
 SHELL_DIR=$(dirname $0)
 
 USERNAME=${CIRCLE_PROJECT_USERNAME:-opspresso}
-REPONAME=${CIRCLE_PROJECT_REPONAME:-ardocd-env-demo}
+REPONAME=${CIRCLE_PROJECT_REPONAME:-argocd-env-demo}
 
 BRANCH=${CIRCLE_BRANCH:-master}
 
@@ -65,6 +65,13 @@ _replace() {
 ################################################################################
 
 _prepare() {
+    _result "TG_USERNAME=${TG_USERNAME}"
+    _result "TG_PROJECT=${TG_PROJECT}"
+    _result "TG_VERSION=${TG_VERSION}"
+
+    _result "TG_PHASE=${TG_PHASE}"
+    _result "TG_TYPE=${TG_TYPE}"
+
     if [ "${TG_USERNAME}" == "" ] || [ "${TG_PROJECT}" == "" ] || [ "${TG_VERSION}" == "" ]; then
         _success
     fi
@@ -107,7 +114,7 @@ _phase() {
     for PHASE in ${LIST}; do
         _result "${PHASE} kustomize"
 
-        PAYLOAD="{\"build_parameters\":{"
+        PAYLOAD="{\"parameters\":{"
         PAYLOAD="${PAYLOAD}\"TG_USERNAME\":\"${TG_USERNAME}\","
         PAYLOAD="${PAYLOAD}\"TG_PROJECT\":\"${TG_PROJECT}\","
         PAYLOAD="${PAYLOAD}\"TG_VERSION\":\"${TG_VERSION}\","
@@ -127,7 +134,7 @@ _phase() {
     for PHASE in ${LIST}; do
         _result "${PHASE} helm"
 
-        PAYLOAD="{\"build_parameters\":{"
+        PAYLOAD="{\"parameters\":{"
         PAYLOAD="${PAYLOAD}\"TG_USERNAME\":\"${TG_USERNAME}\","
         PAYLOAD="${PAYLOAD}\"TG_PROJECT\":\"${TG_PROJECT}\","
         PAYLOAD="${PAYLOAD}\"TG_VERSION\":\"${TG_VERSION}\","
