@@ -77,10 +77,6 @@ _prepare() {
 }
 
 _phase() {
-    if [ ! -d ${SHELL_DIR}/${TG_PROJECT} ]; then
-        _success
-    fi
-
     if [ "${PERSONAL_TOKEN}" == "" ]; then
         _error "Not found PERSONAL_TOKEN"
     fi
@@ -97,7 +93,10 @@ _phase() {
     #     _success
     # fi
 
-    CIRCLE_API="https://circleci.com/api/v1.1/project/github/${USERNAME}/${REPONAME}"
+    # CIRCLE_API="https://circleci.com/api/v1.1/project/github/${USERNAME}/${REPONAME}"
+    # CIRCLE_URL="${CIRCLE_API}?circle-token=${PERSONAL_TOKEN}"
+
+    CIRCLE_API="https://circleci.com/api/v2/project/gh/${USERNAME}/${REPONAME}/pipeline"
     CIRCLE_URL="${CIRCLE_API}?circle-token=${PERSONAL_TOKEN}"
 
     pushd ${SHELL_DIR}/${TG_PROJECT}
@@ -106,7 +105,7 @@ _phase() {
     LIST=$(ls -d */kustomization.yaml | cut -d'/' -f1)
 
     for PHASE in ${LIST}; do
-        PAYLOAD="{\"build_parameters\":{"
+        PAYLOAD="{\"parameters\":{"
         PAYLOAD="${PAYLOAD}\"TG_USERNAME\":\"${TG_USERNAME}\","
         PAYLOAD="${PAYLOAD}\"TG_PROJECT\":\"${TG_PROJECT}\","
         PAYLOAD="${PAYLOAD}\"TG_VERSION\":\"${TG_VERSION}\","
@@ -115,8 +114,9 @@ _phase() {
         PAYLOAD="${PAYLOAD}}}"
 
         curl -X POST \
+            -u ${PERSONAL_TOKEN}: \
             -H "Content-Type: application/json" \
-            -d "${PAYLOAD}" "${CIRCLE_URL}"
+            -d "${PAYLOAD}" "${CIRCLE_API}"
 
         _result "${PHASE}"
     done
@@ -125,7 +125,7 @@ _phase() {
     LIST=$(ls | grep 'values-' | grep '.yaml' | cut -d'-' -f2 | cut -d'.' -f1)
 
     for PHASE in ${LIST}; do
-        PAYLOAD="{\"build_parameters\":{"
+        PAYLOAD="{\"parameters\":{"
         PAYLOAD="${PAYLOAD}\"TG_USERNAME\":\"${TG_USERNAME}\","
         PAYLOAD="${PAYLOAD}\"TG_PROJECT\":\"${TG_PROJECT}\","
         PAYLOAD="${PAYLOAD}\"TG_VERSION\":\"${TG_VERSION}\","
@@ -134,8 +134,9 @@ _phase() {
         PAYLOAD="${PAYLOAD}}}"
 
         curl -X POST \
+            -u ${PERSONAL_TOKEN}: \
             -H "Content-Type: application/json" \
-            -d "${PAYLOAD}" "${CIRCLE_URL}"
+            -d "${PAYLOAD}" "${CIRCLE_API}"
 
         _result "${PHASE}"
     done
