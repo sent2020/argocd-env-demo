@@ -105,7 +105,9 @@ _phase() {
     LIST=$(ls -d */kustomization.yaml | cut -d'/' -f1)
 
     for PHASE in ${LIST}; do
-        PAYLOAD="{\"parameters\":{"
+        _result "${PHASE} kustomize"
+
+        PAYLOAD="{\"build_parameters\":{"
         PAYLOAD="${PAYLOAD}\"TG_USERNAME\":\"${TG_USERNAME}\","
         PAYLOAD="${PAYLOAD}\"TG_PROJECT\":\"${TG_PROJECT}\","
         PAYLOAD="${PAYLOAD}\"TG_VERSION\":\"${TG_VERSION}\","
@@ -117,15 +119,15 @@ _phase() {
             -u ${PERSONAL_TOKEN}: \
             -H "Content-Type: application/json" \
             -d "${PAYLOAD}" "${CIRCLE_API}"
-
-        _result "${PHASE}"
     done
 
     # find helm chart
     LIST=$(ls | grep 'values-' | grep '.yaml' | cut -d'-' -f2 | cut -d'.' -f1)
 
     for PHASE in ${LIST}; do
-        PAYLOAD="{\"parameters\":{"
+        _result "${PHASE} helm"
+
+        PAYLOAD="{\"build_parameters\":{"
         PAYLOAD="${PAYLOAD}\"TG_USERNAME\":\"${TG_USERNAME}\","
         PAYLOAD="${PAYLOAD}\"TG_PROJECT\":\"${TG_PROJECT}\","
         PAYLOAD="${PAYLOAD}\"TG_VERSION\":\"${TG_VERSION}\","
@@ -137,8 +139,6 @@ _phase() {
             -u ${PERSONAL_TOKEN}: \
             -H "Content-Type: application/json" \
             -d "${PAYLOAD}" "${CIRCLE_API}"
-
-        _result "${PHASE}"
     done
 
     popd
