@@ -1,11 +1,29 @@
-#
-# CircleCI 2.0
-#
-version: 2
+# circleci
+
+version: 2.1
+
+parameters:
+  TG_USERNAME:
+    type: string
+  TG_PROJECT:
+    type: string
+  TG_VERSION:
+    type: string
+  TG_PHASE:
+    type: string
+  TG_TYPE:
+    type: string
+
 jobs:
   build:
     docker:
       - image: opspresso/gitops
+    environment:
+      TG_USERNAME: << pipeline.parameters.TG_USERNAME >>
+      TG_PROJECT: << pipeline.parameters.TG_PROJECT >>
+      TG_VERSION: << pipeline.parameters.TG_VERSION >>
+      TG_PHASE: << pipeline.parameters.TG_PHASE >>
+      TG_TYPE: << pipeline.parameters.TG_TYPE >>
     steps:
       - checkout
       - run:

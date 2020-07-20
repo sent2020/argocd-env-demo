@@ -103,6 +103,7 @@ _phase() {
     # CIRCLE_API="https://circleci.com/api/v1.1/project/github/${USERNAME}/${REPONAME}"
     # CIRCLE_URL="${CIRCLE_API}?circle-token=${PERSONAL_TOKEN}"
 
+    # https://circleci.com/docs/api/v2/#get-a-pipeline-39-s-workflows
     CIRCLE_API="https://circleci.com/api/v2/project/gh/${USERNAME}/${REPONAME}/pipeline"
     CIRCLE_URL="${CIRCLE_API}?circle-token=${PERSONAL_TOKEN}"
 
@@ -114,6 +115,7 @@ _phase() {
     for PHASE in ${LIST}; do
         _result "${PHASE} kustomize"
 
+        # build_parameters
         PAYLOAD="{\"parameters\":{"
         PAYLOAD="${PAYLOAD}\"TG_USERNAME\":\"${TG_USERNAME}\","
         PAYLOAD="${PAYLOAD}\"TG_PROJECT\":\"${TG_PROJECT}\","
@@ -134,6 +136,7 @@ _phase() {
     for PHASE in ${LIST}; do
         _result "${PHASE} helm"
 
+        # build_parameters
         PAYLOAD="{\"parameters\":{"
         PAYLOAD="${PAYLOAD}\"TG_USERNAME\":\"${TG_USERNAME}\","
         PAYLOAD="${PAYLOAD}\"TG_PROJECT\":\"${TG_PROJECT}\","
