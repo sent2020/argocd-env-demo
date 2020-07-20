@@ -5,14 +5,19 @@ version: 2
 parameters:
   TG_USERNAME:
     type: string
+    default: ""
   TG_PROJECT:
     type: string
+    default: ""
   TG_VERSION:
     type: string
+    default: ""
   TG_PHASE:
     type: string
+    default: ""
   TG_TYPE:
     type: string
+    default: ""
 
 jobs:
   build:
