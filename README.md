@@ -23,7 +23,7 @@ export TG_TYPE="kustomize"
 
 export CIRCLE_API="https://circleci.com/api/v2/project/gh/opspresso/argocd-env-demo/pipeline"
 
-PAYLOAD="{\"build_parameters\":{"
+PAYLOAD="{\"parameters\":{"
 PAYLOAD="${PAYLOAD}\"TG_USERNAME\":\"${TG_USERNAME}\","
 PAYLOAD="${PAYLOAD}\"TG_PROJECT\":\"${TG_PROJECT}\","
 PAYLOAD="${PAYLOAD}\"TG_VERSION\":\"${TG_VERSION}\","

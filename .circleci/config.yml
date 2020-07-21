@@ -3,19 +3,19 @@
 version: 2
 
 parameters:
-  TG_USERNAME:
+  username:
     type: string
     default: ""
-  TG_PROJECT:
+  project:
     type: string
     default: ""
-  TG_VERSION:
+  version:
     type: string
     default: ""
-  TG_PHASE:
+  phase:
     type: string
     default: ""
-  TG_TYPE:
+  type:
     type: string
     default: ""
 
@@ -24,11 +24,11 @@ jobs:
     docker:
       - image: opspresso/gitops
     environment:
-      TG_USERNAME: << pipeline.parameters.TG_USERNAME >>
-      TG_PROJECT: << pipeline.parameters.TG_PROJECT >>
-      TG_VERSION: << pipeline.parameters.TG_VERSION >>
-      TG_PHASE: << pipeline.parameters.TG_PHASE >>
-      TG_TYPE: << pipeline.parameters.TG_TYPE >>
+      TG_USERNAME: << pipeline.parameters.username >>
+      TG_PROJECT: << pipeline.parameters.project >>
+      TG_VERSION: << pipeline.parameters.version >>
+      TG_PHASE: << pipeline.parameters.phase >>
+      TG_TYPE: << pipeline.parameters.type >>
     steps:
       - checkout
       - run:
