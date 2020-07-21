@@ -1,6 +1,6 @@
 # circleci
 
-version: 2
+version: 2.1
 
 parameters:
   username:
@@ -40,7 +40,7 @@ jobs:
 # https://circleci.com/docs/2.0/api-job-trigger/
 
 workflows:
-  version: 2
+  # version: 2
   apply:
     jobs:
       - build:
