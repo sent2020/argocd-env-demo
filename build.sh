@@ -117,11 +117,11 @@ _phase() {
 
         # build_parameters
         PAYLOAD="{\"parameters\":{"
-        PAYLOAD="${PAYLOAD}\"TG_USERNAME\":\"${TG_USERNAME}\","
-        PAYLOAD="${PAYLOAD}\"TG_PROJECT\":\"${TG_PROJECT}\","
-        PAYLOAD="${PAYLOAD}\"TG_VERSION\":\"${TG_VERSION}\","
-        PAYLOAD="${PAYLOAD}\"TG_PHASE\":\"${PHASE}\","
-        PAYLOAD="${PAYLOAD}\"TG_TYPE\":\"kustomize\""
+        PAYLOAD="${PAYLOAD}\"username\":\"${TG_USERNAME}\","
+        PAYLOAD="${PAYLOAD}\"project\":\"${TG_PROJECT}\","
+        PAYLOAD="${PAYLOAD}\"version\":\"${TG_VERSION}\","
+        PAYLOAD="${PAYLOAD}\"phase\":\"${PHASE}\","
+        PAYLOAD="${PAYLOAD}\"type\":\"kustomize\""
         PAYLOAD="${PAYLOAD}}}"
 
         curl -X POST \
@@ -138,11 +138,11 @@ _phase() {
 
         # build_parameters
         PAYLOAD="{\"parameters\":{"
-        PAYLOAD="${PAYLOAD}\"TG_USERNAME\":\"${TG_USERNAME}\","
-        PAYLOAD="${PAYLOAD}\"TG_PROJECT\":\"${TG_PROJECT}\","
-        PAYLOAD="${PAYLOAD}\"TG_VERSION\":\"${TG_VERSION}\","
-        PAYLOAD="${PAYLOAD}\"TG_PHASE\":\"${PHASE}\","
-        PAYLOAD="${PAYLOAD}\"TG_TYPE\":\"helm\""
+        PAYLOAD="${PAYLOAD}\"username\":\"${TG_USERNAME}\","
+        PAYLOAD="${PAYLOAD}\"project\":\"${TG_PROJECT}\","
+        PAYLOAD="${PAYLOAD}\"version\":\"${TG_VERSION}\","
+        PAYLOAD="${PAYLOAD}\"phase\":\"${PHASE}\","
+        PAYLOAD="${PAYLOAD}\"type\":\"helm\""
         PAYLOAD="${PAYLOAD}}}"
 
         curl -X POST \
