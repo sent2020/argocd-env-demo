@@ -21,46 +21,46 @@ spec:
       labels:
         app: sample-node
         app.kubernetes.io/name: sample-node
-        version: v0.4.62
+        version: v0.4.63
     spec:
       containers:
-        - env:
-            - name: CONFIGMAP_HASH
-              value: e3021fc754ae79da09f08c5954976e78
-            - name: SECRET_HASH
-              value: ""
-          envFrom:
-            - configMapRef:
-                name: sample-node
-          image: nalbam/sample-node:v0.4.62
-          imagePullPolicy: Always
-          livenessProbe:
-            failureThreshold: 3
-            httpGet:
-              path: /
-              port: 3000
-              scheme: HTTP
-            periodSeconds: 10
-            successThreshold: 1
-            timeoutSeconds: 1
-          name: sample-node
-          ports:
-            - containerPort: 3000
-              name: http
-              protocol: TCP
-          readinessProbe:
-            failureThreshold: 3
-            httpGet:
-              path: /
-              port: 3000
-              scheme: HTTP
-            periodSeconds: 10
-            successThreshold: 1
-            timeoutSeconds: 1
-          resources:
-            limits:
-              cpu: 110m
-              memory: 134Mi
-            requests:
-              cpu: 100m
-              memory: 120Mi
+      - env:
+        - name: CONFIGMAP_HASH
+          value: 9051725d71d01d57e78cee99f8fcde7f
+        - name: SECRET_HASH
+          value: ''
+        envFrom:
+        - configMapRef:
+            name: sample-node
+        image: nalbam/sample-node:v0.4.63
+        imagePullPolicy: Always
+        livenessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /
+            port: 3000
+            scheme: HTTP
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+        name: sample-node
+        ports:
+        - containerPort: 3000
+          name: http
+          protocol: TCP
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /
+            port: 3000
+            scheme: HTTP
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+        resources:
+          limits:
+            cpu: 110m
+            memory: 134Mi
+          requests:
+            cpu: 100m
+            memory: 120Mi
