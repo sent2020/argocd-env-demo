@@ -14,65 +14,65 @@ spec:
     canary:
       canaryService: sample-spring-preview
       steps:
-        - setWeight: 25
-        - analysis:
-            args:
-              - name: url
-                value: http://sample-spring-preview:8080/success/98
-            templateName: http-benchmark
+      - setWeight: 25
+      - analysis:
+          args:
+          - name: url
+            value: http://sample-spring-preview:8080/success/98
+          templateName: http-benchmark
   template:
     metadata:
       annotations:
-        prometheus.io/port: "8081"
-        prometheus.io/scrape: "true"
+        prometheus.io/port: '8081'
+        prometheus.io/scrape: 'true'
       labels:
         app: sample-spring
         app.kubernetes.io/name: sample-spring
-        version: v0.4.47
+        version: v0.4.49
     spec:
       containers:
-        - env:
-            - name: CONFIGMAP_HASH
-              value: a3b39591f5ec52b4f5a65a7b8f6e0f84
-            - name: SECRET_HASH
-              value: ""
-          envFrom:
-            - configMapRef:
-                name: sample-spring
-          image: nalbam/sample-spring:v0.4.47
-          imagePullPolicy: Always
-          livenessProbe:
-            failureThreshold: 3
-            httpGet:
-              path: /
-              port: 8080
-              scheme: HTTP
-            initialDelaySeconds: 20
-            periodSeconds: 10
-            successThreshold: 1
-            timeoutSeconds: 1
-          name: sample-spring
-          ports:
-            - containerPort: 8080
-              name: http
-              protocol: TCP
-            - containerPort: 8081
-              name: tcp-jmx
-              protocol: TCP
-          readinessProbe:
-            failureThreshold: 3
-            httpGet:
-              path: /
-              port: 8080
-              scheme: HTTP
-            initialDelaySeconds: 20
-            periodSeconds: 10
-            successThreshold: 1
-            timeoutSeconds: 1
-          resources:
-            limits:
-              cpu: 550m
-              memory: 1Gi
-            requests:
-              cpu: 500m
-              memory: 1Gi
+      - env:
+        - name: CONFIGMAP_HASH
+          value: 2b5db644b1d480580f420ec0d4072a12
+        - name: SECRET_HASH
+          value: ''
+        envFrom:
+        - configMapRef:
+            name: sample-spring
+        image: nalbam/sample-spring:v0.4.49
+        imagePullPolicy: Always
+        livenessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /
+            port: 8080
+            scheme: HTTP
+          initialDelaySeconds: 20
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+        name: sample-spring
+        ports:
+        - containerPort: 8080
+          name: http
+          protocol: TCP
+        - containerPort: 8081
+          name: tcp-jmx
+          protocol: TCP
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /
+            port: 8080
+            scheme: HTTP
+          initialDelaySeconds: 20
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+        resources:
+          limits:
+            cpu: 550m
+            memory: 1Gi
+          requests:
+            cpu: 500m
+            memory: 1Gi
