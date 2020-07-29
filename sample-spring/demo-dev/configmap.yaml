@@ -3,7 +3,7 @@ data:
   JAVA_AGENT_ENABLED: 'true'
   MESSAGE: hello dev-demo world
   PROFILE: dev
-  VERSION: v0.4.50
+  VERSION: v0.4.52
 kind: ConfigMap
 metadata:
   labels:
