@@ -2,7 +2,7 @@ apiVersion: v1
 data:
   MESSAGE: hello prod-demo world
   PROFILE: prod
-  VERSION: v0.3.7
+  VERSION: v0.3.9
 kind: ConfigMap
 metadata:
   labels:
