@@ -24,18 +24,18 @@ spec:
       labels:
         app: sample-tomcat
         app.kubernetes.io/name: sample-tomcat
-        version: v0.4.36
+        version: v0.4.38
     spec:
       containers:
       - env:
         - name: CONFIGMAP_HASH
-          value: 911ea684eb7d219f50acdfbd1e618c3b
+          value: f07093a88532e50c4e6fb766e5bbe3a2
         - name: SECRET_HASH
           value: ''
         envFrom:
         - configMapRef:
             name: sample-tomcat
-        image: nalbam/sample-tomcat:v0.4.36
+        image: nalbam/sample-tomcat:v0.4.38
         imagePullPolicy: Always
         livenessProbe:
           failureThreshold: 3
