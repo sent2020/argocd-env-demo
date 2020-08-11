@@ -28,7 +28,7 @@ spec:
       labels:
         app: sample-spring
         app.kubernetes.io/name: sample-spring
-        version: v0.4.53
+        version: v0.4.55
     spec:
       containers:
         - env:

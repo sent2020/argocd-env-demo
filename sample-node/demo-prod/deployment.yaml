@@ -31,7 +31,7 @@ spec:
       labels:
         app: sample-node
         app.kubernetes.io/name: sample-node
-        version: v0.4.67
+        version: v0.4.68
     spec:
       containers:
         - env:

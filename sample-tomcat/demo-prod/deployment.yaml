@@ -28,7 +28,7 @@ spec:
       labels:
         app: sample-tomcat
         app.kubernetes.io/name: sample-tomcat
-        version: v0.4.38
+        version: v0.4.39
     spec:
       containers:
         - env:
