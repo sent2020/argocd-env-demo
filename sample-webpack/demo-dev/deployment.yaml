@@ -21,48 +21,48 @@ spec:
       labels:
         app: sample-webpack
         app.kubernetes.io/name: sample-webpack
-        version: v0.3.9
+        version: v0.3.9-22
     spec:
       containers:
-        - env:
-            - name: RELOAD_HASH
-              value: 8ead08c18a09833fd3cd44bba2c763ad
-            - name: CONFIGMAP_HASH
-              value: c5548d211ada58e1fdaf770e8a616dbc
-            - name: SECRET_HASH
-              value: ""
-          envFrom:
-            - configMapRef:
-                name: sample-webpack
-          image: nalbam/sample-webpack:v0.3.9
-          imagePullPolicy: Always
-          livenessProbe:
-            failureThreshold: 3
-            httpGet:
-              path: /
-              port: 80
-              scheme: HTTP
-            periodSeconds: 10
-            successThreshold: 1
-            timeoutSeconds: 1
-          name: sample-webpack
-          ports:
-            - containerPort: 80
-              name: http
-              protocol: TCP
-          readinessProbe:
-            failureThreshold: 3
-            httpGet:
-              path: /
-              port: 80
-              scheme: HTTP
-            periodSeconds: 10
-            successThreshold: 1
-            timeoutSeconds: 1
-          resources:
-            limits:
-              cpu: 110m
-              memory: 134Mi
-            requests:
-              cpu: 100m
-              memory: 120Mi
+      - env:
+        - name: RELOAD_HASH
+          value: 8ead08c18a09833fd3cd44bba2c763ad
+        - name: CONFIGMAP_HASH
+          value: 78402706491396163f3a4b2da17e1e6f
+        - name: SECRET_HASH
+          value: ''
+        envFrom:
+        - configMapRef:
+            name: sample-webpack
+        image: nalbam/sample-webpack:v0.3.9-22
+        imagePullPolicy: Always
+        livenessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /
+            port: 80
+            scheme: HTTP
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+        name: sample-webpack
+        ports:
+        - containerPort: 80
+          name: http
+          protocol: TCP
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /
+            port: 80
+            scheme: HTTP
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+        resources:
+          limits:
+            cpu: 110m
+            memory: 134Mi
+          requests:
+            cpu: 100m
+            memory: 120Mi
