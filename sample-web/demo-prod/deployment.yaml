@@ -24,6 +24,8 @@ spec:
     spec:
       containers:
         - env:
+            - name: RELOAD_HASH
+              value: 8ead08c18a09833fd3cd44bba2c763ad
             - name: CONFIGMAP_HASH
               value: 9e46ff3949fa45ec5671cff5c803216d
             - name: SECRET_HASH
