@@ -14,67 +14,67 @@ spec:
     canary:
       canaryService: sample-tomcat-preview
       steps:
-        - setWeight: 25
-        - analysis:
-            args:
-              - name: url
-                value: http://sample-tomcat-preview:8080/success/98
-            templateName: http-benchmark
+      - setWeight: 25
+      - analysis:
+          args:
+          - name: url
+            value: http://sample-tomcat-preview:8080/success/98
+          templateName: http-benchmark
   template:
     metadata:
       annotations:
-        prometheus.io/port: "8081"
-        prometheus.io/scrape: "true"
+        prometheus.io/port: '8081'
+        prometheus.io/scrape: 'true'
       labels:
         app: sample-tomcat
         app.kubernetes.io/name: sample-tomcat
-        version: v0.4.39
+        version: v0.4.41
     spec:
       containers:
-        - env:
-            - name: RELOAD_HASH
-              value: 8ead08c18a09833fd3cd44bba2c763ad
-            - name: CONFIGMAP_HASH
-              value: 626172640a5bf4c1cc66cb96b1f951e2
-            - name: SECRET_HASH
-              value: ""
-          envFrom:
-            - configMapRef:
-                name: sample-tomcat
-          image: nalbam/sample-tomcat:v0.4.38
-          imagePullPolicy: Always
-          livenessProbe:
-            failureThreshold: 3
-            httpGet:
-              path: /
-              port: 8080
-              scheme: HTTP
-            initialDelaySeconds: 60
-            periodSeconds: 10
-            successThreshold: 1
-            timeoutSeconds: 1
-          name: sample-tomcat
-          ports:
-            - containerPort: 8080
-              name: http
-              protocol: TCP
-            - containerPort: 8081
-              name: tcp-jmx
-              protocol: TCP
-          readinessProbe:
-            failureThreshold: 3
-            httpGet:
-              path: /
-              port: 8080
-              scheme: HTTP
-            initialDelaySeconds: 60
-            periodSeconds: 10
-            successThreshold: 1
-            timeoutSeconds: 1
-          resources:
-            limits:
-              cpu: 550m
-              memory: 1Gi
-            requests:
-              cpu: 500m
-              memory: 1Gi
+      - env:
+        - name: RELOAD_HASH
+          value: 8ead08c18a09833fd3cd44bba2c763ad
+        - name: CONFIGMAP_HASH
+          value: 510d4b261155d886b4d05f5bb53051e8
+        - name: SECRET_HASH
+          value: ''
+        envFrom:
+        - configMapRef:
+            name: sample-tomcat
+        image: nalbam/sample-tomcat:v0.4.41
+        imagePullPolicy: Always
+        livenessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /
+            port: 8080
+            scheme: HTTP
+          initialDelaySeconds: 60
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+        name: sample-tomcat
+        ports:
+        - containerPort: 8080
+          name: http
+          protocol: TCP
+        - containerPort: 8081
+          name: tcp-jmx
+          protocol: TCP
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /
+            port: 8080
+            scheme: HTTP
+          initialDelaySeconds: 60
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+        resources:
+          limits:
+            cpu: 550m
+            memory: 1Gi
+          requests:
+            cpu: 500m
+            memory: 1Gi
