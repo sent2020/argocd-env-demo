@@ -14,65 +14,65 @@ spec:
     canary:
       canaryService: sample-node-preview
       steps:
-        - setWeight: 25
-        - analysis:
-            args:
-              - name: url
-                value: http://sample-node-preview:3000/success/98
-            templateName: http-benchmark
-        - setWeight: 50
-        - pause:
-            duration: 10
-        - setWeight: 75
-        - pause:
-            duration: 10
+      - setWeight: 25
+      - analysis:
+          args:
+          - name: url
+            value: http://sample-node-preview:3000/success/98
+          templateName: http-benchmark
+      - setWeight: 50
+      - pause:
+          duration: 10
+      - setWeight: 75
+      - pause:
+          duration: 10
   template:
     metadata:
       labels:
         app: sample-node
         app.kubernetes.io/name: sample-node
-        version: v0.4.68
+        version: v0.4.69
     spec:
       containers:
-        - env:
-            - name: RELOAD_HASH
-              value: 8ead08c18a09833fd3cd44bba2c763ad
-            - name: CONFIGMAP_HASH
-              value: 9553e27673ba539240acea09efa0efb9
-            - name: SECRET_HASH
-              value: ""
-          envFrom:
-            - configMapRef:
-                name: sample-node
-          image: nalbam/sample-node:v0.4.67
-          imagePullPolicy: Always
-          livenessProbe:
-            failureThreshold: 3
-            httpGet:
-              path: /
-              port: 3000
-              scheme: HTTP
-            periodSeconds: 10
-            successThreshold: 1
-            timeoutSeconds: 1
-          name: sample-node
-          ports:
-            - containerPort: 3000
-              name: http
-              protocol: TCP
-          readinessProbe:
-            failureThreshold: 3
-            httpGet:
-              path: /
-              port: 3000
-              scheme: HTTP
-            periodSeconds: 10
-            successThreshold: 1
-            timeoutSeconds: 1
-          resources:
-            limits:
-              cpu: 110m
-              memory: 134Mi
-            requests:
-              cpu: 100m
-              memory: 120Mi
+      - env:
+        - name: RELOAD_HASH
+          value: 8ead08c18a09833fd3cd44bba2c763ad
+        - name: CONFIGMAP_HASH
+          value: ebb8cda7b85f10588ccfa1334a2acd5a
+        - name: SECRET_HASH
+          value: ''
+        envFrom:
+        - configMapRef:
+            name: sample-node
+        image: nalbam/sample-node:v0.4.69
+        imagePullPolicy: Always
+        livenessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /
+            port: 3000
+            scheme: HTTP
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+        name: sample-node
+        ports:
+        - containerPort: 3000
+          name: http
+          protocol: TCP
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /
+            port: 3000
+            scheme: HTTP
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+        resources:
+          limits:
+            cpu: 110m
+            memory: 134Mi
+          requests:
+            cpu: 100m
+            memory: 120Mi
