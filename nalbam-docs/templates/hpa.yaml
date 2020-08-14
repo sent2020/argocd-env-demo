@@ -7,8 +7,8 @@ metadata:
     {{- include "sample.labels" . | nindent 4 }}
 spec:
   scaleTargetRef:
-    apiVersion: apps/v1
-    kind: Deployment
+    apiVersion: {{ .Values.autoscaling.scaleTargetRef.apiVersion }}
+    kind: {{ .Values.autoscaling.scaleTargetRef.kind }}
     name: {{ include "sample.fullname" . }}
   minReplicas: {{ .Values.autoscaling.minReplicas }}
   maxReplicas: {{ .Values.autoscaling.maxReplicas }}
@@ -24,5 +24,8 @@ spec:
       resource:
         name: memory
         targetAverageUtilization: {{ .Values.autoscaling.targetMemoryUtilizationPercentage }}
+  {{- end }}
+  {{- with .Values.autoscaling.metrics }}
+    {{- toYaml . | nindent 4 }}
   {{- end }}
 {{- end }}
