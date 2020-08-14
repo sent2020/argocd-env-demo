@@ -6,7 +6,7 @@ metadata:
     app.kubernetes.io/name: sample-spring
     tags.datadoghq.com/env: alpha
     tags.datadoghq.com/service: sample-spring
-    tags.datadoghq.com/version: v0.4.60
+    tags.datadoghq.com/version: v0.4.61
   name: sample-spring
 spec:
   revisionHistoryLimit: 0
@@ -22,52 +22,52 @@ spec:
   template:
     metadata:
       annotations:
-        prometheus.io/port: "8081"
-        prometheus.io/scrape: "true"
+        prometheus.io/port: '8081'
+        prometheus.io/scrape: 'true'
       labels:
         app: sample-spring
         app.kubernetes.io/name: sample-spring
         tags.datadoghq.com/env: alpha
         tags.datadoghq.com/service: sample-spring
-        tags.datadoghq.com/version: v0.4.60
-        version: v0.4.60
+        tags.datadoghq.com/version: v0.4.61
+        version: v0.4.61
     spec:
       containers:
-        - env:
-            - name: DD_ENV
-              valueFrom:
-                fieldRef:
-                  fieldPath: metadata.labels['tags.datadoghq.com/env']
-            - name: DD_SERVICE
-              valueFrom:
-                fieldRef:
-                  fieldPath: metadata.labels['tags.datadoghq.com/service']
-            - name: DD_VERSION
-              valueFrom:
-                fieldRef:
-                  fieldPath: metadata.labels['tags.datadoghq.com/version']
-            - name: DD_AGENT_HOST
-              valueFrom:
-                fieldRef:
-                  fieldPath: status.hostIP
-            - name: RELOAD_HASH
-              value: 8ead08c18a09833fd3cd44bba2c763ad
-            - name: CONFIGMAP_HASH
-              value: 02490d14ae69b947a64b7cba2b54e5b3
-            - name: SECRET_HASH
-              value: 6e7b5212363fd8c9752243084547f48b
-          envFrom:
-            - configMapRef:
-                name: sample-spring
-            - secretRef:
-                name: sample-spring
-          image: nalbam/sample-spring:v0.4.60
-          imagePullPolicy: Always
-          name: sample-spring
-          resources:
-            limits:
-              cpu: 500m
-              memory: 1Gi
-            requests:
-              cpu: 500m
-              memory: 1Gi
+      - env:
+        - name: DD_ENV
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.labels['tags.datadoghq.com/env']
+        - name: DD_SERVICE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.labels['tags.datadoghq.com/service']
+        - name: DD_VERSION
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.labels['tags.datadoghq.com/version']
+        - name: DD_AGENT_HOST
+          valueFrom:
+            fieldRef:
+              fieldPath: status.hostIP
+        - name: RELOAD_HASH
+          value: 8ead08c18a09833fd3cd44bba2c763ad
+        - name: CONFIGMAP_HASH
+          value: 5eeac0f28928980268067a679b4c0bdd
+        - name: SECRET_HASH
+          value: 3155517dd6fdf647fbd4e13e2ab3ca56
+        envFrom:
+        - configMapRef:
+            name: sample-spring
+        - secretRef:
+            name: sample-spring
+        image: nalbam/sample-spring:v0.4.61
+        imagePullPolicy: Always
+        name: sample-spring
+        resources:
+          limits:
+            cpu: 500m
+            memory: 1Gi
+          requests:
+            cpu: 500m
+            memory: 1Gi
