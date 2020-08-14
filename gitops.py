@@ -37,11 +37,14 @@ def replace_deployment(args, cm_hasg, sec_hash):
         with open(filepath, "r") as file:
             doc = yaml.load(file, Loader=yaml.FullLoader)
 
-            # replace
+            # pod
             doc["spec"]["template"]["metadata"]["labels"]["version"] = args.version
 
-            containers = doc["spec"]["template"]["spec"]["containers"]
+            # datadog
+            doc["metadata"]["labels"]["tags.datadoghq.com/version"] = args.version
+            doc["spec"]["template"]["metadata"]["labels"]["tags.datadoghq.com/version"] = args.version
 
+            containers = doc["spec"]["template"]["spec"]["containers"]
             containers[0]["image"] = "{}:{}".format(args.imagename, args.version)
 
             if "env" in containers[0]:

@@ -4,6 +4,9 @@ metadata:
   labels:
     app: sample-node
     app.kubernetes.io/name: sample-node
+    tags.datadoghq.com/env: eks-demo
+    tags.datadoghq.com/service: sample-node
+    tags.datadoghq.com/version: v0.4.70
   name: sample-node
 spec:
   revisionHistoryLimit: 0
@@ -31,6 +34,9 @@ spec:
       labels:
         app: sample-node
         app.kubernetes.io/name: sample-node
+        tags.datadoghq.com/env: eks-demo
+        tags.datadoghq.com/service: sample-node
+        tags.datadoghq.com/version: v0.4.70
         version: v0.4.70
     spec:
       containers:

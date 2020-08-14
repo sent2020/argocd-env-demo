@@ -4,6 +4,9 @@ metadata:
   labels:
     app: sample-spring
     app.kubernetes.io/name: sample-spring
+    tags.datadoghq.com/env: eks-demo
+    tags.datadoghq.com/service: sample-spring
+    tags.datadoghq.com/version: v0.4.55
   name: sample-spring
 spec:
   revisionHistoryLimit: 0
@@ -24,6 +27,9 @@ spec:
       labels:
         app: sample-spring
         app.kubernetes.io/name: sample-spring
+        tags.datadoghq.com/env: eks-demo
+        tags.datadoghq.com/service: sample-spring
+        tags.datadoghq.com/version: v0.4.55
         version: v0.4.55
     spec:
       containers:
