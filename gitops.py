@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import argparse
+import base64
 import hashlib
 import os
 import sys
@@ -116,6 +117,9 @@ def replace_secret(args):
 
         with open(filepath, "r") as file:
             doc = yaml.load(file, Loader=yaml.FullLoader)
+
+            # replace
+            doc["data"]["SECRET_VERSION"] = base64.b64encode(args.version)
 
         if doc != None:
             with open(filepath, "w") as file:
