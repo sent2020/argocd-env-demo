@@ -14,18 +14,18 @@ spec:
     canary:
       canaryService: sample-node-preview
       steps:
-      - setWeight: 25
-      - analysis:
-          args:
-          - name: url
-            value: http://sample-node-preview:3000/success/98
-          templateName: http-benchmark
-      - setWeight: 50
-      - pause:
-          duration: 10
-      - setWeight: 75
-      - pause:
-          duration: 10
+        - setWeight: 25
+        - analysis:
+            args:
+              - name: url
+                value: http://sample-node-preview:3000/success/98
+            templateName: http-benchmark
+        - setWeight: 50
+        - pause:
+            duration: 10
+        - setWeight: 75
+        - pause:
+            duration: 10
   template:
     metadata:
       labels:
@@ -34,23 +34,23 @@ spec:
         version: v0.4.70
     spec:
       containers:
-      - env:
-        - name: RELOAD_HASH
-          value: 8ead08c18a09833fd3cd44bba2c763ad
-        - name: CONFIGMAP_HASH
-          value: b39d82f4d2c7b68d783d11cd4c1bb397
-        - name: SECRET_HASH
-          value: eb3279aefacb17267781f322a2010861
-        envFrom:
-        - configMapRef:
-            name: sample-node
-        image: nalbam/sample-node:v0.4.70
-        imagePullPolicy: Always
-        name: sample-node
-        resources:
-          limits:
-            cpu: 110m
-            memory: 134Mi
-          requests:
-            cpu: 100m
-            memory: 120Mi
+        - env:
+            - name: RELOAD_HASH
+              value: 8ead08c18a09833fd3cd44bba2c763ad
+            - name: CONFIGMAP_HASH
+              value: b39d82f4d2c7b68d783d11cd4c1bb397
+            - name: SECRET_HASH
+              value: eb3279aefacb17267781f322a2010861
+          envFrom:
+            - configMapRef:
+                name: sample-node
+          image: nalbam/sample-node:v0.4.70
+          imagePullPolicy: Always
+          name: sample-node
+          resources:
+            limits:
+              cpu: 110m
+              memory: 134Mi
+            requests:
+              cpu: 110m
+              memory: 134Mi

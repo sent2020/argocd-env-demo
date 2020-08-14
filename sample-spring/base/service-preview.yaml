@@ -4,7 +4,7 @@ metadata:
   labels:
     app: sample-spring
     app.kubernetes.io/name: sample-spring
-  name: sample-spring
+  name: sample-spring-preview
 spec:
   type: ClusterIP
   ports:

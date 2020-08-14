@@ -4,15 +4,21 @@ metadata:
   labels:
     app: sample-spring
     app.kubernetes.io/name: sample-spring
-  name: sample-spring
+  name: sample-spring-preview
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-issuer"
     kubernetes.io/ingress.class: "nginx"
     kubernetes.io/ssl-redirect: "true"
 spec:
   rules:
-    - host: sample-spring-dev.demo.spic.me
+    - host: sample-spring-preview.demo.spic.me
+      http:
+        paths:
+          - backend:
+              serviceName: sample-spring-preview
+              servicePort: 8080
+            path: /
   tls:
     - hosts:
-        - sample-spring-dev.demo.spic.me
-      secretName: sample-spring-tls
+        - sample-spring-preview.demo.spic.me
+      secretName: sample-spring-preview-tls

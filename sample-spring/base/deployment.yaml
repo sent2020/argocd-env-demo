@@ -2,14 +2,14 @@ apiVersion: argoproj.io/v1alpha1
 kind: Rollout
 metadata:
   labels:
-    app: sample-node
-    app.kubernetes.io/name: sample-node
-  name: sample-node
+    app: sample-spring
+    app.kubernetes.io/name: sample-spring
+  name: sample-spring
 spec:
   revisionHistoryLimit: 0
   selector:
     matchLabels:
-      app: sample-node
+      app: sample-spring
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -18,40 +18,45 @@ spec:
   template:
     metadata:
       labels:
-        app: sample-node
-        app.kubernetes.io/name: sample-node
+        app: sample-spring
+        app.kubernetes.io/name: sample-spring
         version: latest
     spec:
       containers:
-        - image: nalbam/sample-node:latest
+        - image: nalbam/sample-spring:latest
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 3
             httpGet:
               path: /
-              port: 3000
+              port: 8080
               scheme: HTTP
+            initialDelaySeconds: 20
             periodSeconds: 10
             successThreshold: 1
             timeoutSeconds: 1
-          name: sample-node
+          name: sample-spring
           ports:
-            - containerPort: 3000
+            - containerPort: 8080
               name: http
+              protocol: TCP
+            - containerPort: 8081
+              name: tcp-jmx
               protocol: TCP
           readinessProbe:
             failureThreshold: 3
             httpGet:
               path: /
-              port: 3000
+              port: 8080
               scheme: HTTP
+            initialDelaySeconds: 20
             periodSeconds: 10
             successThreshold: 1
             timeoutSeconds: 1
           resources:
             limits:
-              cpu: 100m
-              memory: 120Mi
+              cpu: 500m
+              memory: 1Gi
             requests:
-              cpu: 100m
-              memory: 120Mi
+              cpu: 500m
+              memory: 1Gi

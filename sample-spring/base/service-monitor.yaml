@@ -12,4 +12,5 @@ spec:
       app: sample-spring
   endpoints:
     - interval: 10s
-      port: tcp-jmx
+      path: /metrics
+      port: http

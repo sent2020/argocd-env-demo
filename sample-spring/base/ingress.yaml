@@ -11,8 +11,18 @@ metadata:
     kubernetes.io/ssl-redirect: "true"
 spec:
   rules:
-    - host: sample-spring-dev.demo.spic.me
+    - host: sample-spring.demo.spic.me
+      http:
+        paths:
+          - backend:
+              serviceName: sample-spring
+              servicePort: 8080
+            path: /
+          - backend:
+              serviceName: sample-spring
+              servicePort: 8081
+            path: /jmx
   tls:
     - hosts:
-        - sample-spring-dev.demo.spic.me
+        - sample-spring.demo.spic.me
       secretName: sample-spring-tls
