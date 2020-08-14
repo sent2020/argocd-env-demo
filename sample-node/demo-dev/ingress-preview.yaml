@@ -7,8 +7,8 @@ metadata:
   name: sample-node-preview
 spec:
   rules:
-    - host: sample-node-dev-preview.demo.spic.me
+    - host: sample-node-dev-preview.bruce.spic.me
   tls:
     - hosts:
-        - sample-node-dev-preview.demo.spic.me
+        - sample-node-dev-preview.bruce.spic.me
       secretName: sample-node-preview-tls

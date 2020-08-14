@@ -11,8 +11,8 @@ metadata:
     kubernetes.io/ssl-redirect: "true"
 spec:
   rules:
-    - host: sample-tomcat-dev-preview.demo.spic.me
+    - host: sample-tomcat-dev-preview.bruce.spic.me
   tls:
     - hosts:
-        - sample-tomcat-dev-preview.demo.spic.me
+        - sample-tomcat-dev-preview.bruce.spic.me
       secretName: sample-tomcat-preview-tls

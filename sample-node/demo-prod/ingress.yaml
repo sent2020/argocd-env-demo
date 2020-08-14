@@ -7,8 +7,8 @@ metadata:
   name: sample-node
 spec:
   rules:
-    - host: sample-node.demo.spic.me
+    - host: sample-node.bruce.spic.me
   tls:
     - hosts:
-        - sample-node.demo.spic.me
+        - sample-node.bruce.spic.me
       secretName: sample-node-tls

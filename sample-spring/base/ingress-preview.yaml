@@ -11,7 +11,7 @@ metadata:
     kubernetes.io/ssl-redirect: "true"
 spec:
   rules:
-    - host: sample-spring-preview.demo.spic.me
+    - host: sample-spring-preview.bruce.spic.me
       http:
         paths:
           - backend:
@@ -20,5 +20,5 @@ spec:
             path: /
   tls:
     - hosts:
-        - sample-spring-preview.demo.spic.me
+        - sample-spring-preview.bruce.spic.me
       secretName: sample-spring-preview-tls
