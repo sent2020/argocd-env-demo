@@ -6,7 +6,7 @@ metadata:
     app.kubernetes.io/name: sample-tomcat
     tags.datadoghq.com/env: alpha
     tags.datadoghq.com/service: sample-tomcat
-    tags.datadoghq.com/version: v0.4.43
+    tags.datadoghq.com/version: v0.4.44
   name: sample-tomcat
 spec:
   revisionHistoryLimit: 0
@@ -22,52 +22,52 @@ spec:
   template:
     metadata:
       annotations:
-        prometheus.io/port: "8081"
-        prometheus.io/scrape: "true"
+        prometheus.io/port: '8081'
+        prometheus.io/scrape: 'true'
       labels:
         app: sample-tomcat
         app.kubernetes.io/name: sample-tomcat
         tags.datadoghq.com/env: alpha
         tags.datadoghq.com/service: sample-tomcat
-        tags.datadoghq.com/version: v0.4.43
-        version: v0.4.43
+        tags.datadoghq.com/version: v0.4.44
+        version: v0.4.44
     spec:
       containers:
-        - env:
-            - name: DD_ENV
-              valueFrom:
-                fieldRef:
-                  fieldPath: metadata.labels['tags.datadoghq.com/env']
-            - name: DD_SERVICE
-              valueFrom:
-                fieldRef:
-                  fieldPath: metadata.labels['tags.datadoghq.com/service']
-            - name: DD_VERSION
-              valueFrom:
-                fieldRef:
-                  fieldPath: metadata.labels['tags.datadoghq.com/version']
-            - name: DD_AGENT_HOST
-              valueFrom:
-                fieldRef:
-                  fieldPath: status.hostIP
-            - name: RELOAD_HASH
-              value: 8ead08c18a09833fd3cd44bba2c763ad
-            - name: CONFIGMAP_HASH
-              value: d91e29ed87b6952fe008b939eaa09bca
-            - name: SECRET_HASH
-              value: 72b525012226a5905dd151343069487d
-          envFrom:
-            - configMapRef:
-                name: sample-tomcat
-            - secretRef:
-                name: sample-tomcat
-          image: nalbam/sample-tomcat:v0.4.43
-          imagePullPolicy: Always
-          name: sample-tomcat
-          resources:
-            limits:
-              cpu: 500m
-              memory: 1Gi
-            requests:
-              cpu: 500m
-              memory: 1Gi
+      - env:
+        - name: DD_ENV
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.labels['tags.datadoghq.com/env']
+        - name: DD_SERVICE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.labels['tags.datadoghq.com/service']
+        - name: DD_VERSION
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.labels['tags.datadoghq.com/version']
+        - name: DD_AGENT_HOST
+          valueFrom:
+            fieldRef:
+              fieldPath: status.hostIP
+        - name: RELOAD_HASH
+          value: 8ead08c18a09833fd3cd44bba2c763ad
+        - name: CONFIGMAP_HASH
+          value: ddf9fee2cd7de0ad6e3544057944bdfa
+        - name: SECRET_HASH
+          value: 7a11a64ffeb157eacf0665ac070b122b
+        envFrom:
+        - configMapRef:
+            name: sample-tomcat
+        - secretRef:
+            name: sample-tomcat
+        image: nalbam/sample-tomcat:v0.4.44
+        imagePullPolicy: Always
+        name: sample-tomcat
+        resources:
+          limits:
+            cpu: 500m
+            memory: 1Gi
+          requests:
+            cpu: 500m
+            memory: 1Gi
