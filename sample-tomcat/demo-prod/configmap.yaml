@@ -1,9 +1,9 @@
 apiVersion: v1
 data:
-  DD_AGENT_ENABLED: "true"
+  DD_AGENT_ENABLED: 'true'
   MESSAGE: hello prod-demo world
   PROFILE: prod
-  VERSION: v0.4.39
+  VERSION: v0.4.43
 kind: ConfigMap
 metadata:
   labels:
