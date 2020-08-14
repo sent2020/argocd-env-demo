@@ -9,7 +9,7 @@ import sys
 import yaml
 
 
-REPONAME = "nalbam-docs"
+REPONAME = "sample-docs"
 PHASE = "demo-dev"
 
 IMAGENAME = "nalbam/docs"
