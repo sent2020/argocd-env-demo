@@ -4,7 +4,7 @@ metadata:
   labels:
     app: sample-tomcat
     app.kubernetes.io/name: sample-tomcat
-    tags.datadoghq.com/env: none
+    tags.datadoghq.com/env: alpha
     tags.datadoghq.com/service: sample-tomcat
     tags.datadoghq.com/version: v0.4.43
   name: sample-tomcat
@@ -27,7 +27,7 @@ spec:
       labels:
         app: sample-tomcat
         app.kubernetes.io/name: sample-tomcat
-        tags.datadoghq.com/env: none
+        tags.datadoghq.com/env: alpha
         tags.datadoghq.com/service: sample-tomcat
         tags.datadoghq.com/version: v0.4.43
         version: v0.4.43
