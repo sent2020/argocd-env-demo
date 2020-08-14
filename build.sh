@@ -88,12 +88,12 @@ _phase() {
         _error "Not found PERSONAL_TOKEN"
     fi
 
-    # version check
-    TMP=/tmp/releases
-    curl -sL "https://api.github.com/repos/${TG_USERNAME}/${TG_PROJECT}/releases" > ${TMP}
-    PRERELEASE="$(cat ${TMP} | jq -r --arg VERSION "${TG_VERSION}" '.[] | select(.tag_name==$VERSION) | "\(.draft) \(.prerelease)"')"
+    # # version check
+    # TMP=/tmp/releases
+    # curl -sL "https://api.github.com/repos/${TG_USERNAME}/${TG_PROJECT}/releases" > ${TMP}
+    # PRERELEASE="$(cat ${TMP} | jq -r --arg VERSION "${TG_VERSION}" '.[] | select(.tag_name==$VERSION) | "\(.draft) \(.prerelease)"')"
 
-    _result "PRERELEASE: \"${PRERELEASE}\""
+    # _result "PRERELEASE: \"${PRERELEASE}\""
 
     # # prerelease
     # if [ "${PRERELEASE}" != "false false" ]; then
