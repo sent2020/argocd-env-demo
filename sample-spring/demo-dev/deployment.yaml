@@ -46,6 +46,10 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: metadata.labels['tags.datadoghq.com/version']
+            - name: DD_AGENT_HOST
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.hostIP
             - name: RELOAD_HASH
               value: 8ead08c18a09833fd3cd44bba2c763ad
             - name: CONFIGMAP_HASH
