@@ -34,6 +34,18 @@ spec:
     spec:
       containers:
         - env:
+            - name: DD_ENV
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.labels['tags.datadoghq.com/env']
+            - name: DD_SERVICE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.labels['tags.datadoghq.com/service']
+            - name: DD_VERSION
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.labels['tags.datadoghq.com/version']
             - name: RELOAD_HASH
               value: 8ead08c18a09833fd3cd44bba2c763ad
             - name: CONFIGMAP_HASH
