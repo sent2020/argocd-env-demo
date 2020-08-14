@@ -1,12 +1,7 @@
-namespace: "demo-prod"
-
-profile: "prod"
-
 replicaCount: 1
 
 image:
   repository: nalbam/docs
-  pullPolicy: IfNotPresent
   tag: v0.0.21
 
 ingress:
@@ -23,3 +18,11 @@ ingress:
     - hosts:
         - docs.karrot.spic.me
       secretName: docs-nalbam-tls
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    cpu: 100m
+    memory: 128Mi

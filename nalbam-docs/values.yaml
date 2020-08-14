@@ -2,10 +2,6 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-namespace: ""
-
-profile: ""
-
 replicaCount: 1
 
 image:
@@ -57,29 +53,29 @@ ingress:
   #    hosts:
   #      - sample.localhost
 
-livenessProbe:
-  httpGet:
-    path: /live
-    port: 3000
-  initialDelaySeconds: 3
-  periodSeconds: 10
-  failureThreshold: 3
+livenessProbe: {}
+  # httpGet:
+  #   path: /live
+  #   port: 3000
+  # initialDelaySeconds: 3
+  # periodSeconds: 10
+  # failureThreshold: 3
 
-readinessProbe:
-  httpGet:
-    path: /read
-    port: 3000
-  initialDelaySeconds: 3
-  periodSeconds: 10
-  failureThreshold: 3
+readinessProbe: {}
+  # httpGet:
+  #   path: /read
+  #   port: 3000
+  # initialDelaySeconds: 3
+  # periodSeconds: 10
+  # failureThreshold: 3
 
-resources:
-  requests:
-    cpu: 100m
-    memory: 128Mi
-  limits:
-    cpu: 100m
-    memory: 128Mi
+resources: {}
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
 
 autoscaling:
   enabled: false
