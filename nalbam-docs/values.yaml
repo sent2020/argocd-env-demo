@@ -106,4 +106,4 @@ configmap:
 secret:
   enabled: false
   data: {}
-    # SECRET: "c2VjcmV0IHdvcmxkCg=="
+    # SECRET_MESSAGE: "c2VjcmV0IHdvcmxkCg=="
