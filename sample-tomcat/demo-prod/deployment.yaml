@@ -4,6 +4,9 @@ metadata:
   labels:
     app: sample-tomcat
     app.kubernetes.io/name: sample-tomcat
+    tags.datadoghq.com/env: eks-demo
+    tags.datadoghq.com/service: sample-tomcat
+    tags.datadoghq.com/version: v0.4.39
   name: sample-tomcat
 spec:
   revisionHistoryLimit: 0
@@ -28,10 +31,25 @@ spec:
       labels:
         app: sample-tomcat
         app.kubernetes.io/name: sample-tomcat
+        tags.datadoghq.com/env: eks-demo
+        tags.datadoghq.com/service: sample-tomcat
+        tags.datadoghq.com/version: v0.4.39
         version: v0.4.39
     spec:
       containers:
         - env:
+            - name: DD_ENV
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.labels['tags.datadoghq.com/env']
+            - name: DD_SERVICE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.labels['tags.datadoghq.com/service']
+            - name: DD_VERSION
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.labels['tags.datadoghq.com/version']
             - name: RELOAD_HASH
               value: 8ead08c18a09833fd3cd44bba2c763ad
             - name: CONFIGMAP_HASH
