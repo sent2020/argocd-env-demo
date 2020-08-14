@@ -5,9 +5,19 @@ metadata:
     app: sample-node
     app.kubernetes.io/name: sample-node
   name: sample-node
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-issuer"
+    kubernetes.io/ingress.class: "nginx"
+    kubernetes.io/ssl-redirect: "true"
 spec:
   rules:
     - host: sample-node-dev.demo.spic.me
+      http:
+        paths:
+          - backend:
+              serviceName: sample-node
+              servicePort: 3000
+            path: /
   tls:
     - hosts:
         - sample-node-dev.demo.spic.me

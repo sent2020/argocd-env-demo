@@ -100,9 +100,6 @@ _phase() {
     #     _success
     # fi
 
-    # CIRCLE_API="https://circleci.com/api/v1.1/project/github/${USERNAME}/${REPONAME}"
-    # CIRCLE_URL="${CIRCLE_API}?circle-token=${PERSONAL_TOKEN}"
-
     # https://circleci.com/docs/api/v2/#get-a-pipeline-39-s-workflows
     CIRCLE_API="https://circleci.com/api/v2/project/gh/${USERNAME}/${REPONAME}/pipeline"
     CIRCLE_URL="${CIRCLE_API}?circle-token=${PERSONAL_TOKEN}"
@@ -115,19 +112,21 @@ _phase() {
     for PHASE in ${LIST}; do
         _result "${PHASE} kustomize"
 
-        # build_parameters
-        PAYLOAD="{\"parameters\":{"
-        PAYLOAD="${PAYLOAD}\"username\":\"${TG_USERNAME}\","
-        PAYLOAD="${PAYLOAD}\"project\":\"${TG_PROJECT}\","
-        PAYLOAD="${PAYLOAD}\"version\":\"${TG_VERSION}\","
-        PAYLOAD="${PAYLOAD}\"phase\":\"${PHASE}\","
-        PAYLOAD="${PAYLOAD}\"type\":\"kustomize\""
-        PAYLOAD="${PAYLOAD}}}"
+        if [ "${PHASE}" != "base" ]; then
+            # build_parameters
+            PAYLOAD="{\"parameters\":{"
+            PAYLOAD="${PAYLOAD}\"username\":\"${TG_USERNAME}\","
+            PAYLOAD="${PAYLOAD}\"project\":\"${TG_PROJECT}\","
+            PAYLOAD="${PAYLOAD}\"version\":\"${TG_VERSION}\","
+            PAYLOAD="${PAYLOAD}\"phase\":\"${PHASE}\","
+            PAYLOAD="${PAYLOAD}\"type\":\"kustomize\""
+            PAYLOAD="${PAYLOAD}}}"
 
-        curl -X POST \
-            -u ${PERSONAL_TOKEN}: \
-            -H "Content-Type: application/json" \
-            -d "${PAYLOAD}" "${CIRCLE_API}"
+            curl -X POST \
+                -u ${PERSONAL_TOKEN}: \
+                -H "Content-Type: application/json" \
+                -d "${PAYLOAD}" "${CIRCLE_API}"
+        fi
     done
 
     # find helm chart
@@ -202,6 +201,7 @@ _build() {
 
     _command "replace ${TG_VERSION}"
 
+    # gitops
     _command "gitops.py -r ${TG_PROJECT} -p ${TG_PHASE} -n ${TG_USERNAME}/${TG_PROJECT} -v ${TG_VERSION}"
     python gitops.py -r ${TG_PROJECT} -p ${TG_PHASE} -n ${TG_USERNAME}/${TG_PROJECT} -v ${TG_VERSION}
 

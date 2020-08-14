@@ -7,11 +7,10 @@ metadata:
   name: sample-node-preview
 spec:
   ports:
-  - name: http
-    port: 3000
-    protocol: TCP
-    targetPort: 3000
+    - name: http
+      port: 3000
+      protocol: TCP
+      targetPort: 3000
   selector:
     app: sample-node
-    version: v0.4.68
   type: ClusterIP

@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: sample-node
+    app.kubernetes.io/name: sample-node
+  name: sample-node
+spec:
+  revisionHistoryLimit: 0
+  selector:
+    matchLabels:
+      app: sample-node
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: sample-node
+        app.kubernetes.io/name: sample-node
+        version: latest
+    spec:
+      containers:
+        - image: nalbam/sample-node:latest
+          imagePullPolicy: Always
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /
+              port: 3000
+              scheme: HTTP
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+          name: sample-node
+          ports:
+            - containerPort: 3000
+              name: http
+              protocol: TCP
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /
+              port: 3000
+              scheme: HTTP
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+          resources:
+            limits:
+              cpu: 110m
+              memory: 134Mi
+            requests:
+              cpu: 100m
+              memory: 120Mi
