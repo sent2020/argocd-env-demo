@@ -78,7 +78,7 @@ resources: {}
   #   memory: 128Mi
 
 autoscaling:
-  enabled: false
+  enabled: true
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
@@ -87,10 +87,10 @@ autoscaling:
   # targetCPUUtilizationPercentage: 80
   # targetMemoryUtilizationPercentage: 80
   metrics: []
-    # - type: Pods
-    #   pods:
-    #     metricName: container_network_receive_bytes
-    #     targetAverageValue: 30k
+    - type: Pods
+      pods:
+        metricName: container_network_receive_bytes
+        targetAverageValue: 30k
 
 # hostNetwork: true
 
