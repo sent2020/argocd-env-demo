@@ -10,3 +10,4 @@ resources:
   - ../base
   - configmap.yaml
   - hpa.yaml
+  - secret.yaml
