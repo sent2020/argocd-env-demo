@@ -12,12 +12,6 @@ metadata:
 spec:
   rules:
     - host: sample-tomcat.demo.spic.me
-      http:
-        paths:
-          - backend:
-              serviceName: sample-tomcat
-              servicePort: 8080
-            path: /
   tls:
     - hosts:
         - sample-tomcat.demo.spic.me
