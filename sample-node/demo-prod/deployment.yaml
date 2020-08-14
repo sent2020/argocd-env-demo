@@ -44,6 +44,8 @@ spec:
           envFrom:
             - configMapRef:
                 name: sample-node
+            - secretRef:
+                name: sample-node
           image: nalbam/sample-node:v0.4.70
           imagePullPolicy: Always
           name: sample-node

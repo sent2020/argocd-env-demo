@@ -41,6 +41,8 @@ spec:
           envFrom:
             - configMapRef:
                 name: sample-spring
+            - secretRef:
+                name: sample-spring
           image: nalbam/sample-spring:v0.4.53
           imagePullPolicy: Always
           name: sample-spring
