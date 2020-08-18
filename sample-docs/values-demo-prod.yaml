@@ -11,12 +11,12 @@ ingress:
     kubernetes.io/ingress.class: "nginx"
     kubernetes.io/ssl-redirect: "true"
   hosts:
-    - host: docs.karrot.spic.me
+    - host: docs.bruce.spic.me
       paths:
         - /
   tls:
     - hosts:
-        - docs.karrot.spic.me
+        - docs.bruce.spic.me
       secretName: docs-nalbam-tls
 
 resources:
