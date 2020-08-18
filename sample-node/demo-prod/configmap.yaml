@@ -1,11 +1,11 @@
 apiVersion: v1
 data:
   DD_AGENT_ENABLED: 'true'
-  DD_VERSION: v0.4.77
+  DD_VERSION: v0.4.79
   FAULT_RATE: '2'
   MESSAGE: hello prod-demo world
   PROFILE: prod
-  VERSION: v0.4.77
+  VERSION: v0.4.79
 kind: ConfigMap
 metadata:
   labels:
