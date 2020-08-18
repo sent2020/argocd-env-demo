@@ -6,7 +6,7 @@ metadata:
     app.kubernetes.io/name: sample-spring
     tags.datadoghq.com/env: alpha
     tags.datadoghq.com/service: sample-spring
-    tags.datadoghq.com/version: v0.4.62
+    tags.datadoghq.com/version: v0.4.63
   name: sample-spring
 spec:
   revisionHistoryLimit: 0
@@ -33,8 +33,8 @@ spec:
         app.kubernetes.io/name: sample-spring
         tags.datadoghq.com/env: alpha
         tags.datadoghq.com/service: sample-spring
-        tags.datadoghq.com/version: v0.4.62
-        version: v0.4.62
+        tags.datadoghq.com/version: v0.4.63
+        version: v0.4.63
     spec:
       containers:
       - env:
@@ -57,15 +57,15 @@ spec:
         - name: RELOAD_HASH
           value: 8ead08c18a09833fd3cd44bba2c763ad
         - name: CONFIGMAP_HASH
-          value: 05c17de5801ecfd62510447324d483eb
+          value: cb9f3bde2a5c447ef696dd28d7252a14
         - name: SECRET_HASH
-          value: 2c751e5ac67ab2436cb213a5f857d3e3
+          value: 7272df70b686402df43e4bf4a7e44355
         envFrom:
         - configMapRef:
             name: sample-spring
         - secretRef:
             name: sample-spring
-        image: nalbam/sample-spring:v0.4.62
+        image: nalbam/sample-spring:v0.4.63
         imagePullPolicy: Always
         name: sample-spring
         resources:
