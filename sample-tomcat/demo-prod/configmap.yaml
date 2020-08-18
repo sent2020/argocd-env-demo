@@ -1,9 +1,9 @@
 apiVersion: v1
 data:
-  DD_AGENT_ENABLED: 'true'
+  DD_AGENT_ENABLED: "true"
   DD_ENV: alpha
   DD_SERVICE: sample-tomcat
-  DD_TAGS: country_code:kr
+  DD_TAGS: country:kr,country_code:kr
   DD_VERSION: v0.4.51
   MESSAGE: hello prod-demo world
   PROFILE: prod
