@@ -98,6 +98,7 @@ def replace_configmap(args):
 
             # replace
             doc["data"]["VERSION"] = args.version
+            doc["data"]["DD_VERSION"] = args.version
 
         if doc != None:
             with open(filepath, "w") as file:
