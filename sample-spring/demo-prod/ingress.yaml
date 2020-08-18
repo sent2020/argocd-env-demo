@@ -12,6 +12,12 @@ metadata:
 spec:
   rules:
     - host: sample-spring.bruce.spic.me
+      http:
+        paths:
+          - backend:
+              serviceName: sample-spring
+              servicePort: 8080
+            path: /
   tls:
     - hosts:
         - sample-spring.bruce.spic.me

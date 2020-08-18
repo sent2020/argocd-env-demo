@@ -3,11 +3,11 @@ kind: Kustomization
 
 patchesStrategicMerge:
   - deployment.yaml
-  - ingress-preview.yaml
-  - ingress.yaml
 
 resources:
   - ../base
   - configmap.yaml
   - hpa.yaml
+  - ingress-preview.yaml
+  - ingress.yaml
   - secret.yaml

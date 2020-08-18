@@ -3,8 +3,6 @@ kind: Kustomization
 
 resources:
   - deployment.yaml
-  - ingress-preview.yaml
-  - ingress.yaml
   - service-monitor.yaml
   - service-preview.yaml
   - service.yaml
