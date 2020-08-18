@@ -6,7 +6,7 @@ metadata:
     app.kubernetes.io/name: sample-node
     tags.datadoghq.com/env: alpha
     tags.datadoghq.com/service: sample-node
-    tags.datadoghq.com/version: v0.4.77
+    tags.datadoghq.com/version: v0.4.79
   name: sample-node
 spec:
   revisionHistoryLimit: 0
@@ -36,8 +36,8 @@ spec:
         app.kubernetes.io/name: sample-node
         tags.datadoghq.com/env: alpha
         tags.datadoghq.com/service: sample-node
-        tags.datadoghq.com/version: v0.4.77
-        version: v0.4.77
+        tags.datadoghq.com/version: v0.4.79
+        version: v0.4.79
     spec:
       containers:
       - env:
@@ -60,15 +60,15 @@ spec:
         - name: RELOAD_HASH
           value: 8ead08c18a09833fd3cd44bba2c763ad
         - name: CONFIGMAP_HASH
-          value: 634ef62752faa17873ed5a388f7fb3b1
+          value: 8d170255cd6e18401e00cbaf0c8e5652
         - name: SECRET_HASH
-          value: 1db3f51fe6f7430e4fe54c45fc511f62
+          value: ebd69ab23975ac38eec3d5a61f661dd4
         envFrom:
         - configMapRef:
             name: sample-node
         - secretRef:
             name: sample-node
-        image: nalbam/sample-node:v0.4.77
+        image: nalbam/sample-node:v0.4.79
         imagePullPolicy: Always
         name: sample-node
         resources:
