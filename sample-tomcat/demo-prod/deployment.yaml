@@ -6,7 +6,7 @@ metadata:
     app.kubernetes.io/name: sample-tomcat
     tags.datadoghq.com/env: alpha
     tags.datadoghq.com/service: sample-tomcat
-    tags.datadoghq.com/version: v0.4.48
+    tags.datadoghq.com/version: v0.4.49
   name: sample-tomcat
 spec:
   revisionHistoryLimit: 0
@@ -33,8 +33,8 @@ spec:
         app.kubernetes.io/name: sample-tomcat
         tags.datadoghq.com/env: alpha
         tags.datadoghq.com/service: sample-tomcat
-        tags.datadoghq.com/version: v0.4.48
-        version: v0.4.48
+        tags.datadoghq.com/version: v0.4.49
+        version: v0.4.49
     spec:
       containers:
       - env:
@@ -57,15 +57,15 @@ spec:
         - name: RELOAD_HASH
           value: 8ead08c18a09833fd3cd44bba2c763ad
         - name: CONFIGMAP_HASH
-          value: 09f7327119cefd5756b2f2bce76f33f1
+          value: 3313bbea7ee70f617cc37e7cc886830b
         - name: SECRET_HASH
-          value: 682981fdce6c913e16454d6f0c64a314
+          value: 82b736e9ca8186cbd3cb572855453f3b
         envFrom:
         - configMapRef:
             name: sample-tomcat
         - secretRef:
             name: sample-tomcat
-        image: nalbam/sample-tomcat:v0.4.48
+        image: nalbam/sample-tomcat:v0.4.49
         imagePullPolicy: Always
         name: sample-tomcat
         resources:
