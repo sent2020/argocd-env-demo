@@ -1,10 +1,10 @@
 apiVersion: v1
 data:
-  FAULT_RATE: "2"
+  FAULT_RATE: '2'
   MESSAGE: hello prod-demo world
   PROFILE: prod
   TRACER: datadog
-  VERSION: v0.4.71
+  VERSION: v0.4.73
 kind: ConfigMap
 metadata:
   labels:
