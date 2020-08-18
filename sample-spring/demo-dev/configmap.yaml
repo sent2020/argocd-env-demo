@@ -1,9 +1,10 @@
 apiVersion: v1
 data:
-  DD_AGENT_ENABLED: 'true'
+  DD_AGENT_ENABLED: "true"
   DD_ENV: alpha
   DD_SERVICE: sample-spring
   DD_VERSION: v0.4.65
+  DD_TAG: "country_code:kr"
   MESSAGE: hello dev-demo world
   PROFILE: dev
   VERSION: v0.4.65
