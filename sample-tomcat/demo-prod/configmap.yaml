@@ -4,6 +4,7 @@ data:
   DD_ENV: alpha
   DD_SERVICE: sample-tomcat
   DD_VERSION: v0.4.48
+  DD_TAG: "country_code:kr"
   MESSAGE: hello prod-demo world
   PROFILE: prod
   VERSION: v0.4.48
