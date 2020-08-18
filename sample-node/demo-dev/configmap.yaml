@@ -3,12 +3,12 @@ data:
   DD_ENV: alpha
   DD_SERVICE: sample-node
   DD_TAGS: country:kr,country_code:kr
-  DD_VERSION: v0.4.75
-  FAULT_RATE: "5"
+  DD_VERSION: v0.4.76
+  FAULT_RATE: '5'
   MESSAGE: hello dev-demo world
   PROFILE: dev
   TRACER: datadog
-  VERSION: v0.4.75
+  VERSION: v0.4.76
 kind: ConfigMap
 metadata:
   labels:
