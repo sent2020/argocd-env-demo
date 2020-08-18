@@ -1,13 +1,13 @@
 apiVersion: v1
 data:
-  DD_AGENT_ENABLED: "true"
+  DD_AGENT_ENABLED: 'true'
   DD_ENV: alpha
   DD_SERVICE: sample-spring
-  DD_VERSION: v0.4.65
-  DD_TAG: "country_code:kr"
+  DD_TAG: country_code:kr
+  DD_VERSION: v0.4.67
   MESSAGE: hello prod-demo world
   PROFILE: prod
-  VERSION: v0.4.65
+  VERSION: v0.4.67
 kind: ConfigMap
 metadata:
   labels:
