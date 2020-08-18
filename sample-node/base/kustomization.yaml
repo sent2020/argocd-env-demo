@@ -4,8 +4,6 @@ kind: Kustomization
 resources:
   - deployment-redis.yaml
   - deployment.yaml
-  - ingress-preview.yaml
-  - ingress.yaml
   - service-monitor.yaml
   - service-preview.yaml
   - service-redis.yaml
