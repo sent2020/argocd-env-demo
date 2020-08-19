@@ -1,5 +1,10 @@
+{{- if eq .Values.controller.kind "Rollout" -}}
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+{{- else -}}
 apiVersion: apps/v1
 kind: Deployment
+{{- end }}
 metadata:
   name: {{ include "sample.fullname" . }}
   labels:
@@ -11,6 +16,10 @@ spec:
   selector:
     matchLabels:
       {{- include "sample.selectorLabels" . | nindent 6 }}
+{{- with .Values.strategy }}
+  strategy:
+    {{- toYaml . | nindent 4 }}
+{{- end }}
   template:
     metadata:
     {{- with .Values.podAnnotations }}

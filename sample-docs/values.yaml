@@ -4,8 +4,22 @@
 
 replicaCount: 1
 
+controller:
+  kind: Deployment # Deployment or Rollout
+
+strategy:
+  rollingUpdate:
+    maxSurge: 25%
+    maxUnavailable: 25%
+  type: RollingUpdate
+  # blueGreen:
+  #   activeService: sample
+  #   autoPromotionEnabled: true
+  #   autoPromotionSeconds: 30
+  #   previewService: sample-preview
+
 image:
-  repository: registry.localhost/sample
+  repository: nginx
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart version.
   tag: latest
@@ -36,7 +50,7 @@ securityContext: {}
 
 service:
   type: ClusterIP
-  port: 1948
+  port: 8080
 
 ingress:
   enabled: false
@@ -45,26 +59,26 @@ ingress:
     # kubernetes.io/ingress.class: "nginx"
     # kubernetes.io/ssl-redirect: "true"
   hosts: []
-    # - host: sample.localhost
+    # - host: sample.domain.com
     #   paths:
     #     - /
   tls: []
   #  - secretName: sample-tls
   #    hosts:
-  #      - sample.localhost
+  #      - sample.domain.com
 
 livenessProbe: {}
   # httpGet:
-  #   path: /live
-  #   port: 3000
+  #   path: /
+  #   port: 8080
   # initialDelaySeconds: 3
   # periodSeconds: 10
   # failureThreshold: 3
 
 readinessProbe: {}
   # httpGet:
-  #   path: /read
-  #   port: 3000
+  #   path: /
+  #   port: 8080
   # initialDelaySeconds: 3
   # periodSeconds: 10
   # failureThreshold: 3
@@ -79,9 +93,6 @@ resources: {}
 
 autoscaling:
   enabled: true
-  scaleTargetRef:
-    apiVersion: apps/v1
-    kind: Deployment
   minReplicas: 1
   maxReplicas: 10
   # targetCPUUtilizationPercentage: 80
