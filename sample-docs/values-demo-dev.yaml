@@ -16,6 +16,6 @@ ingress:
   tls:
     - hosts:
         - docs-dev.bruce.spic.me
-      secretName: docs-nalbam-tls
+      secretName: sample-docs-tls
 service:
   port: 1948
