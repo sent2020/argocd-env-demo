@@ -22,7 +22,6 @@ spec:
   template:
     metadata:
       annotations:
-        ad.datadoghq.com/sample-tomcat.logs: '[{"service":"sample-tomcat","country_code":"kr"}]'
         prometheus.io/port: "8081"
         prometheus.io/scrape: "true"
       labels:
