@@ -48,6 +48,18 @@ resources:
     cpu: 100m
     memory: 128Mi
 
+autoscaling:
+  enabled: true
+  minReplicas: 1
+  maxReplicas: 10
+  # targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
+  metrics:
+    - type: Pods
+      pods:
+        metricName: container_network_receive_bytes
+        targetAverageValue: 30k
+
 env:
   - name: PROFILE
     value: prod
