@@ -51,7 +51,7 @@ def replace_values(args):
 
             # datadog
             if doc["datadog"]:
-                doc["datadog"]["version"] = args.versionc
+                doc["datadog"]["version"] = args.version
 
         if doc != None:
             with open(filepath, "w") as file:
