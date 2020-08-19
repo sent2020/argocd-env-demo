@@ -1,6 +1,6 @@
 env:
   - name: PROFILE
-    value: prod
+    value: dev
 image:
   repository: nalbam/docs
   tag: v0.0.21
