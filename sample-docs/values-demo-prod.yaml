@@ -9,21 +9,21 @@ autoscaling:
   minReplicas: 1
 configmap:
   data:
-    DD_VERSION: v0.1.21
+    DD_VERSION: v0.1.22
     MESSAGE: hello world
-    VERSION: v0.1.21
+    VERSION: v0.1.22
   enabled: true
 datadog:
   enabled: true
   env: alpha
   service: sample-docs
-  version: v0.1.21
+  version: v0.1.22
 env:
 - name: PROFILE
   value: prod
 image:
   repository: nalbam/docs
-  tag: v0.1.21
+  tag: v0.1.22
 ingress:
   annotations:
     kubernetes.io/ingress.class: nginx
@@ -63,7 +63,7 @@ resources:
 secret:
   data:
     SECRET_MESSAGE: c2VjcmV0IHdvcmxkCg==
-    SECRET_VERSION: djAuMS4yMQ==
+    SECRET_VERSION: djAuMS4yMg==
   enabled: true
 service:
   port: 1948
