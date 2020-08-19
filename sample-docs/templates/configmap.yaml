@@ -6,7 +6,7 @@ metadata:
   labels:
     {{- include "sample.labels" . | nindent 4 }}
 data:
-  {{- with .Values.configmap.data }}
-  {{ toYaml . | indent 2 }}
-  {{- end }}
+{{- with .Values.configmap.data }}
+{{ toYaml . | indent 2 }}
+{{- end }}
 {{- end }}
