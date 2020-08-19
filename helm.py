@@ -41,14 +41,17 @@ def replace_values(args):
             doc["image"]["tag"] = args.version
 
             # configmap
-            doc["configmap"]["data"]["VERSION"] = args.version
-            doc["configmap"]["data"]["DD_VERSION"] = args.version
+            if doc["configmap"]:
+                doc["configmap"]["data"]["VERSION"] = args.version
+                doc["configmap"]["data"]["DD_VERSION"] = args.version
 
             # secret
-            doc["secret"]["data"]["SECRET_VERSION"] = base64.b64encode(args.version)
+            if doc["secret"]:
+                doc["secret"]["data"]["SECRET_VERSION"] = base64.b64encode(args.version)
 
             # datadog
-            doc["datadog"]["version"] = args.versionc
+            if doc["datadog"]:
+                doc["datadog"]["version"] = args.versionc
 
         if doc != None:
             with open(filepath, "w") as file:
