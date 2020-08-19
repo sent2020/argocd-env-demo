@@ -1,9 +1,0 @@
-repos:
-  - name: sample-node
-    phases:
-      - demo-dev
-      - demo-prod
-    files:
-      - name: configmap.yaml
-        paths:
-          - path: data/VERSION
