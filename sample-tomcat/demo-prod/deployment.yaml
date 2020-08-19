@@ -17,18 +17,18 @@ spec:
     canary:
       canaryService: sample-tomcat-preview
       steps:
-      - setWeight: 25
-      - analysis:
-          args:
-          - name: url
-            value: http://sample-tomcat-preview:8080/success/98
-          templateName: http-benchmark
+        - setWeight: 25
+        - analysis:
+            args:
+              - name: url
+                value: http://sample-tomcat-preview:8080/success/98
+            templateName: http-benchmark
   template:
     metadata:
       annotations:
         ad.datadoghq.com/sample-tomcat.logs: '[{"service":"sample-tomcat","country_code":"kr"}]'
-        prometheus.io/port: '8081'
-        prometheus.io/scrape: 'true'
+        prometheus.io/port: "8081"
+        prometheus.io/scrape: "true"
       labels:
         app: sample-tomcat
         app.kubernetes.io/name: sample-tomcat
@@ -38,41 +38,25 @@ spec:
         version: v0.4.55
     spec:
       containers:
-      - env:
-        - name: DD_ENV
-          valueFrom:
-            fieldRef:
-              fieldPath: metadata.labels['tags.datadoghq.com/env']
-        - name: DD_SERVICE
-          valueFrom:
-            fieldRef:
-              fieldPath: metadata.labels['tags.datadoghq.com/service']
-        - name: DD_VERSION
-          valueFrom:
-            fieldRef:
-              fieldPath: metadata.labels['tags.datadoghq.com/version']
-        - name: DD_AGENT_HOST
-          valueFrom:
-            fieldRef:
-              fieldPath: status.hostIP
-        - name: RELOAD_HASH
-          value: 8ead08c18a09833fd3cd44bba2c763ad
-        - name: CONFIGMAP_HASH
-          value: d0faa84f84fc4baba12874b9832596d2
-        - name: SECRET_HASH
-          value: ed8f25f433da51239603ff75509f34b1
-        envFrom:
-        - configMapRef:
-            name: sample-tomcat
-        - secretRef:
-            name: sample-tomcat
-        image: nalbam/sample-tomcat:v0.4.55
-        imagePullPolicy: Always
-        name: sample-tomcat
-        resources:
-          limits:
-            cpu: 500m
-            memory: 1Gi
-          requests:
-            cpu: 500m
-            memory: 1Gi
+        - env:
+            - name: RELOAD_HASH
+              value: 8ead08c18a09833fd3cd44bba2c763ad
+            - name: CONFIGMAP_HASH
+              value: d0faa84f84fc4baba12874b9832596d2
+            - name: SECRET_HASH
+              value: ed8f25f433da51239603ff75509f34b1
+          envFrom:
+            - configMapRef:
+                name: sample-tomcat
+            - secretRef:
+                name: sample-tomcat
+          image: nalbam/sample-tomcat:v0.4.55
+          imagePullPolicy: Always
+          name: sample-tomcat
+          resources:
+            limits:
+              cpu: 500m
+              memory: 1Gi
+            requests:
+              cpu: 500m
+              memory: 1Gi

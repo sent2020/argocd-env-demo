@@ -4,9 +4,6 @@ metadata:
   labels:
     app: sample-node
     app.kubernetes.io/name: sample-node
-    tags.datadoghq.com/env: alpha
-    tags.datadoghq.com/service: sample-node
-    tags.datadoghq.com/version: latest
   name: sample-node
 spec:
   revisionHistoryLimit: 0
@@ -23,13 +20,27 @@ spec:
       labels:
         app: sample-node
         app.kubernetes.io/name: sample-node
-        tags.datadoghq.com/env: alpha
-        tags.datadoghq.com/service: sample-node
-        tags.datadoghq.com/version: latest
         version: latest
     spec:
       containers:
-        - image: nalbam/sample-node:latest
+        - env:
+            - name: DD_ENV
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.labels['tags.datadoghq.com/env']
+            - name: DD_SERVICE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.labels['tags.datadoghq.com/service']
+            - name: DD_VERSION
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.labels['tags.datadoghq.com/version']
+            - name: DD_AGENT_HOST
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.hostIP
+          image: nalbam/sample-node:latest
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 3

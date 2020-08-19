@@ -23,8 +23,8 @@ spec:
     metadata:
       annotations:
         ad.datadoghq.com/sample-spring.logs: '[{"service":"sample-spring","country_code":"kr"}]'
-        prometheus.io/port: '8081'
-        prometheus.io/scrape: 'true'
+        prometheus.io/port: "8081"
+        prometheus.io/scrape: "true"
       labels:
         app: sample-spring
         app.kubernetes.io/name: sample-spring
@@ -34,41 +34,25 @@ spec:
         version: v0.4.72
     spec:
       containers:
-      - env:
-        - name: DD_ENV
-          valueFrom:
-            fieldRef:
-              fieldPath: metadata.labels['tags.datadoghq.com/env']
-        - name: DD_SERVICE
-          valueFrom:
-            fieldRef:
-              fieldPath: metadata.labels['tags.datadoghq.com/service']
-        - name: DD_VERSION
-          valueFrom:
-            fieldRef:
-              fieldPath: metadata.labels['tags.datadoghq.com/version']
-        - name: DD_AGENT_HOST
-          valueFrom:
-            fieldRef:
-              fieldPath: status.hostIP
-        - name: RELOAD_HASH
-          value: 8ead08c18a09833fd3cd44bba2c763ad
-        - name: CONFIGMAP_HASH
-          value: 8a764c0f34391baa9e44dbf48f0374d5
-        - name: SECRET_HASH
-          value: 6bda80c7943f25bfdd205fe2fa930e50
-        envFrom:
-        - configMapRef:
-            name: sample-spring
-        - secretRef:
-            name: sample-spring
-        image: nalbam/sample-spring:v0.4.72
-        imagePullPolicy: Always
-        name: sample-spring
-        resources:
-          limits:
-            cpu: 500m
-            memory: 1Gi
-          requests:
-            cpu: 500m
-            memory: 1Gi
+        - env:
+            - name: RELOAD_HASH
+              value: 8ead08c18a09833fd3cd44bba2c763ad
+            - name: CONFIGMAP_HASH
+              value: 8a764c0f34391baa9e44dbf48f0374d5
+            - name: SECRET_HASH
+              value: 6bda80c7943f25bfdd205fe2fa930e50
+          envFrom:
+            - configMapRef:
+                name: sample-spring
+            - secretRef:
+                name: sample-spring
+          image: nalbam/sample-spring:v0.4.72
+          imagePullPolicy: Always
+          name: sample-spring
+          resources:
+            limits:
+              cpu: 500m
+              memory: 1Gi
+            requests:
+              cpu: 500m
+              memory: 1Gi

@@ -17,18 +17,18 @@ spec:
     canary:
       canaryService: sample-node-preview
       steps:
-      - setWeight: 25
-      - analysis:
-          args:
-          - name: url
-            value: http://sample-node-preview:3000/success/98
-          templateName: http-benchmark
-      - setWeight: 50
-      - pause:
-          duration: 10
-      - setWeight: 75
-      - pause:
-          duration: 10
+        - setWeight: 25
+        - analysis:
+            args:
+              - name: url
+                value: http://sample-node-preview:3000/success/98
+            templateName: http-benchmark
+        - setWeight: 50
+        - pause:
+            duration: 10
+        - setWeight: 75
+        - pause:
+            duration: 10
   template:
     metadata:
       annotations:
@@ -42,41 +42,25 @@ spec:
         version: v0.4.81
     spec:
       containers:
-      - env:
-        - name: DD_ENV
-          valueFrom:
-            fieldRef:
-              fieldPath: metadata.labels['tags.datadoghq.com/env']
-        - name: DD_SERVICE
-          valueFrom:
-            fieldRef:
-              fieldPath: metadata.labels['tags.datadoghq.com/service']
-        - name: DD_VERSION
-          valueFrom:
-            fieldRef:
-              fieldPath: metadata.labels['tags.datadoghq.com/version']
-        - name: DD_AGENT_HOST
-          valueFrom:
-            fieldRef:
-              fieldPath: status.hostIP
-        - name: RELOAD_HASH
-          value: 8ead08c18a09833fd3cd44bba2c763ad
-        - name: CONFIGMAP_HASH
-          value: 5d7f29ec31229338e247041bf8e92573
-        - name: SECRET_HASH
-          value: 274ac663678c9442959a8a7f9b2866ef
-        envFrom:
-        - configMapRef:
-            name: sample-node
-        - secretRef:
-            name: sample-node
-        image: nalbam/sample-node:v0.4.81
-        imagePullPolicy: Always
-        name: sample-node
-        resources:
-          limits:
-            cpu: 110m
-            memory: 134Mi
-          requests:
-            cpu: 110m
-            memory: 134Mi
+        - env:
+            - name: RELOAD_HASH
+              value: 8ead08c18a09833fd3cd44bba2c763ad
+            - name: CONFIGMAP_HASH
+              value: 5d7f29ec31229338e247041bf8e92573
+            - name: SECRET_HASH
+              value: 274ac663678c9442959a8a7f9b2866ef
+          envFrom:
+            - configMapRef:
+                name: sample-node
+            - secretRef:
+                name: sample-node
+          image: nalbam/sample-node:v0.4.81
+          imagePullPolicy: Always
+          name: sample-node
+          resources:
+            limits:
+              cpu: 110m
+              memory: 134Mi
+            requests:
+              cpu: 110m
+              memory: 134Mi
