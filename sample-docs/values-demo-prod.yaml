@@ -12,7 +12,6 @@ service:
 ingress:
   enabled: true
   annotations:
-    cert-manager.io/cluster-issuer: "letsencrypt-issuer"
     kubernetes.io/ingress.class: "nginx"
     kubernetes.io/ssl-redirect: "true"
   hosts:
@@ -60,11 +59,15 @@ autoscaling:
         metricName: container_network_receive_bytes
         targetAverageValue: 30k
 
+datadog:
+  enabled: true
+  env: alpha
+  service: sample-docs
+  version: v0.0.21
+
 env:
   - name: PROFILE
     value: prod
-  - name: DD_VERSION
-    value: v0.0.21
 
 configmap:
   enabled: true

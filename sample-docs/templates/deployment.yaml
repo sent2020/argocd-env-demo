@@ -9,6 +9,11 @@ metadata:
   name: {{ include "sample.fullname" . }}
   labels:
     {{- include "sample.labels" . | nindent 4 }}
+    {{- if .Values.datadog.enabled }}
+    tags.datadoghq.com/env: {{ .Values.datadog.env }}
+    tags.datadoghq.com/service: {{ .Values.datadog.service }}
+    tags.datadoghq.com/version: {{ .Values.datadog.version }}
+    {{- end }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
@@ -28,6 +33,11 @@ spec:
       {{- end }}
       labels:
         {{- include "sample.selectorLabels" . | nindent 8 }}
+        {{- if .Values.datadog.enabled }}
+        tags.datadoghq.com/env: {{ .Values.datadog.env }}
+        tags.datadoghq.com/service: {{ .Values.datadog.service }}
+        tags.datadoghq.com/version: {{ .Values.datadog.version }}
+        {{- end }}
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
@@ -66,10 +76,28 @@ spec:
           {{- with .Values.dnsPolicy }}
           dnsPolicy: {{ .Values.dnsPolicy }}
           {{ end }}
-          {{- with .Values.env }}
           env:
+            {{- if .Values.datadog.enabled }}
+            - name: DD_ENV
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.labels['tags.datadoghq.com/env']
+            - name: DD_SERVICE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.labels['tags.datadoghq.com/service']
+            - name: DD_VERSION
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.labels['tags.datadoghq.com/version']
+            - name: DD_AGENT_HOST
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.hostIP
+            {{- end }}
+{{- with .Values.env }}
 {{ toYaml . | indent 12 }}
-          {{- end }}
+{{- end }}
           {{ if or .Values.configmap.enabled .Values.secret.enabled }}
           envFrom:
             {{ if .Values.configmap.enabled }}
