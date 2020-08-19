@@ -25,7 +25,7 @@ def parse_args():
     return p.parse_args()
 
 
-def replace_deployment(args, cm_hasg, sec_hash):
+def replace_values(args, cm_hasg, sec_hash):
     filepath = "{}/values-{}.yaml".format(args.reponame, args.phase)
     filehash = ""
 
@@ -43,102 +43,29 @@ def replace_deployment(args, cm_hasg, sec_hash):
             # datadog
             doc["datadog"]["version"] = args.versionc
 
+            # env
             for i, env in enumerate(doc["env"]):
                 if env["name"] == "CONFIGMAP_HASH":
                     env["value"] = cm_hasg
                 if env["name"] == "SECRET_HASH":
                     env["value"] = sec_hash
 
-        if doc != None:
-            with open(filepath, "w") as file:
-                yaml.dump(doc, file)
-
-
-def replace_service_preview(args):
-    filepath = "{}/values-{}.yaml".format(args.reponame, args.phase)
-    filehash = ""
-
-    if os.path.exists(filepath):
-        print("replace", filepath)
-
-        doc = None
-
-        with open(filepath, "r") as file:
-            doc = yaml.load(file, Loader=yaml.FullLoader)
-
-            # replace
-            doc["spec"]["selector"]["version"] = args.version
-
-        if doc != None:
-            with open(filepath, "w") as file:
-                yaml.dump(doc, file)
-
-            with open(filepath, "rb") as file:
-                filehash = hashlib.md5(file.read()).hexdigest()
-
-    return filehash
-
-
-def replace_configmap(args):
-    filepath = "{}/values-{}.yaml".format(args.reponame, args.phase)
-    filehash = ""
-
-    if os.path.exists(filepath):
-        print("replace", filepath)
-
-        doc = None
-
-        with open(filepath, "r") as file:
-            doc = yaml.load(file, Loader=yaml.FullLoader)
-
-            # replace
+            # configmap
             doc["configmap"]["data"]["VERSION"] = args.version
             doc["configmap"]["data"]["DD_VERSION"] = args.version
 
-        if doc != None:
-            with open(filepath, "w") as file:
-                yaml.dump(doc, file)
-
-            with open(filepath, "rb") as file:
-                filehash = hashlib.md5(file.read()).hexdigest()
-
-    return filehash
-
-
-def replace_secret(args):
-    filepath = "{}/values-{}.yaml".format(args.reponame, args.phase)
-    filehash = ""
-
-    if os.path.exists(filepath):
-        print("replace", filepath)
-
-        doc = None
-
-        with open(filepath, "r") as file:
-            doc = yaml.load(file, Loader=yaml.FullLoader)
-
-            # replace
+            # secret
             doc["secret"]["data"]["SECRET_VERSION"] = base64.b64encode(args.version)
 
         if doc != None:
             with open(filepath, "w") as file:
                 yaml.dump(doc, file)
 
-            with open(filepath, "rb") as file:
-                filehash = hashlib.md5(file.read()).hexdigest()
-
-    return filehash
-
 
 def main():
     args = parse_args()
 
-    chash = replace_configmap(args)
-    shash = replace_secret(args)
-
-    replace_deployment(args, chash, shash)
-
-    replace_service_preview(args)
+    replace_values(args, chash, shash)
 
 
 if __name__ == "__main__":
