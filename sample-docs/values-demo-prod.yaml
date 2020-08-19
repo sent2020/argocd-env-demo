@@ -24,6 +24,22 @@ ingress:
         - docs.bruce.spic.me
       secretName: docs-nalbam-tls
 
+livenessProbe:
+  httpGet:
+    path: /
+    port: 1948
+  initialDelaySeconds: 3
+  periodSeconds: 10
+  failureThreshold: 3
+
+readinessProbe:
+  httpGet:
+    path: /
+    port: 1948
+  initialDelaySeconds: 3
+  periodSeconds: 10
+  failureThreshold: 3
+
 resources:
   requests:
     cpu: 100m
@@ -33,15 +49,15 @@ resources:
     memory: 128Mi
 
 env:
-  - name: MESSAGE
-    value: "hello world"
+  - name: PROFILE
+    value: prod
+  - name: DD_VERSION
+    value: v0.0.21
 
 configmap:
   enabled: true
   data:
-    DD_VERSION: v0.0.21
     MESSAGE: "hello world"
-    PROFILE: dev
     VERSION: v0.0.21
 
 secret:
