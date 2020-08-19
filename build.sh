@@ -122,6 +122,8 @@ _phase() {
             PAYLOAD="${PAYLOAD}\"type\":\"kustomize\""
             PAYLOAD="${PAYLOAD}}}"
 
+            _result "PAYLOAD=${PAYLOAD}"
+
             curl -X POST \
                 -u ${PERSONAL_TOKEN}: \
                 -H "Content-Type: application/json" \
@@ -130,9 +132,11 @@ _phase() {
     done
 
     # find helm chart
-    LIST=$(ls | grep 'values-' | grep '.yaml' | cut -d'-' -f2 | cut -d'.' -f1)
+    LIST=$(ls | grep 'values-' | grep '.yaml' | cut -d'.' -f1)
 
-    for PHASE in ${LIST}; do
+    for V in ${LIST}; do
+        PHASE=${V:7}
+
         _result "${PHASE} helm"
 
         # build_parameters
@@ -143,6 +147,8 @@ _phase() {
         PAYLOAD="${PAYLOAD}\"phase\":\"${PHASE}\","
         PAYLOAD="${PAYLOAD}\"type\":\"helm\""
         PAYLOAD="${PAYLOAD}}}"
+
+        _result "PAYLOAD=${PAYLOAD}"
 
         curl -X POST \
             -u ${PERSONAL_TOKEN}: \
