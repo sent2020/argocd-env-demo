@@ -25,7 +25,7 @@ def parse_args():
     return p.parse_args()
 
 
-def replace_values(args, cm_hasg, sec_hash):
+def replace_values(args):
     filepath = "{}/values-{}.yaml".format(args.reponame, args.phase)
     filehash = ""
 
@@ -40,22 +40,15 @@ def replace_values(args, cm_hasg, sec_hash):
             # image tag
             doc["image"]["tag"] = args.version
 
-            # datadog
-            doc["datadog"]["version"] = args.versionc
-
-            # env
-            for i, env in enumerate(doc["env"]):
-                if env["name"] == "CONFIGMAP_HASH":
-                    env["value"] = cm_hasg
-                if env["name"] == "SECRET_HASH":
-                    env["value"] = sec_hash
-
             # configmap
             doc["configmap"]["data"]["VERSION"] = args.version
             doc["configmap"]["data"]["DD_VERSION"] = args.version
 
             # secret
             doc["secret"]["data"]["SECRET_VERSION"] = base64.b64encode(args.version)
+
+            # datadog
+            doc["datadog"]["version"] = args.versionc
 
         if doc != None:
             with open(filepath, "w") as file:
@@ -65,7 +58,7 @@ def replace_values(args, cm_hasg, sec_hash):
 def main():
     args = parse_args()
 
-    replace_values(args, chash, shash)
+    replace_values(args)
 
 
 if __name__ == "__main__":
