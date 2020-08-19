@@ -98,10 +98,10 @@ autoscaling:
   # targetCPUUtilizationPercentage: 80
   # targetMemoryUtilizationPercentage: 80
   metrics: []
-    - type: Pods
-      pods:
-        metricName: container_network_receive_bytes
-        targetAverageValue: 30k
+    # - type: Pods
+    #   pods:
+    #     metricName: container_network_receive_bytes
+    #     targetAverageValue: 30k
 
 # hostNetwork: true
 
