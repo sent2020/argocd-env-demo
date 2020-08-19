@@ -7,6 +7,7 @@ metadata:
     tags.datadoghq.com/env: alpha
     tags.datadoghq.com/service: sample-node
     tags.datadoghq.com/version: v0.4.82
+    tags.datadoghq.com/tags: "country:kr country_code:kr"
   name: sample-node
 spec:
   revisionHistoryLimit: 0
@@ -37,6 +38,7 @@ spec:
         tags.datadoghq.com/env: alpha
         tags.datadoghq.com/service: sample-node
         tags.datadoghq.com/version: v0.4.82
+        tags.datadoghq.com/tags: "country:kr country_code:kr"
         version: v0.4.82
     spec:
       containers:
@@ -53,6 +55,10 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: metadata.labels['tags.datadoghq.com/version']
+            - name: DD_TAGS
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.labels['tags.datadoghq.com/tags']
             - name: DD_AGENT_HOST
               valueFrom:
                 fieldRef:
