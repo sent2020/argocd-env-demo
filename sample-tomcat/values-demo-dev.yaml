@@ -2,10 +2,10 @@ autoscaling:
   enabled: true
   maxReplicas: 4
   metrics:
-  - pods:
-      metricName: container_network_receive_bytes
-      targetAverageValue: 30k
-    type: Pods
+    - pods:
+        metricName: container_network_receive_bytes
+        targetAverageValue: 30k
+      type: Pods
   minReplicas: 1
 configmap:
   data:
@@ -21,8 +21,8 @@ datadog:
   service: sample-tomcat
   version: v0.4.72
 env:
-- name: PROFILE
-  value: dev
+  - name: PROFILE
+    value: dev
 fullnameOverride: sample-tomcat
 image:
   repository: nalbam/sample-tomcat
@@ -30,34 +30,34 @@ image:
 ingress:
   annotations:
     kubernetes.io/ingress.class: nginx
-    kubernetes.io/ssl-redirect: 'true'
+    kubernetes.io/ssl-redirect: "true"
   enabled: true
   hosts:
-  - host: sample-tomcat-dev.bruce.spic.me
-    paths:
-    - /
+    - host: sample-tomcat-dev.bruce.spic.me
+      paths:
+        - /
 livenessProbe:
   failureThreshold: 3
   httpGet:
     path: /
     port: 8080
-  initialDelaySeconds: 3
+  initialDelaySeconds: 20
   periodSeconds: 10
 preview:
   annotations:
     kubernetes.io/ingress.class: nginx
-    kubernetes.io/ssl-redirect: 'true'
+    kubernetes.io/ssl-redirect: "true"
   enabled: true
   hosts:
-  - host: sample-tomcat-dev-preview.bruce.spic.me
-    paths:
-    - /
+    - host: sample-tomcat-dev-preview.bruce.spic.me
+      paths:
+        - /
 readinessProbe:
   failureThreshold: 3
   httpGet:
     path: /
     port: 8080
-  initialDelaySeconds: 3
+  initialDelaySeconds: 20
   periodSeconds: 10
 replicaCount: 1
 resources:
