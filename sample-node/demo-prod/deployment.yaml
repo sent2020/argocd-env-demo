@@ -6,7 +6,7 @@ metadata:
     app.kubernetes.io/name: sample-node
     tags.datadoghq.com/env: alpha
     tags.datadoghq.com/service: sample-node
-    tags.datadoghq.com/version: v0.4.83
+    tags.datadoghq.com/version: v0.4.84
   name: sample-node
 spec:
   revisionHistoryLimit: 0
@@ -17,18 +17,18 @@ spec:
     canary:
       canaryService: sample-node-preview
       steps:
-        - setWeight: 25
-        - analysis:
-            args:
-              - name: url
-                value: http://sample-node-preview:3000/success/98
-            templateName: http-benchmark
-        - setWeight: 50
-        - pause:
-            duration: 10
-        - setWeight: 75
-        - pause:
-            duration: 10
+      - setWeight: 25
+      - analysis:
+          args:
+          - name: url
+            value: http://sample-node-preview:3000/success/98
+          templateName: http-benchmark
+      - setWeight: 50
+      - pause:
+          duration: 10
+      - setWeight: 75
+      - pause:
+          duration: 10
   template:
     metadata:
       labels:
@@ -36,45 +36,45 @@ spec:
         app.kubernetes.io/name: sample-node
         tags.datadoghq.com/env: alpha
         tags.datadoghq.com/service: sample-node
-        tags.datadoghq.com/version: v0.4.83
-        version: v0.4.83
+        tags.datadoghq.com/version: v0.4.84
+        version: v0.4.84
     spec:
       containers:
-        - env:
-            - name: DD_ENV
-              valueFrom:
-                fieldRef:
-                  fieldPath: metadata.labels['tags.datadoghq.com/env']
-            - name: DD_SERVICE
-              valueFrom:
-                fieldRef:
-                  fieldPath: metadata.labels['tags.datadoghq.com/service']
-            - name: DD_VERSION
-              valueFrom:
-                fieldRef:
-                  fieldPath: metadata.labels['tags.datadoghq.com/version']
-            - name: DD_AGENT_HOST
-              valueFrom:
-                fieldRef:
-                  fieldPath: status.hostIP
-            - name: RELOAD_HASH
-              value: 8ead08c18a09833fd3cd44bba2c763ad
-            - name: CONFIGMAP_HASH
-              value: 9e9c76c169ff394eff1af76231930973
-            - name: SECRET_HASH
-              value: 03c1a32ebe382122d53fba787ad97e25
-          envFrom:
-            - configMapRef:
-                name: sample-node
-            - secretRef:
-                name: sample-node
-          image: nalbam/sample-node:v0.4.83
-          imagePullPolicy: Always
-          name: sample-node
-          resources:
-            limits:
-              cpu: 110m
-              memory: 134Mi
-            requests:
-              cpu: 110m
-              memory: 134Mi
+      - env:
+        - name: DD_ENV
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.labels['tags.datadoghq.com/env']
+        - name: DD_SERVICE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.labels['tags.datadoghq.com/service']
+        - name: DD_VERSION
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.labels['tags.datadoghq.com/version']
+        - name: DD_AGENT_HOST
+          valueFrom:
+            fieldRef:
+              fieldPath: status.hostIP
+        - name: RELOAD_HASH
+          value: 8ead08c18a09833fd3cd44bba2c763ad
+        - name: CONFIGMAP_HASH
+          value: 2033e02f4d4eee7818b63b8e4204334a
+        - name: SECRET_HASH
+          value: 11df79f6466ca6652c5f4229a041c8dc
+        envFrom:
+        - configMapRef:
+            name: sample-node
+        - secretRef:
+            name: sample-node
+        image: nalbam/sample-node:v0.4.84
+        imagePullPolicy: Always
+        name: sample-node
+        resources:
+          limits:
+            cpu: 110m
+            memory: 134Mi
+          requests:
+            cpu: 110m
+            memory: 134Mi
