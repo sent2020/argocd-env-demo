@@ -1,5 +1,6 @@
 apiVersion: v1
 data:
+  COUNTRY: kr
   COUNTRY_CODE: kr
   DD_AGENT_ENABLED: "true"
   DD_VERSION: v0.4.55
