@@ -53,10 +53,6 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: metadata.labels['tags.datadoghq.com/version']
-            - name: DD_TAGS
-              valueFrom:
-                fieldRef:
-                  fieldPath: metadata.labels['tags.datadoghq.com/tags']
             - name: DD_AGENT_HOST
               valueFrom:
                 fieldRef:
