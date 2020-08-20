@@ -9,9 +9,9 @@ autoscaling:
   minReplicas: 1
 configmap:
   data:
-    DD_VERSION: v0.4.98
+    DD_VERSION: v0.4.99
     MESSAGE: hello world
-    VERSION: v0.4.98
+    VERSION: v0.4.99
   enabled: true
 controller:
   kind: Rollout
@@ -19,7 +19,7 @@ datadog:
   enabled: true
   env: alpha
   service: sample-spring
-  version: v0.4.98
+  version: v0.4.99
 env:
 - name: PROFILE
   value: dev
@@ -28,7 +28,7 @@ env:
 fullnameOverride: sample-spring
 image:
   repository: nalbam/sample-spring
-  tag: v0.4.98
+  tag: v0.4.99
 ingress:
   annotations:
     kubernetes.io/ingress.class: nginx
@@ -73,7 +73,7 @@ revisionHistoryLimit: 1
 secret:
   data:
     SECRET_MESSAGE: c2VjcmV0IHdvcmxkCg==
-    SECRET_VERSION: djAuNC45OA==
+    SECRET_VERSION: djAuNC45OQ==
   enabled: true
 service:
   port: 8080
