@@ -6,6 +6,7 @@ metadata:
     app.kubernetes.io/name: sample-web
   name: sample-web
 spec:
+  replicas: 1
   revisionHistoryLimit: 0
   selector:
     matchLabels:
@@ -20,20 +21,10 @@ spec:
       labels:
         app: sample-web
         app.kubernetes.io/name: sample-web
-        version: v0.4.3
+        version: latest
     spec:
       containers:
-        - env:
-            - name: RELOAD_HASH
-              value: 8ead08c18a09833fd3cd44bba2c763ad
-            - name: CONFIGMAP_HASH
-              value: 9e46ff3949fa45ec5671cff5c803216d
-            - name: SECRET_HASH
-              value: ""
-          envFrom:
-            - configMapRef:
-                name: sample-web
-          image: nalbam/sample-web:v0.4.3
+        - image: nalbam/sample-web:latest
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 3

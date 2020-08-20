@@ -21,28 +21,34 @@ spec:
       labels:
         app: sample-webpack
         app.kubernetes.io/name: sample-webpack
-        version: v0.4.3
+        version: latest
     spec:
       containers:
-        - env:
-            - name: RELOAD_HASH
-              value: 8ead08c18a09833fd3cd44bba2c763ad
-            - name: CONFIGMAP_HASH
-              value: 8622c81bc1039249a35ceb71334721a3
-            - name: SECRET_HASH
-              value: ""
-          envFrom:
-            - configMapRef:
-                name: sample-webpack
-            - secretRef:
-                name: sample-webpack
-          image: nalbam/sample-webpack:v0.4.3
+        - image: nalbam/sample-webpack:latest
           imagePullPolicy: Always
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /
+              port: 80
+              scheme: HTTP
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
           name: sample-webpack
           ports:
             - containerPort: 80
               name: http
               protocol: TCP
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /
+              port: 80
+              scheme: HTTP
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
           resources:
             limits:
               cpu: 110m
