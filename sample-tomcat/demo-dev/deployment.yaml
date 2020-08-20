@@ -4,7 +4,7 @@ metadata:
   labels:
     tags.datadoghq.com/env: alpha
     tags.datadoghq.com/service: sample-tomcat
-    tags.datadoghq.com/version: v0.4.70
+    tags.datadoghq.com/version: v0.4.71
   name: sample-tomcat
 spec:
   template:
@@ -15,8 +15,8 @@ spec:
       labels:
         tags.datadoghq.com/env: alpha
         tags.datadoghq.com/service: sample-tomcat
-        tags.datadoghq.com/version: v0.4.70
-        version: v0.4.70
+        tags.datadoghq.com/version: v0.4.71
+        version: v0.4.71
     spec:
       containers:
       - env:
@@ -39,15 +39,15 @@ spec:
         - name: RELOAD_HASH
           value: 8ead08c18a09833fd3cd44bba2c763ad
         - name: CONFIGMAP_HASH
-          value: 2cf66c6072b077bd7301b0862f0d1e06
+          value: 3ddbfced81167430b3385f4de8c22d82
         - name: SECRET_HASH
-          value: 25b45316cf8b3c29ac616b32a1032b38
+          value: aee2162bbe5d462f906534f2456f5002
         envFrom:
         - configMapRef:
             name: sample-tomcat
         - secretRef:
             name: sample-tomcat
-        image: nalbam/sample-tomcat:v0.4.70
+        image: nalbam/sample-tomcat:v0.4.71
         imagePullPolicy: Always
         name: sample-tomcat
         resources:
