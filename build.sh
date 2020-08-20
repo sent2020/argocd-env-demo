@@ -199,7 +199,7 @@ _build() {
         _success "${NEW_BRANCH}"
     fi
 
-    HAS_DEV=$(echo ${TG_PHASE} | grep '-dev' | wc -l | xargs)
+    HAS_DEV=$(echo ${TG_PHASE} | grep '\-dev' | wc -l | xargs)
 
     if [ "x${HAS_DEV}" == "x0" ]; then
         _command "git branch ${NEW_BRANCH} ${BRANCH}"
