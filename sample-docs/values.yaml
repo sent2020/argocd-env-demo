@@ -7,11 +7,7 @@ replicaCount: 1
 controller:
   kind: Deployment # Deployment or Rollout
 
-strategy:
-  rollingUpdate:
-    maxSurge: 25%
-    maxUnavailable: 25%
-  type: RollingUpdate
+strategy: {}
   # blueGreen:
   #   activeService: sample
   #   autoPromotionEnabled: true
