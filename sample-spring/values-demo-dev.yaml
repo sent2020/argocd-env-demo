@@ -42,7 +42,7 @@ livenessProbe:
     port: 8080
   initialDelaySeconds: 3
   periodSeconds: 10
-nameOverride: sample-spring
+fullnameOverride: sample-spring
 preview:
   annotations:
     kubernetes.io/ingress.class: nginx
@@ -76,7 +76,7 @@ service:
   port: 8080
 strategy:
   blueGreen:
-    activeService: sample-spring-dev
+    activeService: sample-spring
     autoPromotionEnabled: true
     autoPromotionSeconds: 30
-    previewService: sample-spring-dev-preview
+    previewService: sample-spring-preview
