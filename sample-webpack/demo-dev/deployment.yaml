@@ -4,6 +4,7 @@ metadata:
   labels:
     app: sample-webpack
     app.kubernetes.io/name: sample-webpack
+    tags.datadoghq.com/version: v0.3.12
   name: sample-webpack
 spec:
   replicas: 1
@@ -21,32 +22,33 @@ spec:
       labels:
         app: sample-webpack
         app.kubernetes.io/name: sample-webpack
-        version: v0.4.3
+        tags.datadoghq.com/version: v0.3.12
+        version: v0.3.12
     spec:
       containers:
-        - env:
-            - name: RELOAD_HASH
-              value: 8ead08c18a09833fd3cd44bba2c763ad
-            - name: CONFIGMAP_HASH
-              value: 8622c81bc1039249a35ceb71334721a3
-            - name: SECRET_HASH
-              value: ""
-          envFrom:
-            - configMapRef:
-                name: sample-webpack
-            - secretRef:
-                name: sample-webpack
-          image: nalbam/sample-webpack:v0.4.3
-          imagePullPolicy: Always
-          name: sample-webpack
-          ports:
-            - containerPort: 80
-              name: http
-              protocol: TCP
-          resources:
-            limits:
-              cpu: 110m
-              memory: 134Mi
-            requests:
-              cpu: 100m
-              memory: 120Mi
+      - env:
+        - name: RELOAD_HASH
+          value: 8ead08c18a09833fd3cd44bba2c763ad
+        - name: CONFIGMAP_HASH
+          value: 5f56aaed02992026200e97f117b22962
+        - name: SECRET_HASH
+          value: 121ed5479727fd45c6a0e2e48666dc33
+        envFrom:
+        - configMapRef:
+            name: sample-webpack
+        - secretRef:
+            name: sample-webpack
+        image: nalbam/sample-webpack:v0.3.12
+        imagePullPolicy: Always
+        name: sample-webpack
+        ports:
+        - containerPort: 80
+          name: http
+          protocol: TCP
+        resources:
+          limits:
+            cpu: 110m
+            memory: 134Mi
+          requests:
+            cpu: 100m
+            memory: 120Mi
