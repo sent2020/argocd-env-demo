@@ -2,41 +2,41 @@ autoscaling:
   enabled: true
   maxReplicas: 3
   metrics:
-    - pods:
-        metricName: container_network_receive_bytes
-        targetAverageValue: 30k
-      type: Pods
+  - pods:
+      metricName: container_network_receive_bytes
+      targetAverageValue: 30k
+    type: Pods
   minReplicas: 1
 configmap:
   data:
-    DD_VERSION: v0.1.23
+    DD_VERSION: v0.1.24
     MESSAGE: hello world
-    VERSION: v0.1.23
+    VERSION: v0.1.24
   enabled: true
 datadog:
   enabled: true
   env: alpha
   service: sample-docs
-  version: v0.1.23
+  version: v0.1.24
 env:
-  - name: PROFILE
-    value: prod
+- name: PROFILE
+  value: prod
 image:
   repository: nalbam/docs
-  tag: v0.1.23
+  tag: v0.1.24
 ingress:
   annotations:
     kubernetes.io/ingress.class: nginx
-    kubernetes.io/ssl-redirect: "true"
+    kubernetes.io/ssl-redirect: 'true'
   enabled: true
   hosts:
-    - host: docs.bruce.spic.me
-      paths:
-        - /
+  - host: docs.bruce.spic.me
+    paths:
+    - /
   tls:
-    - hosts:
-        - docs.bruce.spic.me
-      secretName: sample-docs-tls
+  - hosts:
+    - docs.bruce.spic.me
+    secretName: sample-docs-tls
 livenessProbe:
   failureThreshold: 3
   httpGet:
@@ -63,7 +63,7 @@ resources:
 secret:
   data:
     SECRET_MESSAGE: c2VjcmV0IHdvcmxkCg==
-    SECRET_VERSION: djAuMS4yMw==
+    SECRET_VERSION: djAuMS4yNA==
   enabled: true
 service:
   port: 1948
