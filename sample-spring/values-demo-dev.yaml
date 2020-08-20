@@ -2,54 +2,39 @@ autoscaling:
   enabled: true
   maxReplicas: 4
   metrics:
-    - pods:
-        metricName: container_network_receive_bytes
-        targetAverageValue: 30k
-      type: Pods
+  - pods:
+      metricName: container_network_receive_bytes
+      targetAverageValue: 30k
+    type: Pods
   minReplicas: 1
 configmap:
   data:
-    DD_VERSION: v0.4.87
+    DD_VERSION: v0.4.89
     MESSAGE: hello world
-    VERSION: v0.4.87
+    VERSION: v0.4.89
   enabled: true
+controller:
+  kind: Rollout
 datadog:
   enabled: true
   env: alpha
   service: sample-spring
-  version: v0.4.87
+  version: v0.4.89
 env:
-  - name: PROFILE
-    value: dev
+- name: PROFILE
+  value: dev
 image:
   repository: nalbam/sample-spring
-  tag: v0.4.87
+  tag: v0.4.89
 ingress:
   annotations:
     kubernetes.io/ingress.class: nginx
-    kubernetes.io/ssl-redirect: "true"
+    kubernetes.io/ssl-redirect: 'true'
   enabled: true
   hosts:
-    - host: sample-spring.bruce.spic.me
-      paths:
-        - /
-  # tls:
-  #   - hosts:
-  #       - sample-spring.bruce.spic.me
-  #     secretName: sample-spring-tls
-preview:
-  annotations:
-    kubernetes.io/ingress.class: nginx
-    kubernetes.io/ssl-redirect: "true"
-  enabled: true
-  hosts:
-    - host: sample-spring-preview.bruce.spic.me
-      paths:
-        - /
-  # tls:
-  #   - hosts:
-  #       - sample-spring-preview.bruce.spic.me
-  #     secretName: sample-spring-preview-tls
+  - host: sample-spring.bruce.spic.me
+    paths:
+    - /
 livenessProbe:
   failureThreshold: 3
   httpGet:
@@ -58,6 +43,15 @@ livenessProbe:
   initialDelaySeconds: 3
   periodSeconds: 10
 nameOverride: sample-spring
+preview:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    kubernetes.io/ssl-redirect: 'true'
+  enabled: true
+  hosts:
+  - host: sample-spring-preview.bruce.spic.me
+    paths:
+    - /
 readinessProbe:
   failureThreshold: 3
   httpGet:
@@ -76,7 +70,7 @@ resources:
 secret:
   data:
     SECRET_MESSAGE: c2VjcmV0IHdvcmxkCg==
-    SECRET_VERSION: djAuMS4yNA==
+    SECRET_VERSION: djAuNC44OQ==
   enabled: true
 service:
   port: 8080
@@ -86,5 +80,3 @@ strategy:
     autoPromotionEnabled: true
     autoPromotionSeconds: 30
     previewService: sample-spring-preview
-controller:
-  kind: Rollout # Deployment or Rollout
