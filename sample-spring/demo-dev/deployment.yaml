@@ -2,17 +2,11 @@ apiVersion: argoproj.io/v1alpha1
 kind: Rollout
 metadata:
   labels:
-    app: sample-spring
-    app.kubernetes.io/name: sample-spring
     tags.datadoghq.com/env: alpha
     tags.datadoghq.com/service: sample-spring
     tags.datadoghq.com/version: v0.4.86
   name: sample-spring
 spec:
-  revisionHistoryLimit: 0
-  selector:
-    matchLabels:
-      app: sample-spring
   strategy:
     blueGreen:
       activeService: sample-spring
@@ -25,25 +19,13 @@ spec:
         prometheus.io/port: "8081"
         prometheus.io/scrape: "true"
       labels:
-        app: sample-spring
-        app.kubernetes.io/name: sample-spring
         tags.datadoghq.com/env: alpha
         tags.datadoghq.com/service: sample-spring
         tags.datadoghq.com/version: v0.4.86
         version: v0.4.86
     spec:
       containers:
-        - image: nalbam/sample-spring:v0.4.86
-          imagePullPolicy: Always
-          name: sample-spring
-          resources:
-            limits:
-              cpu: 500m
-              memory: 1Gi
-            requests:
-              cpu: 500m
-              memory: 1Gi
-          env:
+        - env:
             - name: DD_ENV
               valueFrom:
                 fieldRef:
@@ -71,3 +53,6 @@ spec:
                 name: sample-spring
             - secretRef:
                 name: sample-spring
+          image: nalbam/sample-spring:v0.4.86
+          imagePullPolicy: Always
+          name: sample-spring
