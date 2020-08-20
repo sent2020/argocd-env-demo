@@ -3,10 +3,10 @@ data:
   COUNTRY: kr
   COUNTRY_CODE: kr
   DD_AGENT_ENABLED: 'true'
-  DD_VERSION: v0.4.56
+  DD_VERSION: v0.4.59
   MESSAGE: hello dev-demo world
   PROFILE: dev
-  VERSION: v0.4.56
+  VERSION: v0.4.59
 kind: ConfigMap
 metadata:
   labels:
