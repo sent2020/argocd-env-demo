@@ -204,12 +204,12 @@ _build() {
     if [ "x${HAS_DEV}" == "x0" ]; then
         _command "git branch ${NEW_BRANCH} ${BRANCH}"
         git branch ${NEW_BRANCH} ${BRANCH}
-
-        _command "git checkout ${NEW_BRANCH}"
-        git checkout ${NEW_BRANCH}
     else
         NEW_BRANCH="master"
     fi
+
+    _command "git checkout ${NEW_BRANCH}"
+    git checkout ${NEW_BRANCH}
 
     _command "replace ${TG_VERSION}"
 
