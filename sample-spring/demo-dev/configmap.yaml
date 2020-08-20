@@ -4,10 +4,10 @@ data:
   COUNTRY_CODE: kr
   DD_AGENT_ENABLED: 'true'
   DD_TAGS: map[country:kr] map[country_code:kr]
-  DD_VERSION: v0.4.74
+  DD_VERSION: v0.4.75
   MESSAGE: hello dev-demo world
   PROFILE: dev
-  VERSION: v0.4.74
+  VERSION: v0.4.75
 kind: ConfigMap
 metadata:
   labels:
