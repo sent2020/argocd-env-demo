@@ -2,16 +2,16 @@ autoscaling:
   enabled: true
   maxReplicas: 4
   metrics:
-    - pods:
-        metricName: container_network_receive_bytes
-        targetAverageValue: 30k
-      type: Pods
+  - pods:
+      metricName: container_network_receive_bytes
+      targetAverageValue: 30k
+    type: Pods
   minReplicas: 1
 configmap:
   data:
-    DD_VERSION: v0.4.72
+    DD_VERSION: v0.4.73
     MESSAGE: hello world
-    VERSION: v0.4.72
+    VERSION: v0.4.73
   enabled: true
 controller:
   kind: Rollout
@@ -19,23 +19,23 @@ datadog:
   enabled: true
   env: alpha
   service: sample-tomcat
-  version: v0.4.72
+  version: v0.4.73
 env:
-  - name: PROFILE
-    value: dev
+- name: PROFILE
+  value: dev
 fullnameOverride: sample-tomcat
 image:
   repository: nalbam/sample-tomcat
-  tag: v0.4.72
+  tag: v0.4.73
 ingress:
   annotations:
     kubernetes.io/ingress.class: nginx
-    kubernetes.io/ssl-redirect: "true"
+    kubernetes.io/ssl-redirect: 'true'
   enabled: true
   hosts:
-    - host: sample-tomcat-dev.bruce.spic.me
-      paths:
-        - /
+  - host: sample-tomcat-dev.bruce.spic.me
+    paths:
+    - /
 livenessProbe:
   failureThreshold: 3
   httpGet:
@@ -46,12 +46,12 @@ livenessProbe:
 preview:
   annotations:
     kubernetes.io/ingress.class: nginx
-    kubernetes.io/ssl-redirect: "true"
+    kubernetes.io/ssl-redirect: 'true'
   enabled: true
   hosts:
-    - host: sample-tomcat-dev-preview.bruce.spic.me
-      paths:
-        - /
+  - host: sample-tomcat-dev-preview.bruce.spic.me
+    paths:
+    - /
 readinessProbe:
   failureThreshold: 3
   httpGet:
@@ -60,7 +60,6 @@ readinessProbe:
   initialDelaySeconds: 10
   periodSeconds: 10
 replicaCount: 1
-revisionHistoryLimit: 1
 resources:
   limits:
     cpu: 500m
@@ -68,10 +67,11 @@ resources:
   requests:
     cpu: 500m
     memory: 1Gi
+revisionHistoryLimit: 1
 secret:
   data:
     SECRET_MESSAGE: c2VjcmV0IHdvcmxkCg==
-    SECRET_VERSION: djAuNC43Mg==
+    SECRET_VERSION: djAuNC43Mw==
   enabled: true
 service:
   port: 8080
