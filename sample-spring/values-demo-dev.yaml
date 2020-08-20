@@ -2,16 +2,16 @@ autoscaling:
   enabled: true
   maxReplicas: 4
   metrics:
-    - pods:
-        metricName: container_network_receive_bytes
-        targetAverageValue: 30k
-      type: Pods
+  - pods:
+      metricName: container_network_receive_bytes
+      targetAverageValue: 30k
+    type: Pods
   minReplicas: 1
 configmap:
   data:
-    DD_VERSION: v0.4.90
+    DD_VERSION: v0.4.92
     MESSAGE: hello world
-    VERSION: v0.4.90
+    VERSION: v0.4.92
   enabled: true
 controller:
   kind: Rollout
@@ -19,22 +19,23 @@ datadog:
   enabled: true
   env: alpha
   service: sample-spring
-  version: v0.4.90
+  version: v0.4.92
 env:
-  - name: PROFILE
-    value: dev
+- name: PROFILE
+  value: dev
+fullnameOverride: sample-spring
 image:
   repository: nalbam/sample-spring
-  tag: v0.4.90
+  tag: v0.4.92
 ingress:
   annotations:
     kubernetes.io/ingress.class: nginx
-    kubernetes.io/ssl-redirect: "true"
+    kubernetes.io/ssl-redirect: 'true'
   enabled: true
   hosts:
-    - host: sample-spring-dev.bruce.spic.me
-      paths:
-        - /
+  - host: sample-spring-dev.bruce.spic.me
+    paths:
+    - /
 livenessProbe:
   failureThreshold: 3
   httpGet:
@@ -42,16 +43,15 @@ livenessProbe:
     port: 8080
   initialDelaySeconds: 3
   periodSeconds: 10
-fullnameOverride: sample-spring
 preview:
   annotations:
     kubernetes.io/ingress.class: nginx
-    kubernetes.io/ssl-redirect: "true"
+    kubernetes.io/ssl-redirect: 'true'
   enabled: true
   hosts:
-    - host: sample-spring-dev-preview.bruce.spic.me
-      paths:
-        - /
+  - host: sample-spring-dev-preview.bruce.spic.me
+    paths:
+    - /
 readinessProbe:
   failureThreshold: 3
   httpGet:
@@ -70,7 +70,7 @@ resources:
 secret:
   data:
     SECRET_MESSAGE: c2VjcmV0IHdvcmxkCg==
-    SECRET_VERSION: djAuNC45MA==
+    SECRET_VERSION: djAuNC45Mg==
   enabled: true
 service:
   port: 8080
