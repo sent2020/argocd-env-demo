@@ -201,12 +201,8 @@ _build() {
 
     HAS_DEV=$(echo ${TG_PHASE} | grep '\-dev' | wc -l | xargs)
 
-    if [ "x${HAS_DEV}" == "x0" ]; then
-        _command "git branch ${NEW_BRANCH} ${BRANCH}"
-        git branch ${NEW_BRANCH} ${BRANCH}
-    else
-        NEW_BRANCH="master"
-    fi
+    _command "git branch ${NEW_BRANCH} ${BRANCH}"
+    git branch ${NEW_BRANCH} ${BRANCH}
 
     _command "git checkout ${NEW_BRANCH}"
     git checkout ${NEW_BRANCH}
@@ -229,6 +225,15 @@ _build() {
     if [ "x${HAS_DEV}" == "x0" ]; then
         _command "hub pull-request -f -b ${USERNAME}:master -h ${USERNAME}:${NEW_BRANCH} --no-edit"
         hub pull-request -f -b ${USERNAME}:master -h ${USERNAME}:${NEW_BRANCH} --no-edit
+    else
+        _command "git checkout master"
+        git checkout master
+
+        _command "git merge ${NEW_BRANCH}"
+        git merge ${NEW_BRANCH}
+
+        _command "git push github.com/${USERNAME}/${REPONAME} master"
+        git push -q https://${GITHUB_TOKEN}@github.com/${USERNAME}/${REPONAME}.git master
     fi
 }
 
