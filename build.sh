@@ -199,15 +199,21 @@ _build() {
         _success "${NEW_BRANCH}"
     fi
 
-    _command "git branch ${NEW_BRANCH} ${BRANCH}"
-    git branch ${NEW_BRANCH} ${BRANCH}
+    HAS_DEV=$(echo ${TG_PHASE} | grep '-dev' | wc -l | xargs)
 
-    _command "git checkout ${NEW_BRANCH}"
-    git checkout ${NEW_BRANCH}
+    if [ "x${HAS_DEV}" == "x0" ]; then
+        _command "git branch ${NEW_BRANCH} ${BRANCH}"
+        git branch ${NEW_BRANCH} ${BRANCH}
+
+        _command "git checkout ${NEW_BRANCH}"
+        git checkout ${NEW_BRANCH}
+    else
+        NEW_BRANCH="master"
+    fi
 
     _command "replace ${TG_VERSION}"
 
-    # gitops
+    # replace
     _command "${TG_TYPE}.py -r ${TG_PROJECT} -p ${TG_PHASE} -n ${TG_USERNAME}/${TG_PROJECT} -v ${TG_VERSION}"
     python ${TG_TYPE}.py -r ${TG_PROJECT} -p ${TG_PHASE} -n ${TG_USERNAME}/${TG_PROJECT} -v ${TG_VERSION}
 
@@ -220,11 +226,10 @@ _build() {
     _command "git push github.com/${USERNAME}/${REPONAME} ${NEW_BRANCH}"
     git push -q https://${GITHUB_TOKEN}@github.com/${USERNAME}/${REPONAME}.git ${NEW_BRANCH}
 
-    # _command "hub push origin ${NEW_BRANCH}"
-    # hub push origin ${NEW_BRANCH}
-
-    _command "hub pull-request -f -b ${USERNAME}:master -h ${USERNAME}:${NEW_BRANCH} --no-edit"
-    hub pull-request -f -b ${USERNAME}:master -h ${USERNAME}:${NEW_BRANCH} --no-edit
+    if [ "x${HAS_DEV}" == "x0" ]; then
+        _command "hub pull-request -f -b ${USERNAME}:master -h ${USERNAME}:${NEW_BRANCH} --no-edit"
+        hub pull-request -f -b ${USERNAME}:master -h ${USERNAME}:${NEW_BRANCH} --no-edit
+    fi
 }
 
 _prepare
