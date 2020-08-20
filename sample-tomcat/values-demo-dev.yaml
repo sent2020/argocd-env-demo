@@ -60,6 +60,7 @@ readinessProbe:
   initialDelaySeconds: 10
   periodSeconds: 10
 replicaCount: 1
+revisionHistoryLimit: 1
 resources:
   limits:
     cpu: 500m
