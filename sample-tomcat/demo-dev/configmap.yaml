@@ -1,6 +1,7 @@
 apiVersion: v1
 data:
-  DD_AGENT_ENABLED: 'true'
+  DD_AGENT_ENABLED: "true"
+  DD_COUNTRY_CODE: kr
   DD_VERSION: v0.4.55
   MESSAGE: hello dev-demo world
   PROFILE: dev
