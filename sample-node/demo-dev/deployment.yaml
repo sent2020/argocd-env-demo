@@ -6,7 +6,6 @@ metadata:
     app.kubernetes.io/name: sample-node
     tags.datadoghq.com/env: alpha
     tags.datadoghq.com/service: sample-node
-    tags.datadoghq.com/tags: country:kr
     tags.datadoghq.com/version: v0.4.83
   name: sample-node
 spec:
@@ -27,7 +26,6 @@ spec:
         app.kubernetes.io/name: sample-node
         tags.datadoghq.com/env: alpha
         tags.datadoghq.com/service: sample-node
-        tags.datadoghq.com/tags: country:kr
         tags.datadoghq.com/version: v0.4.83
         version: v0.4.83
     spec:
