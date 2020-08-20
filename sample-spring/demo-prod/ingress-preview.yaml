@@ -15,7 +15,7 @@ spec:
       http:
         paths:
           - backend:
-              serviceName: sample-spring
+              serviceName: sample-spring-preview
               servicePort: 8080
   tls:
     - hosts:

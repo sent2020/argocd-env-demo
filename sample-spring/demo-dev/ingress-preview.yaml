@@ -15,11 +15,11 @@ spec:
       http:
         paths:
           - backend:
-              serviceName: sample-spring
+              serviceName: sample-spring-preview
               servicePort: 8080
             path: /
           - backend:
-              serviceName: sample-spring
+              serviceName: sample-spring-preview
               servicePort: 8081
             path: /jmx
   tls:

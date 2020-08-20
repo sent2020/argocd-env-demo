@@ -11,7 +11,7 @@ spec:
       http:
         paths:
           - backend:
-              serviceName: sample-node
+              serviceName: sample-node-preview
               servicePort: 3000
             path: /
   tls:
