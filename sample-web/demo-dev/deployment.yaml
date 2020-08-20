@@ -4,6 +4,7 @@ metadata:
   labels:
     app: sample-web
     app.kubernetes.io/name: sample-web
+    tags.datadoghq.com/version: v0.4.4
   name: sample-web
 spec:
   replicas: 1
@@ -21,32 +22,33 @@ spec:
       labels:
         app: sample-web
         app.kubernetes.io/name: sample-web
-        version: v0.4.3
+        tags.datadoghq.com/version: v0.4.4
+        version: v0.4.4
     spec:
       containers:
-        - env:
-            - name: RELOAD_HASH
-              value: 8ead08c18a09833fd3cd44bba2c763ad
-            - name: CONFIGMAP_HASH
-              value: 8622c81bc1039249a35ceb71334721a3
-            - name: SECRET_HASH
-              value: ""
-          envFrom:
-            - configMapRef:
-                name: sample-web
-            - secretRef:
-                name: sample-web
-          image: nalbam/sample-web:v0.4.3
-          imagePullPolicy: Always
-          name: sample-web
-          ports:
-            - containerPort: 80
-              name: http
-              protocol: TCP
-          resources:
-            limits:
-              cpu: 110m
-              memory: 134Mi
-            requests:
-              cpu: 100m
-              memory: 120Mi
+      - env:
+        - name: RELOAD_HASH
+          value: 8ead08c18a09833fd3cd44bba2c763ad
+        - name: CONFIGMAP_HASH
+          value: bdd5ea621fe3e5842bed1674f91d67ac
+        - name: SECRET_HASH
+          value: b395f2b6e7218d1a52f7df03b675cc7e
+        envFrom:
+        - configMapRef:
+            name: sample-web
+        - secretRef:
+            name: sample-web
+        image: nalbam/sample-web:v0.4.4
+        imagePullPolicy: Always
+        name: sample-web
+        ports:
+        - containerPort: 80
+          name: http
+          protocol: TCP
+        resources:
+          limits:
+            cpu: 110m
+            memory: 134Mi
+          requests:
+            cpu: 100m
+            memory: 120Mi
