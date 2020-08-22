@@ -9,9 +9,9 @@ autoscaling:
   minReplicas: 1
 configmap:
   data:
-    DD_VERSION: v0.4.216
+    DD_VERSION: v0.4.217
     MESSAGE: hello world
-    VERSION: v0.4.216
+    VERSION: v0.4.217
   enabled: true
 controller:
   kind: Rollout
@@ -19,7 +19,7 @@ datadog:
   enabled: true
   env: alpha
   service: sample-spring
-  version: v0.4.216
+  version: v0.4.217
 env:
 - name: PROFILE
   value: dev
@@ -28,7 +28,7 @@ env:
 fullnameOverride: sample-spring
 image:
   repository: nalbam/sample-spring
-  tag: v0.4.216
+  tag: v0.4.217
 ingress:
   annotations:
     kubernetes.io/ingress.class: nginx
@@ -76,7 +76,7 @@ secret:
     DARABASE_PASSWORD: cG9zdGdyZXMK
     DARABASE_USERNAME: cG9zdGdyZXMK
     SECRET_MESSAGE: c2VjcmV0IHdvcmxkCg==
-    SECRET_VERSION: djAuNC4yMTY=
+    SECRET_VERSION: djAuNC4yMTc=
   enabled: true
 service:
   port: 8080
