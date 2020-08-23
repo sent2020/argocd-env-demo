@@ -9,9 +9,9 @@ autoscaling:
   minReplicas: 1
 configmap:
   data:
-    DD_VERSION: v0.4.217
+    DD_VERSION: v0.4.218
     MESSAGE: hello world
-    VERSION: v0.4.217
+    VERSION: v0.4.218
   enabled: true
 controller:
   kind: Rollout
@@ -19,7 +19,7 @@ datadog:
   enabled: true
   env: alpha
   service: sample-tomcat
-  version: v0.4.217
+  version: v0.4.218
 env:
 - name: PROFILE
   value: dev
@@ -28,7 +28,7 @@ env:
 fullnameOverride: sample-tomcat
 image:
   repository: nalbam/sample-tomcat
-  tag: v0.4.217
+  tag: v0.4.218
 ingress:
   annotations:
     kubernetes.io/ingress.class: nginx
@@ -73,7 +73,7 @@ revisionHistoryLimit: 1
 secret:
   data:
     SECRET_MESSAGE: c2VjcmV0IHdvcmxkCg==
-    SECRET_VERSION: djAuNC4yMTc=
+    SECRET_VERSION: djAuNC4yMTg=
   enabled: true
 service:
   port: 8080
