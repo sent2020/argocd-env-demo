@@ -4,11 +4,11 @@ kind: Kustomization
 configMapGenerator:
   - envs:
       - configmap.conf
-    name: sample-node-gen
+    name: sample-node
 secretGenerator:
   - envs:
       - secret.conf
-    name: sample-node-gen
+    name: sample-node
     type: Opaque
 
 patchesStrategicMerge:
