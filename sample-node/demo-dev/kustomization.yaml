@@ -2,13 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 configMapGenerator:
-  - behavior: merge
-    envs:
+  - envs:
       - configmap.conf
     name: sample-node
 secretGenerator:
-  - behavior: merge
-    envs:
+  - envs:
       - secret.conf
     name: sample-node
     type: Opaque
