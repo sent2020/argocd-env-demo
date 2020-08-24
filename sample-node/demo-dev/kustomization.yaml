@@ -16,8 +16,8 @@ patchesStrategicMerge:
 
 resources:
   - ../base
-  - configmap.yaml
+  # - configmap.yaml
   - hpa.yaml
   - ingress-preview.yaml
   - ingress.yaml
-  - secret.yaml
+  # - secret.yaml
