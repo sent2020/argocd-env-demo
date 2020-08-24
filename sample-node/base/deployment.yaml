@@ -23,7 +23,12 @@ spec:
         version: latest
     spec:
       containers:
-        - image: nalbam/sample-node:latest
+        - envFrom:
+            - configMapRef:
+                name: sample-node
+            - secretRef:
+                name: sample-node
+          image: nalbam/sample-node:latest
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 3
