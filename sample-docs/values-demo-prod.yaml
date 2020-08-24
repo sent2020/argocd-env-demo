@@ -70,3 +70,5 @@ service:
 
 hostNetwork: true
 dnsPolicy: Default
+
+revisionHistoryLimit: 1
