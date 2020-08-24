@@ -59,9 +59,9 @@ spec:
             - configMapRef:
                 name: sample-node-gen
             - secretRef:
-                name: sample-node-gen
-            - secretRef:
                 name: sample-node
+            - secretRef:
+                name: sample-node-gen
           image: nalbam/sample-node:0.5.1
           name: sample-node
           resources:
