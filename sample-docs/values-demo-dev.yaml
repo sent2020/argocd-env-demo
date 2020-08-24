@@ -19,8 +19,3 @@ ingress:
       secretName: sample-docs-tls
 service:
   port: 1948
-
-hostNetwork: true
-dnsPolicy: Default
-
-revisionHistoryLimit: 1

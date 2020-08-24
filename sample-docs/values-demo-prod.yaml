@@ -67,8 +67,3 @@ secret:
   enabled: true
 service:
   port: 1948
-
-hostNetwork: true
-dnsPolicy: Default
-
-revisionHistoryLimit: 1
