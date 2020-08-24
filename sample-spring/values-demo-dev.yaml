@@ -88,4 +88,4 @@ strategy:
     previewService: sample-spring-preview
 
 hostNetwork: true
-# dnsPolicy: Default
+dnsPolicy: Default
