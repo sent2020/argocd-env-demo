@@ -11,3 +11,13 @@ resources:
   - ingress-preview.yaml
   - ingress.yaml
   - secret.yaml
+
+configMapGenerator:
+  - envs:
+      - configmap.conf
+    name: sample-node-gen
+secretGenerator:
+  - envs:
+      - secret.conf
+    name: sample-node-gen
+    type: Opaque
