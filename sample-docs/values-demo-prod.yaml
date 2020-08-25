@@ -2,41 +2,41 @@ autoscaling:
   enabled: false
   maxReplicas: 3
   metrics:
-    - pods:
-        metricName: container_network_receive_bytes
-        targetAverageValue: 30k
-      type: Pods
+  - pods:
+      metricName: container_network_receive_bytes
+      targetAverageValue: 30k
+    type: Pods
   minReplicas: 1
 configmap:
   data:
-    DD_VERSION: 0.2.2
+    DD_VERSION: 0.2.3
     MESSAGE: hello world
-    VERSION: 0.2.2
+    VERSION: 0.2.3
   enabled: true
 datadog:
   enabled: true
   env: alpha
   service: sample-docs
-  version: 0.2.2
+  version: 0.2.3
 env:
-  - name: PROFILE
-    value: prod
+- name: PROFILE
+  value: prod
 image:
   repository: nalbam/docs
-  tag: 0.2.2
+  tag: 0.2.3
 ingress:
   annotations:
     kubernetes.io/ingress.class: nginx
-    kubernetes.io/ssl-redirect: "true"
+    kubernetes.io/ssl-redirect: 'true'
   enabled: true
   hosts:
-    - host: docs.bruce.spic.me
-      paths:
-        - /
+  - host: docs.bruce.spic.me
+    paths:
+    - /
   tls:
-    - hosts:
-        - docs.bruce.spic.me
-      secretName: sample-docs-tls
+  - hosts:
+    - docs.bruce.spic.me
+    secretName: sample-docs-tls
 livenessProbe:
   failureThreshold: 3
   httpGet:
@@ -45,6 +45,8 @@ livenessProbe:
   initialDelaySeconds: 3
   periodSeconds: 10
 nameOverride: sample-docs
+podAnnotations:
+  chaos.alpha.kubernetes.io/enabled: 'true'
 readinessProbe:
   failureThreshold: 3
   httpGet:
@@ -63,9 +65,7 @@ resources:
 secret:
   data:
     SECRET_MESSAGE: c2VjcmV0IHdvcmxkCg==
-    SECRET_VERSION: MC4yLjI=
+    SECRET_VERSION: MC4yLjM=
   enabled: true
 service:
   port: 1948
-podAnnotations:
-  chaos.alpha.kubernetes.io/enabled: "true"
