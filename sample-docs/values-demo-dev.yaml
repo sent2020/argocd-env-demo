@@ -3,7 +3,7 @@ env:
   value: dev
 image:
   repository: nalbam/docs
-  tag: 0.2.2
+  tag: 0.2.3
 ingress:
   annotations:
     kubernetes.io/ingress.class: nginx
