@@ -49,6 +49,8 @@ spec:
       securityContext:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      dnsPolicy: {{ .Values.dnsPolicy }}
+      hostNetwork: {{ .Values.hostNetwork }}
       containers:
         - name: {{ .Chart.Name }}
           {{- with .Values.securityContext }}
@@ -73,8 +75,6 @@ spec:
           resources:
             {{- toYaml . | nindent 12 }}
           {{- end }}
-          hostNetwork: {{ .Values.hostNetwork }}
-          dnsPolicy: {{ .Values.dnsPolicy }}
           env:
             {{- if .Values.datadog.enabled }}
             - name: DD_ENV
