@@ -67,3 +67,5 @@ secret:
   enabled: true
 service:
   port: 1948
+podAnnotations:
+  chaos.alpha.kubernetes.io/enabled: "true"

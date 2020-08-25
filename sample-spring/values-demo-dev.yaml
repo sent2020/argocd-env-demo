@@ -88,3 +88,5 @@ strategy:
     autoPromotionEnabled: true
     autoPromotionSeconds: 30
     previewService: sample-spring-preview
+podAnnotations:
+  chaos.alpha.kubernetes.io/enabled: "true"
