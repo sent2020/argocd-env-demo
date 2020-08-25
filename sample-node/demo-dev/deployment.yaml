@@ -28,6 +28,8 @@ spec:
         tags.datadoghq.com/service: sample-node
         tags.datadoghq.com/version: 0.5.1
         version: 0.5.1
+      annotations:
+        chaos.alpha.kubernetes.io/enabled: "true"
     spec:
       containers:
         - env:
