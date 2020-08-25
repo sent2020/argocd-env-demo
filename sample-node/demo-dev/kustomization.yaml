@@ -11,8 +11,18 @@ kind: Kustomization
 #     name: sample-node
 #     type: Opaque
 
-patchesStrategicMerge:
-  - deployment.yaml
+images:
+  - name: sample-node
+    newName: nalbam/sample-node
+    newTag: 0.5.2
+
+commonLabels:
+  app: sample-node
+  app.kubernetes.io/name: sample-node
+  tags.datadoghq.com/env: alpha
+  tags.datadoghq.com/service: sample-node
+  tags.datadoghq.com/version: 0.5.2
+  version: 0.5.2
 
 resources:
   - ../base
@@ -21,3 +31,6 @@ resources:
   - ingress-preview.yaml
   - ingress.yaml
   - secret.yaml
+
+patchesStrategicMerge:
+  - deployment.yaml

@@ -10,11 +10,11 @@ spec:
   selector:
     matchLabels:
       app: sample-node
-  strategy:
-    rollingUpdate:
-      maxSurge: 25%
-      maxUnavailable: 25%
-    type: RollingUpdate
+  # strategy:
+  #   rollingUpdate:
+  #     maxSurge: 25%
+  #     maxUnavailable: 25%
+  #   type: RollingUpdate
   template:
     metadata:
       labels:
@@ -23,7 +23,30 @@ spec:
         version: latest
     spec:
       containers:
-        - envFrom:
+        - env:
+            - name: DD_ENV
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.labels['tags.datadoghq.com/env']
+            - name: DD_SERVICE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.labels['tags.datadoghq.com/service']
+            - name: DD_VERSION
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.labels['tags.datadoghq.com/version']
+            - name: DD_AGENT_HOST
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.hostIP
+            - name: RELOAD_HASH
+              value: 8ead08c18a09833fd3cd44bba2c763ad
+            - name: CONFIGMAP_HASH
+              value: d1065c2482d693a0467421955cd1bdc5
+            - name: SECRET_HASH
+              value: b05784a1ef8a43db208788a13421b9c3
+          envFrom:
             - configMapRef:
                 name: sample-node
             - secretRef:
