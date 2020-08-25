@@ -11,18 +11,14 @@ kind: Kustomization
 #     name: sample-node
 #     type: Opaque
 
-images:
-  - name: sample-node
-    newName: nalbam/sample-node
-    newTag: 0.5.2
+# images:
+#   - name: sample-node
+#     newName: nalbam/sample-node
+#     newTag: 0.5.2
 
-commonLabels:
-  app: sample-node
-  app.kubernetes.io/name: sample-node
-  tags.datadoghq.com/env: alpha
-  tags.datadoghq.com/service: sample-node
-  tags.datadoghq.com/version: 0.5.2
-  version: 0.5.2
+# replicas:
+#   - count: 2
+#     name: sample-node
 
 resources:
   - ../base
