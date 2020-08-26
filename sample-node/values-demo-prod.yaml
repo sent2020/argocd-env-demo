@@ -2,44 +2,38 @@ autoscaling:
   enabled: true
   maxReplicas: 8
   metrics:
-    - pods:
-        metricName: container_network_receive_bytes
-        targetAverageValue: 100k
-      type: Pods
+  - pods:
+      metricName: container_network_receive_bytes
+      targetAverageValue: 100k
+    type: Pods
   minReplicas: 4
-# configmap:
-#   data:
-#     DD_VERSION: 0.5.2
-#     MESSAGE: hello world
-#     VERSION: 0.5.2
-#   enabled: true
 controller:
   kind: Rollout
 datadog:
   enabled: true
   env: alpha
   service: sample-node
-  version: 0.5.2
+  version: 0.5.3
 dnsPolicy: Default
 env:
-  - name: PROFILE
-    value: prod
-  - name: DD_AGENT_ENABLED
-    value: "true"
+- name: PROFILE
+  value: prod
+- name: DD_AGENT_ENABLED
+  value: 'true'
 fullnameOverride: sample-node
 hostNetwork: true
 image:
   repository: nalbam/sample-node
-  tag: 0.5.2
+  tag: 0.5.3
 ingress:
   annotations:
     kubernetes.io/ingress.class: nginx
-    kubernetes.io/ssl-redirect: "true"
+    kubernetes.io/ssl-redirect: 'true'
   enabled: true
   hosts:
-    - host: sample-node.bruce.spic.me
-      paths:
-        - /
+  - host: sample-node.bruce.spic.me
+    paths:
+    - /
 livenessProbe:
   failureThreshold: 3
   httpGet:
@@ -48,16 +42,16 @@ livenessProbe:
   initialDelaySeconds: 3
   periodSeconds: 10
 podAnnotations:
-  chaos.alpha.kubernetes.io/enabled: "true"
+  chaos.alpha.kubernetes.io/enabled: 'true'
 preview:
   annotations:
     kubernetes.io/ingress.class: nginx
-    kubernetes.io/ssl-redirect: "true"
+    kubernetes.io/ssl-redirect: 'true'
   enabled: true
   hosts:
-    - host: sample-node-preview.bruce.spic.me
-      paths:
-        - /
+  - host: sample-node-preview.bruce.spic.me
+    paths:
+    - /
 readinessProbe:
   failureThreshold: 3
   httpGet:
@@ -74,34 +68,29 @@ resources:
     cpu: 100m
     memory: 128Mi
 revisionHistoryLimit: 1
-# secret:
-#   data:
-#     SECRET_MESSAGE: c2VjcmV0IHdvcmxkCg==
-#     SECRET_VERSION: MC41LjYw
-#   enabled: true
 service:
   port: 3000
+sidekicks:
+- affinity: {}
+  env: []
+  envFrom: []
+  image:
+    repository: redis
+    tag: latest
+  livenessProbe: {}
+  name: sample-node-redis
+  nodeSelector: {}
+  readinessProbe: {}
+  replicaCount: 1
+  resources: {}
+  revisionHistoryLimit: 5
+  service:
+    name: redis
+    port: 6379
+  tolerations: {}
 strategy:
   blueGreen:
     activeService: sample-node
     autoPromotionEnabled: true
     autoPromotionSeconds: 30
     previewService: sample-node-preview
-sidekicks:
-  - name: sample-node-redis
-    replicaCount: 1
-    revisionHistoryLimit: 5
-    image:
-      repository: redis
-      tag: latest
-    service:
-      name: redis
-      port: 6379
-    livenessProbe: {}
-    readinessProbe: {}
-    resources: {}
-    env: []
-    envFrom: []
-    nodeSelector: {}
-    affinity: {}
-    tolerations: {}
