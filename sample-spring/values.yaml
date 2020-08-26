@@ -113,7 +113,7 @@ autoscaling:
     # - type: Pods
     #   pods:
     #     metricName: container_network_receive_bytes
-    #     targetAverageValue: 30k
+    #     targetAverageValue: 100k
 
 hostNetwork: true
 
