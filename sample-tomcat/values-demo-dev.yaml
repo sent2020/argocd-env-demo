@@ -9,9 +9,9 @@ autoscaling:
   minReplicas: 1
 configmap:
   data:
-    DD_VERSION: 0.5.30
+    DD_VERSION: 0.5.31
     MESSAGE: hello world
-    VERSION: 0.5.30
+    VERSION: 0.5.31
   enabled: true
 controller:
   kind: Rollout
@@ -19,7 +19,7 @@ datadog:
   enabled: true
   env: alpha
   service: sample-tomcat
-  version: 0.5.30
+  version: 0.5.31
 dnsPolicy: Default
 env:
 - name: PROFILE
@@ -30,7 +30,7 @@ fullnameOverride: sample-tomcat
 hostNetwork: true
 image:
   repository: nalbam/sample-tomcat
-  tag: 0.5.30
+  tag: 0.5.31
 ingress:
   annotations:
     kubernetes.io/ingress.class: nginx
@@ -77,7 +77,7 @@ revisionHistoryLimit: 1
 secret:
   data:
     SECRET_MESSAGE: c2VjcmV0IHdvcmxkCg==
-    SECRET_VERSION: MC41LjMw
+    SECRET_VERSION: MC41LjMx
   enabled: true
 service:
   port: 8080
