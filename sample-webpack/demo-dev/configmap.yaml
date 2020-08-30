@@ -1,9 +1,9 @@
 apiVersion: v1
 data:
-  DD_VERSION: v0.3.12
+  DD_VERSION: 0.5.2
   MESSAGE: hello dev-demo world
   PROFILE: dev
-  VERSION: v0.3.12
+  VERSION: 0.5.2
 kind: ConfigMap
 metadata:
   labels:
