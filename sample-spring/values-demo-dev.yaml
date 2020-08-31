@@ -2,10 +2,10 @@ autoscaling:
   enabled: false
   maxReplicas: 4
   metrics:
-  - pods:
-      metricName: container_network_receive_bytes
-      targetAverageValue: 100k
-    type: Pods
+    - pods:
+        metricName: container_network_receive_bytes
+        targetAverageValue: 300k
+      type: Pods
   minReplicas: 1
 configmap:
   data:
@@ -22,10 +22,10 @@ datadog:
   version: 0.5.169
 dnsPolicy: Default
 env:
-- name: PROFILE
-  value: dev
-- name: DD_AGENT_ENABLED
-  value: 'true'
+  - name: PROFILE
+    value: dev
+  - name: DD_AGENT_ENABLED
+    value: "true"
 fullnameOverride: sample-spring
 hostNetwork: true
 image:
@@ -34,12 +34,12 @@ image:
 ingress:
   annotations:
     kubernetes.io/ingress.class: nginx
-    kubernetes.io/ssl-redirect: 'true'
+    kubernetes.io/ssl-redirect: "true"
   enabled: true
   hosts:
-  - host: sample-spring-dev.bruce.spic.me
-    paths:
-    - /
+    - host: sample-spring-dev.bruce.spic.me
+      paths:
+        - /
 livenessProbe:
   failureThreshold: 3
   httpGet:
@@ -48,16 +48,16 @@ livenessProbe:
   initialDelaySeconds: 30
   periodSeconds: 10
 podAnnotations:
-  chaos.alpha.kubernetes.io/enabled: 'true'
+  chaos.alpha.kubernetes.io/enabled: "true"
 preview:
   annotations:
     kubernetes.io/ingress.class: nginx
-    kubernetes.io/ssl-redirect: 'true'
+    kubernetes.io/ssl-redirect: "true"
   enabled: true
   hosts:
-  - host: sample-spring-dev-preview.bruce.spic.me
-    paths:
-    - /
+    - host: sample-spring-dev-preview.bruce.spic.me
+      paths:
+        - /
 readinessProbe:
   failureThreshold: 3
   httpGet:

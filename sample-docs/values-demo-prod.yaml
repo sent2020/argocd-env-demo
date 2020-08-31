@@ -4,7 +4,7 @@ autoscaling:
   metrics:
     - pods:
         metricName: container_network_receive_bytes
-        targetAverageValue: 100k
+        targetAverageValue: 300k
       type: Pods
   minReplicas: 1
 configmap:
