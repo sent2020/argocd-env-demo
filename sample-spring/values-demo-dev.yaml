@@ -2,16 +2,16 @@ autoscaling:
   enabled: false
   maxReplicas: 4
   metrics:
-    - pods:
-        metricName: container_network_receive_bytes
-        targetAverageValue: 10k
-      type: Pods
+  - pods:
+      metricName: container_network_receive_bytes
+      targetAverageValue: 10k
+    type: Pods
   minReplicas: 1
 configmap:
   data:
-    DD_VERSION: 0.5.194
+    DD_VERSION: 0.5.195
     MESSAGE: hello world
-    VERSION: 0.5.194
+    VERSION: 0.5.195
   enabled: true
 controller:
   kind: Rollout
@@ -19,26 +19,26 @@ datadog:
   enabled: true
   env: alpha
   service: sample-spring
-  version: 0.5.194
+  version: 0.5.195
 dnsPolicy: Default
 env:
-  - name: PROFILE
-    value: dev
-  - name: DD_AGENT_ENABLED
-    value: "true"
+- name: PROFILE
+  value: dev
+- name: DD_AGENT_ENABLED
+  value: 'true'
 fullnameOverride: sample-spring
 image:
   repository: nalbam/sample-spring
-  tag: 0.5.194
+  tag: 0.5.195
 ingress:
   annotations:
     kubernetes.io/ingress.class: nginx
-    kubernetes.io/ssl-redirect: "true"
+    kubernetes.io/ssl-redirect: 'true'
   enabled: true
   hosts:
-    - host: sample-spring-dev.bruce.spic.me
-      paths:
-        - /
+  - host: sample-spring-dev.bruce.spic.me
+    paths:
+    - /
 livenessProbe:
   failureThreshold: 3
   httpGet:
@@ -47,16 +47,16 @@ livenessProbe:
   initialDelaySeconds: 30
   periodSeconds: 10
 podAnnotations:
-  chaos.alpha.kubernetes.io/enabled: "true"
+  chaos.alpha.kubernetes.io/enabled: 'true'
 preview:
   annotations:
     kubernetes.io/ingress.class: nginx
-    kubernetes.io/ssl-redirect: "true"
+    kubernetes.io/ssl-redirect: 'true'
   enabled: true
   hosts:
-    - host: sample-spring-dev-preview.bruce.spic.me
-      paths:
-        - /
+  - host: sample-spring-dev-preview.bruce.spic.me
+    paths:
+    - /
 readinessProbe:
   failureThreshold: 3
   httpGet:
@@ -79,7 +79,7 @@ secret:
     DARABASE_PASSWORD: cG9zdGdyZXMK
     DARABASE_USERNAME: YW9ycS15YXNzSUdpODkK
     SECRET_MESSAGE: c2VjcmV0IHdvcmxkCg==
-    SECRET_VERSION: MC41LjE5NA==
+    SECRET_VERSION: MC41LjE5NQ==
   enabled: true
 service:
   port: 8080
