@@ -58,22 +58,22 @@ spec:
             {{- toYaml . | nindent 12 }}
           {{- end }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          imagePullPolicy: {{ .Values.image.pullPolicy | default "IfNotPresent" }}
           ports:
-            - name: http
+            - name: {{ .Values.service.name | default "http" }}
               containerPort: {{ .Values.service.port }}
-              protocol: TCP
+              protocol: {{ .Values.service.protocol | default "TCP" }}
           {{- with .Values.livenessProbe }}
           livenessProbe:
-            {{- toYaml . | nindent 12 }}
+{{ toYaml . | nindent 12 }}
           {{- end }}
           {{- with .Values.readinessProbe }}
           readinessProbe:
-            {{- toYaml . | nindent 12 }}
+{{ toYaml . | nindent 12 }}
           {{- end }}
           {{- with .Values.resources }}
           resources:
-            {{- toYaml . | nindent 12 }}
+{{ toYaml . | nindent 12 }}
           {{- end }}
           env:
             {{- if .Values.datadog.enabled }}
@@ -94,9 +94,9 @@ spec:
                 fieldRef:
                   fieldPath: status.hostIP
             {{- end }}
-{{- with .Values.env }}
+            {{- with .Values.env }}
 {{ toYaml . | indent 12 }}
-{{- end }}
+            {{- end }}
           {{ if or .Values.configmap.enabled .Values.secret.enabled }}
           envFrom:
             {{ if .Values.configmap.enabled }}
@@ -110,13 +110,13 @@ spec:
           {{ end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
-        {{- toYaml . | nindent 8 }}
+{{ toYaml . | nindent 8 }}
       {{- end }}
       {{- with .Values.affinity }}
       affinity:
-        {{- toYaml . | nindent 8 }}
+{{ toYaml . | nindent 8 }}
       {{- end }}
       {{- with .Values.tolerations }}
       tolerations:
-        {{- toYaml . | nindent 8 }}
+{{ toYaml . | nindent 8 }}
       {{- end }}
