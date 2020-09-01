@@ -2,16 +2,16 @@ autoscaling:
   enabled: false
   maxReplicas: 4
   metrics:
-    - pods:
-        metricName: container_network_receive_bytes
-        targetAverageValue: 10k
-      type: Pods
+  - pods:
+      metricName: container_network_receive_bytes
+      targetAverageValue: 10k
+    type: Pods
   minReplicas: 1
 configmap:
   data:
-    DD_VERSION: 0.5.108
+    DD_VERSION: 0.5.109
     MESSAGE: hello world
-    VERSION: 0.5.108
+    VERSION: 0.5.109
   enabled: true
 controller:
   kind: Rollout
@@ -19,26 +19,26 @@ datadog:
   enabled: true
   env: alpha
   service: sample-tomcat
-  version: 0.5.108
+  version: 0.5.109
 dnsPolicy: Default
 env:
-  - name: PROFILE
-    value: dev
-  - name: DD_AGENT_ENABLED
-    value: "true"
+- name: PROFILE
+  value: dev
+- name: DD_AGENT_ENABLED
+  value: 'true'
 fullnameOverride: sample-tomcat
 image:
   repository: nalbam/sample-tomcat
-  tag: 0.5.108
+  tag: 0.5.109
 ingress:
   annotations:
     kubernetes.io/ingress.class: nginx
-    kubernetes.io/ssl-redirect: "true"
+    kubernetes.io/ssl-redirect: 'true'
   enabled: true
   hosts:
-    - host: sample-tomcat-dev.bruce.spic.me
-      paths:
-        - /
+  - host: sample-tomcat-dev.bruce.spic.me
+    paths:
+    - /
 livenessProbe:
   failureThreshold: 3
   httpGet:
@@ -47,16 +47,16 @@ livenessProbe:
   initialDelaySeconds: 30
   periodSeconds: 10
 podAnnotations:
-  chaos.alpha.kubernetes.io/enabled: "true"
+  chaos.alpha.kubernetes.io/enabled: 'true'
 preview:
   annotations:
     kubernetes.io/ingress.class: nginx
-    kubernetes.io/ssl-redirect: "true"
+    kubernetes.io/ssl-redirect: 'true'
   enabled: true
   hosts:
-    - host: sample-tomcat-dev-preview.bruce.spic.me
-      paths:
-        - /
+  - host: sample-tomcat-dev-preview.bruce.spic.me
+    paths:
+    - /
 readinessProbe:
   failureThreshold: 3
   httpGet:
@@ -76,7 +76,7 @@ revisionHistoryLimit: 1
 secret:
   data:
     SECRET_MESSAGE: c2VjcmV0IHdvcmxkCg==
-    SECRET_VERSION: MC41LjEwOA==
+    SECRET_VERSION: MC41LjEwOQ==
   enabled: true
 service:
   port: 8080
