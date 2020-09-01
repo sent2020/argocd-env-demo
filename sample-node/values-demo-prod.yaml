@@ -14,14 +14,12 @@ datadog:
   env: alpha
   service: sample-node
   version: 0.5.4
-dnsPolicy: Default
 env:
   - name: PROFILE
     value: prod
   - name: DD_AGENT_ENABLED
     value: "true"
 fullnameOverride: sample-node
-hostNetwork: true
 image:
   repository: nalbam/sample-node
   tag: 0.5.4
