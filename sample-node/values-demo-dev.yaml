@@ -87,7 +87,7 @@ sidekicks:
     service:
       name: redis
       port: 6379
-    tolerations: {}
+    tolerations: []
 strategy:
   blueGreen:
     activeService: sample-node
