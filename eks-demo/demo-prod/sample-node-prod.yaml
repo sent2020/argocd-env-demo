@@ -8,123 +8,13 @@ spec:
     repoURL: "https://opspresso.github.io/helm-charts"
     targetRevision: v0.1.5
     helm:
-      parameters:
-        - name: image.tag
-          value: "0.5.4"
-        - name: datadog.version
-          value: "0.5.4"
-      values: |
-        autoscaling:
-          enabled: true
-          maxReplicas: 8
-          metrics:
-            - pods:
-                metricName: container_network_receive_bytes
-                targetAverageValue: 10k
-              type: Pods
-          minReplicas: 4
-        controller:
-          kind: Rollout
-        datadog:
-          enabled: true
-          env: alpha
-          service: sample-node
-          version: "0.5.1"
-        env:
-          - name: PROFILE
-            value: prod
-          - name: DD_AGENT_ENABLED
-            value: "true"
-        fullnameOverride: sample-node
-        image:
-          repository: nalbam/sample-node
-          tag: "0.5.1"
-        ingress:
-          annotations:
-            kubernetes.io/ingress.class: nginx
-            kubernetes.io/ssl-redirect: "true"
-          enabled: true
-          hosts:
-            - host: sample-node.bruce.spic.me
-              paths:
-                - /
-        livenessProbe:
-          failureThreshold: 3
-          httpGet:
-            path: /
-            port: 3000
-          initialDelaySeconds: 3
-          periodSeconds: 10
-        podAnnotations:
-          chaos.alpha.kubernetes.io/enabled: "true"
-        preview:
-          annotations:
-            kubernetes.io/ingress.class: nginx
-            kubernetes.io/ssl-redirect: "true"
-          enabled: true
-          hosts:
-            - host: sample-node-preview.bruce.spic.me
-              paths:
-                - /
-        readinessProbe:
-          failureThreshold: 3
-          httpGet:
-            path: /
-            port: 3000
-          initialDelaySeconds: 3
-          periodSeconds: 10
-        replicaCount: 1
-        resources:
-          limits:
-            cpu: 100m
-            memory: 128Mi
-          requests:
-            cpu: 100m
-            memory: 128Mi
-        revisionHistoryLimit: 1
-        service:
-          port: 3000
-        sidekicks:
-          - affinity: {}
-            env: []
-            envFrom: []
-            image:
-              repository: redis
-              tag: latest
-            livenessProbe: {}
-            name: sample-node-redis
-            nodeSelector: {}
-            readinessProbe: {}
-            replicaCount: 1
-            resources:
-              limits:
-                cpu: 100m
-                memory: 128Mi
-              requests:
-                cpu: 100m
-                memory: 128Mi
-            revisionHistoryLimit: 5
-            service:
-              name: redis
-              port: 6379
-            tolerations: []
-        strategy:
-          canary:
-            canaryService: sample-node-preview
-            steps:
-              - setWeight: 25
-              - analysis:
-                  args:
-                    - name: url
-                      value: http://sample-node-preview:3000/success/98
-                  templateName: http-benchmark
-              - setWeight: 50
-              - pause:
-                  duration: 10
-              - setWeight: 75
-              - pause:
-                  duration: 10
-
+      # parameters:
+      #   - name: image.tag
+      #     value: "0.5.4"
+      #   - name: datadog.version
+      #     value: "0.5.4"
+      valueFiles:
+        - ../../sample-node/values-demo-prod.yaml
     chart: sample
   destination:
     server: "https://kubernetes.default.svc"
