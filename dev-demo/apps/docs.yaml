@@ -34,7 +34,7 @@ spec:
     chart: sample
   destination:
     server: "https://kubernetes.default.svc"
-    namespace: sample-docs
+    namespace: demo-dev
   syncPolicy:
     automated:
       prune: true
