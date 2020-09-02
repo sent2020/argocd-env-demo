@@ -12,19 +12,3 @@ metadata:
   name: demo-prod
   # labels:
   #   istio-injection: enabled
-
----
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: sample-dev
-  # labels:
-  #   istio-injection: enabled
-
----
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: sample-prod
-  # labels:
-  #   istio-injection: enabled
