@@ -1,7 +1,7 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: mzdev:devops
+  name: opspresso:devops
   namespace: default
 rules:
   - apiGroups: [""]
@@ -24,7 +24,7 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: mzdev:viewer
+  name: opspresso:viewer
 rules:
   - apiGroups: [""]
     resources: ["events"]
