@@ -2,6 +2,5 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-  - cluster-role-binding.yaml
-  # - cluster-role.yaml
-  # - namespace.yaml
+  - demo-dev.yaml
+  - demo-prod.yaml
