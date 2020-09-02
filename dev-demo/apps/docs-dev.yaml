@@ -2,7 +2,6 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: docs-dev
-  namespace: default
 spec:
   project: default
   source:
