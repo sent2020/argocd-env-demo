@@ -6,14 +6,15 @@ apiVersion: argoproj.io/v1alpha1
 kind: AnalysisTemplate
 metadata:
   name: http-benchmark
+  namespace: demo-prod
 spec:
   args:
     - name: url
   metrics:
     - name: http-benchmark
-      count: 10
+      count: 5
       failureLimit: 5
-      interval: 5s
+      interval: 10s
       provider:
         job:
           spec:
@@ -28,7 +29,10 @@ spec:
                     command: [sh, -xec]
                     args:
                       - |
-                        wrk -t1 -c1 -d5 -s report.lua {{args.url}}
+                        wrk -t5 -c5 -d10 -s report.lua {{args.url}}
                         jq -e '.errors_ratio <= 0.1' report.json
                 restartPolicy: Never
-            backoffLimit: 0
+            # https://kubernetes.io/ko/docs/concepts/workloads/controllers/jobs-run-to-completion/
+            activeDeadlineSeconds: 180
+            backoffLimit: 10
+            ttlSecondsAfterFinished: 300

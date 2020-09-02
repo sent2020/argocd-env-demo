@@ -4,6 +4,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: AnalysisTemplate
 metadata:
   name: webmetric
+  namespace: demo-prod
 spec:
   args:
     - name: url
