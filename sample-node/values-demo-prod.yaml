@@ -13,7 +13,7 @@ datadog:
   enabled: true
   env: alpha
   service: sample-node
-  version: 0.5.5
+  version: 0.5.6
 env:
 - name: PROFILE
   value: prod
@@ -22,7 +22,7 @@ env:
 fullnameOverride: sample-node
 image:
   repository: nalbam/sample-node
-  tag: 0.5.5
+  tag: 0.5.6
 ingress:
   annotations:
     kubernetes.io/ingress.class: nginx
