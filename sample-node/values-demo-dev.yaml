@@ -80,7 +80,13 @@ sidekicks:
     nodeSelector: {}
     readinessProbe: {}
     replicaCount: 1
-    resources: {}
+    resources:
+      limits:
+        cpu: 100m
+        memory: 128Mi
+      requests:
+        cpu: 100m
+        memory: 128Mi
     revisionHistoryLimit: 5
     service:
       name: redis
