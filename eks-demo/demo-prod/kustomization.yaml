@@ -1,0 +1,8 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - ../base
+  - _namespace.yaml
+  - sample-docs-prod.yaml
+  - sample-node-prod.yaml
