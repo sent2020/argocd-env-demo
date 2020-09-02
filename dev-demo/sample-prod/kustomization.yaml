@@ -1,8 +1,0 @@
-resources:
-  - analysis-benchmark.yaml
-  - analysis-success-rate.yaml
-  - analysis-webmetric.yaml
-  # - limit-range.yaml
-  # - namespace.yaml
-  # - resource-quota.yaml
-  - role-binding.yaml
