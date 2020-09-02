@@ -2,6 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: sample-node-dev
+  namespace: demo-dev
 spec:
   project: default
   source:
