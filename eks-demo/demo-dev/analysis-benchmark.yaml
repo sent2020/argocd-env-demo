@@ -6,6 +6,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: AnalysisTemplate
 metadata:
   name: http-benchmark
+  namespace: demo-dev
 spec:
   args:
     - name: url
