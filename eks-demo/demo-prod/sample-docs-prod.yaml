@@ -8,32 +8,33 @@ spec:
     repoURL: "https://opspresso.github.io/helm-charts"
     targetRevision: v0.1.5
     helm:
-      parameters:
-        - name: image.tag
-          value: "0.2.2"
-      values: |
-        env:
-          - name: PROFILE
-            value: dev
-        image:
-          repository: nalbam/docs
-          tag: "0.2.1"
-        ingress:
-          annotations:
-            kubernetes.io/ingress.class: nginx
-            kubernetes.io/ssl-redirect: "true"
-          enabled: true
-          hosts:
-            - host: docs-dev.bruce.spic.me
-              paths:
-                - /
-          tls:
-            - hosts:
-                - docs-dev.bruce.spic.me
-              secretName: sample-docs-tls
-        service:
-          port: 1948
-
+      # parameters:
+      #   - name: image.tag
+      #     value: "0.2.2"
+      valueFiles:
+        - ../../sample-docs/values-demo-prod.yaml
+      # values: |
+      #   env:
+      #     - name: PROFILE
+      #       value: dev
+      #   image:
+      #     repository: nalbam/docs
+      #     tag: "0.2.1"
+      #   ingress:
+      #     annotations:
+      #       kubernetes.io/ingress.class: nginx
+      #       kubernetes.io/ssl-redirect: "true"
+      #     enabled: true
+      #     hosts:
+      #       - host: docs-dev.bruce.spic.me
+      #         paths:
+      #           - /
+      #     tls:
+      #       - hosts:
+      #           - docs-dev.bruce.spic.me
+      #         secretName: sample-docs-tls
+      #   service:
+      #     port: 1948
     chart: sample
   destination:
     server: "https://kubernetes.default.svc"
