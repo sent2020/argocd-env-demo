@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: sample-docs-dev
+  name: sample-docs-prod
 spec:
   project: default
   source:
@@ -11,7 +11,7 @@ spec:
       values: |
         env:
         - name: PROFILE
-          value: dev
+          value: prod
         image:
           repository: nalbam/docs
           tag: 0.2.2
@@ -21,19 +21,19 @@ spec:
             kubernetes.io/ssl-redirect: 'true'
           enabled: true
           hosts:
-          - host: docs-dev.bruce.spic.me
+          - host: docs.bruce.spic.me
             paths:
             - /
           tls:
           - hosts:
-            - docs-dev.bruce.spic.me
+            - docs.bruce.spic.me
             secretName: sample-docs-tls
         service:
           port: 1948
     chart: sample
   destination:
     server: "https://kubernetes.default.svc"
-    namespace: demo-dev
+    namespace: demo-prod
   syncPolicy:
     automated:
       prune: true
