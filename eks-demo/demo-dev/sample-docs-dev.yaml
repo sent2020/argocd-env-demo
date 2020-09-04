@@ -1,17 +1,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: sample-node-dev
+  name: sample-docs-dev
 spec:
   project: default
   source:
-    repoURL: "https://opspresso.github.io/helm-charts"
-    targetRevision: v0.1.5
+    repoURL: "https://github.com/opspresso/argocd-env-demo"
+    path: apps
+    targetRevision: HEAD
     helm:
       valueFiles:
-        - sample-node-dev.yaml
-    chart: sample
-    releaseName: sample-node-dev
+        - sample-docs/values-demo-dev.yaml
+    releaseName: sample-docs-dev
   destination:
     server: "https://kubernetes.default.svc"
     namespace: demo-dev

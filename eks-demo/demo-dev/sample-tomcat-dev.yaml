@@ -1,20 +1,20 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: sample-docs-prod
+  name: sample-tomcat-dev
 spec:
   project: default
   source:
-    repoURL: "https://opspresso.github.io/helm-charts"
-    targetRevision: v0.1.5
+    repoURL: "https://github.com/opspresso/argocd-env-demo"
+    path: apps
+    targetRevision: HEAD
     helm:
       valueFiles:
-        - values.yaml
-    chart: sample
-    releaseName: sample-docs-prod
+        - sample-tomcat/values-demo-dev.yaml
+    releaseName: sample-tomcat-dev
   destination:
     server: "https://kubernetes.default.svc"
-    namespace: demo-prod
+    namespace: demo-dev
   syncPolicy:
     automated:
       prune: true

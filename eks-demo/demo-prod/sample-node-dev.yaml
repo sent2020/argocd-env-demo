@@ -5,12 +5,12 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: "https://opspresso.github.io/helm-charts"
-    targetRevision: v0.1.5
+    repoURL: "https://github.com/opspresso/argocd-env-demo"
+    path: apps
+    targetRevision: HEAD
     helm:
       valueFiles:
-        - values.yaml
-    chart: sample
+        - sample-node/values-demo-prod.yaml
     releaseName: sample-node-prod
   destination:
     server: "https://kubernetes.default.svc"
