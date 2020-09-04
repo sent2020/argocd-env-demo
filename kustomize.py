@@ -5,7 +5,6 @@ import argparse
 import base64
 import hashlib
 import os
-import sys
 import yaml
 
 
@@ -59,6 +58,8 @@ def replace_deployment(args, cm_hasg, sec_hash):
         if doc != None:
             with open(filepath, "w") as file:
                 yaml.dump(doc, file)
+
+    return filehash
 
 
 def replace_service_preview(args):

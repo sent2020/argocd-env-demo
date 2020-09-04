@@ -1,19 +1,21 @@
 env:
-- name: PROFILE
-  value: prod
+  - name: PROFILE
+    value: prod
+  - name: ENV_HASH
+    value: hash_string
 image:
   repository: nalbam/docs
   tag: 0.2.5
 ingress:
   annotations:
     kubernetes.io/ingress.class: nginx
-    kubernetes.io/ssl-redirect: 'true'
+    kubernetes.io/ssl-redirect: "true"
   enabled: true
   hosts:
-  - host: docs.bruce.spic.me
-    paths:
-    - /
+    - host: docs.bruce.spic.me
+      paths:
+        - /
   tls:
-  - hosts:
-    - docs.bruce.spic.me
-    secretName: sample-docs-tls
+    - hosts:
+        - docs.bruce.spic.me
+      secretName: sample-docs-tls

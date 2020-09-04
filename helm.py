@@ -5,7 +5,6 @@ import argparse
 import base64
 import hashlib
 import os
-import sys
 import yaml
 
 
@@ -56,11 +55,45 @@ def replace_values(args):
             with open(filepath, "w") as file:
                 yaml.dump(doc, file)
 
+            with open(filepath, "rb") as file:
+                filehash = hashlib.md5(file.read()).hexdigest()
+
+    return filehash
+
+
+def replace_hash(args, hash):
+    filepath = "{}/values-{}.yaml".format(args.reponame, args.phase)
+    filehash = ""
+
+    if os.path.exists(filepath):
+        print("replace", filepath)
+
+        doc = None
+
+        with open(filepath, "r") as file:
+            doc = yaml.load(file, Loader=yaml.FullLoader)
+
+            if "env" in doc:
+                for i, env in enumerate(doc["env"]):
+                    if env["name"] == "ENV_HASH":
+                        env["value"] = hash
+
+        if doc != None:
+            with open(filepath, "w") as file:
+                yaml.dump(doc, file)
+
+            with open(filepath, "rb") as file:
+                filehash = hashlib.md5(file.read()).hexdigest()
+
+    return filehash
+
 
 def main():
     args = parse_args()
 
-    replace_values(args)
+    hash = replace_values(args)
+
+    replace_hash(args, hash)
 
 
 if __name__ == "__main__":

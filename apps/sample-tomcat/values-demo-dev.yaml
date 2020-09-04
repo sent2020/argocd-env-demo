@@ -22,6 +22,8 @@ env:
     value: dev
   - name: DD_AGENT_ENABLED
     value: "true"
+  - name: ENV_HASH
+    value: hash_string
 image:
   repository: nalbam/sample-tomcat
   tag: 0.5.267
