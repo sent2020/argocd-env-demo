@@ -2,10 +2,10 @@ autoscaling:
   enabled: true
   maxReplicas: 8
   metrics:
-  - pods:
-      metricName: container_network_receive_bytes
-      targetAverageValue: 10k
-    type: Pods
+    - pods:
+        metricName: container_network_receive_bytes
+        targetAverageValue: 10k
+      type: Pods
   minReplicas: 4
 controller:
   kind: Rollout
@@ -15,96 +15,44 @@ datadog:
   service: sample-node
   version: 0.5.10
 env:
-- name: PROFILE
-  value: prod
-- name: DD_AGENT_ENABLED
-  value: 'true'
-fullnameOverride: sample-node
+  - name: PROFILE
+    value: prod
+  - name: DD_AGENT_ENABLED
+    value: "true"
 image:
   repository: nalbam/sample-node
   tag: 0.5.10
 ingress:
   annotations:
     kubernetes.io/ingress.class: nginx
-    kubernetes.io/ssl-redirect: 'true'
+    kubernetes.io/ssl-redirect: "true"
   enabled: true
   hosts:
-  - host: sample-node.bruce.spic.me
-    paths:
-    - /
-livenessProbe:
-  failureThreshold: 3
-  httpGet:
-    path: /
-    port: 3000
-  initialDelaySeconds: 3
-  periodSeconds: 10
-podAnnotations:
-  chaos.alpha.kubernetes.io/enabled: 'true'
+    - host: sample-node.bruce.spic.me
+      paths:
+        - /
 preview:
   annotations:
     kubernetes.io/ingress.class: nginx
-    kubernetes.io/ssl-redirect: 'true'
+    kubernetes.io/ssl-redirect: "true"
   enabled: true
   hosts:
-  - host: sample-node-preview.bruce.spic.me
-    paths:
-    - /
-readinessProbe:
-  failureThreshold: 3
-  httpGet:
-    path: /
-    port: 3000
-  initialDelaySeconds: 3
-  periodSeconds: 10
-replicaCount: 1
-resources:
-  limits:
-    cpu: 100m
-    memory: 128Mi
-  requests:
-    cpu: 100m
-    memory: 128Mi
-revisionHistoryLimit: 1
-service:
-  port: 3000
-sidekicks:
-- affinity: {}
-  env: []
-  envFrom: []
-  image:
-    repository: redis
-    tag: latest
-  livenessProbe: {}
-  name: sample-node-redis
-  nodeSelector: {}
-  readinessProbe: {}
-  replicaCount: 1
-  resources:
-    limits:
-      cpu: 100m
-      memory: 128Mi
-    requests:
-      cpu: 100m
-      memory: 128Mi
-  revisionHistoryLimit: 5
-  service:
-    name: redis
-    port: 6379
-  tolerations: []
+    - host: sample-node-preview.bruce.spic.me
+      paths:
+        - /
 strategy:
   canary:
     canaryService: sample-node-preview
     steps:
-    - setWeight: 25
-    - analysis:
-        args:
-        - name: url
-          value: http://sample-node-preview:3000/success/98
-        templateName: http-benchmark
-    - setWeight: 50
-    - pause:
-        duration: 10
-    - setWeight: 75
-    - pause:
-        duration: 10
+      - setWeight: 25
+      - analysis:
+          args:
+            - name: url
+              value: http://sample-node-preview:3000/success/98
+          templateName: http-benchmark
+      - setWeight: 50
+      - pause:
+          duration: 10
+      - setWeight: 75
+      - pause:
+          duration: 10
