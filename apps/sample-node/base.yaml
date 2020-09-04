@@ -1,3 +1,4 @@
+fullnameOverride: sample-node
 livenessProbe:
   failureThreshold: 3
   httpGet:

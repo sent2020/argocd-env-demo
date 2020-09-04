@@ -1,3 +1,4 @@
+fullnameOverride: sample-docs
 livenessProbe:
   failureThreshold: 3
   httpGet:

@@ -1,3 +1,4 @@
+fullnameOverride: sample-tomcat
 livenessProbe:
   failureThreshold: 3
   httpGet:

@@ -1,3 +1,4 @@
+fullnameOverride: sample-spring
 livenessProbe:
   failureThreshold: 3
   httpGet:
