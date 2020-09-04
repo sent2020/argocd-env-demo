@@ -47,10 +47,6 @@ def replace_values(args):
             if "secret" in doc:
                 doc["secret"]["data"]["SECRET_VERSION"] = base64.b64encode(args.version)
 
-            # datadog
-            if "datadog" in doc:
-                doc["datadog"]["version"] = args.version
-
         if doc != None:
             with open(filepath, "w") as file:
                 yaml.dump(doc, file)
