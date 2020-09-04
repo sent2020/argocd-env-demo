@@ -2,15 +2,15 @@ autoscaling:
   enabled: false
   maxReplicas: 4
   metrics:
-    - pods:
-        metricName: container_network_receive_bytes
-        targetAverageValue: 10k
-      type: Pods
+  - pods:
+      metricName: container_network_receive_bytes
+      targetAverageValue: 10k
+    type: Pods
   minReplicas: 1
 configmap:
   data:
     MESSAGE: hello world
-    VERSION: 0.5.267
+    VERSION: 0.5.268
   enabled: true
 controller:
   kind: Rollout
@@ -18,37 +18,37 @@ datadog:
   enabled: true
   env: alpha
 env:
-  - name: PROFILE
-    value: dev
-  - name: DD_AGENT_ENABLED
-    value: "true"
-  - name: ENV_HASH
-    value: hash_string
+- name: PROFILE
+  value: dev
+- name: DD_AGENT_ENABLED
+  value: 'true'
+- name: ENV_HASH
+  value: f62af2b9c18482fd6cc3d2e9b6a7fea5
 image:
   repository: nalbam/sample-tomcat
-  tag: 0.5.267
+  tag: 0.5.268
 ingress:
   annotations:
     kubernetes.io/ingress.class: nginx
-    kubernetes.io/ssl-redirect: "true"
+    kubernetes.io/ssl-redirect: 'true'
   enabled: true
   hosts:
-    - host: sample-tomcat-dev.bruce.spic.me
-      paths:
-        - /
+  - host: sample-tomcat-dev.bruce.spic.me
+    paths:
+    - /
 preview:
   annotations:
     kubernetes.io/ingress.class: nginx
-    kubernetes.io/ssl-redirect: "true"
+    kubernetes.io/ssl-redirect: 'true'
   enabled: true
   hosts:
-    - host: sample-tomcat-dev-preview.bruce.spic.me
-      paths:
-        - /
+  - host: sample-tomcat-dev-preview.bruce.spic.me
+    paths:
+    - /
 secret:
   data:
     SECRET_MESSAGE: c2VjcmV0IHdvcmxkCg==
-    SECRET_VERSION: MC41LjI2Nw==
+    SECRET_VERSION: MC41LjI2OA==
   enabled: true
 strategy:
   blueGreen:
