@@ -76,7 +76,7 @@ _prepare() {
         _success
     fi
 
-    if [ ! -d "${SHELL_DIR}/${TG_PROJECT}" ]; then
+    if [ ! -d "${SHELL_DIR}/apps/${TG_PROJECT}" ]; then
         _error "Not found ${TG_PROJECT}"
     fi
 
