@@ -1,21 +1,21 @@
 env:
-  - name: PROFILE
-    value: dev
-  - name: ENV_HASH
-    value: cc6e6dd7d88f1aa7838338ca4e8fdc51
+- name: PROFILE
+  value: dev
+- name: ENV_HASH
+  value: 3ddce04ede7c1768411af1a87b59a8f9
 image:
   repository: nalbam/docs
-  tag: 0.2.6
+  tag: 0.2.7
 ingress:
   annotations:
     kubernetes.io/ingress.class: nginx
-    kubernetes.io/ssl-redirect: "true"
+    kubernetes.io/ssl-redirect: 'true'
   enabled: true
   hosts:
-    - host: docs-dev.bruce.spic.me
-      paths:
-        - /
+  - host: docs-dev.bruce.spic.me
+    paths:
+    - /
   tls:
-    - hosts:
-        - docs-dev.bruce.spic.me
-      secretName: sample-docs-tls
+  - hosts:
+    - docs-dev.bruce.spic.me
+    secretName: sample-docs-tls
