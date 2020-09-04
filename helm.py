@@ -43,7 +43,6 @@ def replace_values(args):
             # configmap
             if "configmap" in doc:
                 doc["configmap"]["data"]["VERSION"] = args.version
-                doc["configmap"]["data"]["DD_VERSION"] = args.version
 
             # secret
             if "secret" in doc:
