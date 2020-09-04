@@ -104,7 +104,7 @@ _phase() {
     CIRCLE_API="https://circleci.com/api/v2/project/gh/${USERNAME}/${REPONAME}/pipeline"
     CIRCLE_URL="${CIRCLE_API}?circle-token=${PERSONAL_TOKEN}"
 
-    pushd ${SHELL_DIR}/${TG_PROJECT}
+    pushd ${SHELL_DIR}/apps/${TG_PROJECT}
 
     # find kustomize
     LIST=$(ls -d */kustomization.yaml | cut -d'/' -f1)
@@ -161,11 +161,11 @@ _phase() {
 
 _build() {
     if [ "${TG_TYPE}" == "kustomize" ]; then
-        if [ ! -f ${SHELL_DIR}/${TG_PROJECT}/${TG_PHASE}/kustomization.yaml ]; then
+        if [ ! -f ${SHELL_DIR}/apps/${TG_PROJECT}/${TG_PHASE}/kustomization.yaml ]; then
             _error "Not found ${TG_PROJECT}/${TG_PHASE}/kustomization.yaml"
         fi
     elif [ "${TG_TYPE}" == "helm" ]; then
-        if [ ! -f ${SHELL_DIR}/${TG_PROJECT}/values-${TG_PHASE}.yaml ]; then
+        if [ ! -f ${SHELL_DIR}/apps/${TG_PROJECT}/values-${TG_PHASE}.yaml ]; then
             _error "Not found ${TG_PROJECT}/values-${TG_PHASE}.yaml"
         fi
     else
@@ -211,7 +211,7 @@ _build() {
 
     # replace
     _command "${TG_TYPE}.py -r ${TG_PROJECT} -p ${TG_PHASE} -n ${TG_USERNAME}/${TG_PROJECT} -v ${TG_VERSION}"
-    python ${TG_TYPE}.py -r ${TG_PROJECT} -p ${TG_PHASE} -n ${TG_USERNAME}/${TG_PROJECT} -v ${TG_VERSION}
+    python ${TG_TYPE}.py -r apps/${TG_PROJECT} -p ${TG_PHASE} -n ${TG_USERNAME}/${TG_PROJECT} -v ${TG_VERSION}
 
     _command "git add --all"
     git add --all

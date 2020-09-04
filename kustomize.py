@@ -42,7 +42,9 @@ def replace_deployment(args, cm_hasg, sec_hash):
 
             # datadog
             doc["metadata"]["labels"]["tags.datadoghq.com/version"] = args.version
-            doc["spec"]["template"]["metadata"]["labels"]["tags.datadoghq.com/version"] = args.version
+            doc["spec"]["template"]["metadata"]["labels"][
+                "tags.datadoghq.com/version"
+            ] = args.version
 
             containers = doc["spec"]["template"]["spec"]["containers"]
             containers[0]["image"] = "{}:{}".format(args.imagename, args.version)
