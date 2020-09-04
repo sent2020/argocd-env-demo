@@ -11,7 +11,7 @@ controller:
   kind: Rollout
 datadog:
   enabled: true
-  env: alpha
+  env: prod
 env:
   - name: PROFILE
     value: prod
