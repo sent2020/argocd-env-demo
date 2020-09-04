@@ -9,7 +9,7 @@ spec:
     targetRevision: v0.1.5
     helm:
       valueFiles:
-        - values.yaml
+        - sample-node-dev.yaml
     chart: sample
     releaseName: sample-node-dev
   destination:

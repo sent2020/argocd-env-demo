@@ -9,7 +9,7 @@ spec:
     targetRevision: v0.1.5
     helm:
       valueFiles:
-        - values.yaml
+        - sample-spring-dev.yaml
     chart: sample
     releaseName: sample-spring-dev
   destination:

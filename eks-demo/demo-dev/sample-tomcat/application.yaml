@@ -9,7 +9,7 @@ spec:
     targetRevision: v0.1.5
     helm:
       valueFiles:
-        - values.yaml
+        - sample-tomcat-dev.yaml
     chart: sample
     releaseName: sample-tomcat-dev
   destination:
