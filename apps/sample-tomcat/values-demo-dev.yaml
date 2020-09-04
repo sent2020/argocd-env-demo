@@ -2,16 +2,16 @@ autoscaling:
   enabled: false
   maxReplicas: 4
   metrics:
-  - pods:
-      metricName: container_network_receive_bytes
-      targetAverageValue: 10k
-    type: Pods
+    - pods:
+        metricName: container_network_receive_bytes
+        targetAverageValue: 10k
+      type: Pods
   minReplicas: 1
 configmap:
   data:
-    DD_VERSION: 0.5.263
+    DD_VERSION: 0.5.10
     MESSAGE: hello world
-    VERSION: 0.5.263
+    VERSION: 0.5.10
   enabled: true
 controller:
   kind: Rollout
@@ -19,67 +19,39 @@ datadog:
   enabled: true
   env: alpha
   service: sample-tomcat
-  version: 0.5.263
+  version: 0.5.10
 dnsPolicy: Default
 env:
-- name: PROFILE
-  value: dev
-- name: DD_AGENT_ENABLED
-  value: 'true'
-fullnameOverride: sample-tomcat
+  - name: PROFILE
+    value: dev
+  - name: DD_AGENT_ENABLED
+    value: "true"
 image:
   repository: nalbam/sample-tomcat
-  tag: 0.5.263
+  tag: 0.5.10
 ingress:
   annotations:
     kubernetes.io/ingress.class: nginx
-    kubernetes.io/ssl-redirect: 'true'
+    kubernetes.io/ssl-redirect: "true"
   enabled: true
   hosts:
-  - host: sample-tomcat-dev.bruce.spic.me
-    paths:
-    - /
-livenessProbe:
-  failureThreshold: 3
-  httpGet:
-    path: /
-    port: 8080
-  initialDelaySeconds: 30
-  periodSeconds: 10
-podAnnotations:
-  chaos.alpha.kubernetes.io/enabled: 'true'
+    - host: sample-tomcat-dev.bruce.spic.me
+      paths:
+        - /
 preview:
   annotations:
     kubernetes.io/ingress.class: nginx
-    kubernetes.io/ssl-redirect: 'true'
+    kubernetes.io/ssl-redirect: "true"
   enabled: true
   hosts:
-  - host: sample-tomcat-dev-preview.bruce.spic.me
-    paths:
-    - /
-readinessProbe:
-  failureThreshold: 3
-  httpGet:
-    path: /
-    port: 8080
-  initialDelaySeconds: 30
-  periodSeconds: 10
-replicaCount: 1
-resources:
-  limits:
-    cpu: 500m
-    memory: 1Gi
-  requests:
-    cpu: 500m
-    memory: 1Gi
-revisionHistoryLimit: 1
+    - host: sample-tomcat-dev-preview.bruce.spic.me
+      paths:
+        - /
 secret:
   data:
     SECRET_MESSAGE: c2VjcmV0IHdvcmxkCg==
-    SECRET_VERSION: MC41LjI2Mw==
+    SECRET_VERSION: MC41LjEw
   enabled: true
-service:
-  port: 8080
 strategy:
   blueGreen:
     activeService: sample-tomcat
