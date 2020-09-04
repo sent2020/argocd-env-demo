@@ -11,6 +11,7 @@ spec:
       valueFiles:
         - ../../sample-node/values-demo-prod.yaml
     chart: sample
+    releaseName: sample-node-prod
   destination:
     server: "https://kubernetes.default.svc"
     namespace: demo-prod

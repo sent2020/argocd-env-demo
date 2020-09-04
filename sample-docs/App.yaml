@@ -1,0 +1,4 @@
+apps:
+  - name: sample-docs
+    image: nalbam/docs
+    tags: []

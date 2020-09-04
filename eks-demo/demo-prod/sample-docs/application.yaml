@@ -9,8 +9,9 @@ spec:
     targetRevision: v0.1.5
     helm:
       valueFiles:
-        - ../../sample-docs/values-demo-prod.yaml
+        - values.yaml
     chart: sample
+    releaseName: sample-docs-prod
   destination:
     server: "https://kubernetes.default.svc"
     namespace: demo-prod

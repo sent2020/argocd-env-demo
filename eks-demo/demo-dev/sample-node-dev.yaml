@@ -11,6 +11,7 @@ spec:
     helm:
       valueFiles:
         - values-demo-dev.yaml
+    releaseName: sample-node-dev
   destination:
     server: "https://kubernetes.default.svc"
     namespace: demo-dev
