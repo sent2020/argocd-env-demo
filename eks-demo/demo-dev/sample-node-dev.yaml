@@ -10,8 +10,8 @@ spec:
     targetRevision: HEAD
     helm:
       valueFiles:
+        - sample-node/base.yaml
         - sample-node/values-demo-dev.yaml
-    releaseName: sample-node-dev
   destination:
     server: "https://kubernetes.default.svc"
     namespace: demo-dev

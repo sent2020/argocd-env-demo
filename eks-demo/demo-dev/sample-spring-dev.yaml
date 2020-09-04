@@ -10,8 +10,8 @@ spec:
     targetRevision: HEAD
     helm:
       valueFiles:
+        - sample-spring/base.yaml
         - sample-spring/values-demo-dev.yaml
-    releaseName: sample-spring-dev
   destination:
     server: "https://kubernetes.default.svc"
     namespace: demo-dev
