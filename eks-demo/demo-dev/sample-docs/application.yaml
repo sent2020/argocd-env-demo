@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: sample-docs-dev
+spec:
+  project: default
+  source:
+    repoURL: "https://opspresso.github.io/helm-charts"
+    targetRevision: v0.1.5
+    helm:
+      valueFiles:
+        - values.yaml
+    chart: sample
+    releaseName: sample-docs-dev
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: demo-dev
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
