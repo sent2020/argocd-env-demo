@@ -12,7 +12,6 @@ spec:
       valueFiles:
         - sample-docs/base.yaml
         - sample-docs/values-demo-prod.yaml
-    releaseName: sample-docs-prod
   destination:
     server: "https://kubernetes.default.svc"
     namespace: demo-prod
