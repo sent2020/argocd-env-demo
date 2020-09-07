@@ -10,7 +10,7 @@ autoscaling:
 configmap:
   data:
     MESSAGE: hello world
-    VERSION: 0.5.167
+    VERSION: 0.5.168
   enabled: true
 controller:
   kind: Rollout
@@ -23,10 +23,10 @@ env:
 - name: DD_AGENT_ENABLED
   value: 'true'
 - name: ENV_HASH
-  value: ceb4a79ce161cfdcfe8182c628ddcc56
+  value: 78c47149e29e68687a70c2abf358d5ee
 image:
   repository: nalbam/sample-spring
-  tag: 0.5.167
+  tag: 0.5.168
 ingress:
   annotations:
     kubernetes.io/ingress.class: nginx
@@ -51,7 +51,7 @@ secret:
     DARABASE_PASSWORD: cG9zdGdyZXMK
     DARABASE_USERNAME: YW9ycS15YXNzSUdpODkK
     SECRET_MESSAGE: c2VjcmV0IHdvcmxkCg==
-    SECRET_VERSION: MC41LjE2Nw==
+    SECRET_VERSION: MC41LjE2OA==
   enabled: true
 strategy:
   blueGreen:
