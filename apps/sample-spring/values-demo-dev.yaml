@@ -2,15 +2,17 @@ autoscaling:
   enabled: false
   maxReplicas: 4
   metrics:
-  - pods:
-      metricName: container_network_receive_bytes
-      targetAverageValue: 10k
-    type: Pods
+    - pods:
+        metricName: container_network_receive_bytes
+        targetAverageValue: 10k
+      type: Pods
   minReplicas: 1
 configmap:
   data:
     MESSAGE: hello world
     VERSION: 0.5.284
+    DARABASE_ADDRESS: db-demo.cv2wx6mzzwbw.ap-northeast-2.rds.amazonaws.com
+    DARABASE_USERNAME: postgres
   enabled: true
 controller:
   kind: Rollout
@@ -18,38 +20,38 @@ datadog:
   enabled: true
   env: alpha
 env:
-- name: PROFILE
-  value: dev
-- name: DD_AGENT_ENABLED
-  value: 'true'
-- name: ENV_HASH
-  value: a9d5c9fc92c2dc477c799def403f551f
+  - name: PROFILE
+    value: dev
+  - name: DD_AGENT_ENABLED
+    value: "true"
+  - name: ENV_HASH
+    value: a9d5c9fc92c2dc477c799def403f551f
 image:
   repository: nalbam/sample-spring
   tag: 0.5.284
 ingress:
   annotations:
     kubernetes.io/ingress.class: nginx
-    kubernetes.io/ssl-redirect: 'true'
+    kubernetes.io/ssl-redirect: "true"
   enabled: true
   hosts:
-  - host: sample-spring-dev.bruce.spic.me
-    paths:
-    - /
+    - host: sample-spring-dev.bruce.spic.me
+      paths:
+        - /
 preview:
   annotations:
     kubernetes.io/ingress.class: nginx
-    kubernetes.io/ssl-redirect: 'true'
+    kubernetes.io/ssl-redirect: "true"
   enabled: true
   hosts:
-  - host: sample-spring-dev-preview.bruce.spic.me
-    paths:
-    - /
+    - host: sample-spring-dev-preview.bruce.spic.me
+      paths:
+        - /
 secret:
   data:
-    DARABASE_ADDRESS: ZGItZGVtby5jdjJ3eDZtenp3YncuYXAtbm9ydGhlYXN0LTIucmRzLmFtYXpvbmF3cy5jb20K
+    # DARABASE_ADDRESS: ZGItZGVtby5jdjJ3eDZtenp3YncuYXAtbm9ydGhlYXN0LTIucmRzLmFtYXpvbmF3cy5jb20K
     DARABASE_PASSWORD: YW9ycS15YXNzSUdpODkK
-    DARABASE_USERNAME: cG9zdGdyZXMK
+    # DARABASE_USERNAME: cG9zdGdyZXMK
     SECRET_MESSAGE: c2VjcmV0IHdvcmxkCg==
     SECRET_VERSION: MC41LjI4NA==
   enabled: true
