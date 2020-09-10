@@ -11,8 +11,8 @@ configmap:
   data:
     MESSAGE: hello world
     VERSION: 0.5.284
-    DARABASE_ADDRESS: db-demo.cv2wx6mzzwbw.ap-northeast-2.rds.amazonaws.com
-    DARABASE_USERNAME: postgres
+    DATABASE_ADDRESS: db-demo.cv2wx6mzzwbw.ap-northeast-2.rds.amazonaws.com
+    DATABASE_USERNAME: postgres
   enabled: true
 controller:
   kind: Rollout
@@ -49,9 +49,9 @@ preview:
         - /
 secret:
   data:
-    # DARABASE_ADDRESS: ZGItZGVtby5jdjJ3eDZtenp3YncuYXAtbm9ydGhlYXN0LTIucmRzLmFtYXpvbmF3cy5jb20K
-    DARABASE_PASSWORD: YW9ycS15YXNzSUdpODkK
-    # DARABASE_USERNAME: cG9zdGdyZXMK
+    # DATABASE_ADDRESS: ZGItZGVtby5jdjJ3eDZtenp3YncuYXAtbm9ydGhlYXN0LTIucmRzLmFtYXpvbmF3cy5jb20K
+    DATABASE_PASSWORD: YW9ycS15YXNzSUdpODkK
+    # DATABASE_USERNAME: cG9zdGdyZXMK
     SECRET_MESSAGE: c2VjcmV0IHdvcmxkCg==
     SECRET_VERSION: MC41LjI4NA==
   enabled: true
