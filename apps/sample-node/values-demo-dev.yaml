@@ -18,7 +18,7 @@ env:
 - name: DD_AGENT_ENABLED
   value: 'true'
 - name: ENV_HASH
-  value: 1b941bf63e58dd80a2e11cff8ea8d1dd
+  value: 85d9d2b9097bb6edc36d7e7b6fbb5e3e
 image:
   repository: nalbam/sample-node
   tag: 0.5.15
