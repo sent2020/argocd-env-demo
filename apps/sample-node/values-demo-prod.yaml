@@ -18,10 +18,10 @@ env:
 - name: DD_AGENT_ENABLED
   value: 'true'
 - name: ENV_HASH
-  value: aa44c19b930ecdf679d0e6e3b51d8585
+  value: 09acdfb629cda5f414aa171e2541623b
 image:
   repository: nalbam/sample-node
-  tag: 0.5.14
+  tag: 0.5.15
 ingress:
   annotations:
     kubernetes.io/ingress.class: nginx
