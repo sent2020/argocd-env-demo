@@ -25,7 +25,7 @@ env:
 - name: DD_AGENT_ENABLED
   value: 'true'
 - name: ENV_HASH
-  value: 9bf3c4c440e215e572748d3ed6b96d3e
+  value: 22c72db068b35263008c1b23ab37ae98
 image:
   repository: nalbam/sample-spring
   tag: 0.5.588
