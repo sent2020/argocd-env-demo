@@ -12,7 +12,7 @@ configmap:
     DATABASE_ADDRESS: db-demo.cv2wx6mzzwbw.ap-northeast-2.rds.amazonaws.com
     DATABASE_USERNAME: postgres
     MESSAGE: hello world
-    VERSION: 0.5.1000
+    VERSION: 0.5.1001
   enabled: true
 controller:
   kind: Rollout
@@ -25,10 +25,10 @@ env:
 - name: DD_AGENT_ENABLED
   value: 'true'
 - name: ENV_HASH
-  value: 37d9ceb109a83ce8ae1bda4062ce6028
+  value: 4fae3de577635913bba87bbbf84a385b
 image:
   repository: nalbam/sample-spring
-  tag: 0.5.1000
+  tag: 0.5.1001
 ingress:
   annotations:
     kubernetes.io/ingress.class: nginx
@@ -51,7 +51,7 @@ secret:
   data:
     DATABASE_PASSWORD: YW9ycS15YXNzSUdpODkK
     SECRET_MESSAGE: c2VjcmV0IHdvcmxkCg==
-    SECRET_VERSION: MC41LjEwMDA=
+    SECRET_VERSION: MC41LjEwMDE=
   enabled: true
 strategy:
   blueGreen:
