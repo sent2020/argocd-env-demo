@@ -10,7 +10,7 @@ autoscaling:
 configmap:
   data:
     MESSAGE: hello world
-    VERSION: 0.5.1326
+    VERSION: 0.5.1327
   enabled: true
 controller:
   kind: Rollout
@@ -23,10 +23,10 @@ env:
 - name: DD_AGENT_ENABLED
   value: 'true'
 - name: ENV_HASH
-  value: 22a39cc67528f4da28353c7d10e34f92
+  value: ad1b6caa01736f8a89467b8a7ab5671a
 image:
   repository: nalbam/sample-tomcat
-  tag: 0.5.1326
+  tag: 0.5.1327
 ingress:
   annotations:
     kubernetes.io/ingress.class: nginx
@@ -48,7 +48,7 @@ preview:
 secret:
   data:
     SECRET_MESSAGE: c2VjcmV0IHdvcmxkCg==
-    SECRET_VERSION: MC41LjEzMjY=
+    SECRET_VERSION: MC41LjEzMjc=
   enabled: true
 strategy:
   blueGreen:
