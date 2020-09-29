@@ -12,7 +12,7 @@ ingress:
       "arn:aws:acm:ap-northeast-2:082867736673:certificate/0d73b89e-fcb1-40d0-b157-bc072ef585b8"
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: ip
-    external-dns.alpha.kubernetes.io/hostname: "docs-dev.bruce.spic.me"
+    external-dns.alpha.kubernetes.io/hostname: docs-dev.bruce.spic.me
     kubernetes.io/ingress.class: alb
     kubernetes.io/ssl-redirect: "true"
   enabled: true

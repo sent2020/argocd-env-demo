@@ -2,10 +2,10 @@ autoscaling:
   enabled: true
   maxReplicas: 8
   metrics:
-  - pods:
-      metricName: container_network_receive_bytes
-      targetAverageValue: 10k
-    type: Pods
+    - pods:
+        metricName: container_network_receive_bytes
+        targetAverageValue: 10k
+      type: Pods
   minReplicas: 4
 controller:
   kind: Rollout
@@ -13,46 +13,56 @@ datadog:
   enabled: true
   env: prod
 env:
-- name: PROFILE
-  value: prod
-- name: DD_AGENT_ENABLED
-  value: 'true'
-- name: ENV_HASH
-  value: f73a62f5b527e327652baab7834f9b2d
+  - name: PROFILE
+    value: prod
+  - name: DD_AGENT_ENABLED
+    value: "true"
+  - name: ENV_HASH
+    value: f73a62f5b527e327652baab7834f9b2d
 image:
   repository: nalbam/sample-node
   tag: 0.5.15
 ingress:
   annotations:
-    kubernetes.io/ingress.class: nginx
-    kubernetes.io/ssl-redirect: 'true'
+    alb.ingress.kubernetes.io/certificate-arn: >
+      "arn:aws:acm:ap-northeast-2:082867736673:certificate/0d73b89e-fcb1-40d0-b157-bc072ef585b8"
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+    external-dns.alpha.kubernetes.io/hostname: sample-node.bruce.spic.me
+    kubernetes.io/ingress.class: alb
+    kubernetes.io/ssl-redirect: "true"
   enabled: true
   hosts:
-  - host: sample-node.bruce.spic.me
-    paths:
-    - /
+    - host: sample-node.bruce.spic.me
+      paths:
+        - /
 preview:
   annotations:
-    kubernetes.io/ingress.class: nginx
-    kubernetes.io/ssl-redirect: 'true'
+    alb.ingress.kubernetes.io/certificate-arn: >
+      "arn:aws:acm:ap-northeast-2:082867736673:certificate/0d73b89e-fcb1-40d0-b157-bc072ef585b8"
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+    external-dns.alpha.kubernetes.io/hostname: sample-node-preview.bruce.spic.me
+    kubernetes.io/ingress.class: alb
+    kubernetes.io/ssl-redirect: "true"
   enabled: true
   hosts:
-  - host: sample-node-preview.bruce.spic.me
-    paths:
-    - /
+    - host: sample-node-preview.bruce.spic.me
+      paths:
+        - /
 strategy:
   canary:
     canaryService: sample-node-preview
     steps:
-    - setWeight: 25
-    - analysis:
-        args:
-        - name: url
-          value: http://sample-node-preview:3000/success/98
-        templateName: http-benchmark
-    - setWeight: 50
-    - pause:
-        duration: 10
-    - setWeight: 75
-    - pause:
-        duration: 10
+      - setWeight: 25
+      - analysis:
+          args:
+            - name: url
+              value: http://sample-node-preview:3000/success/98
+          templateName: http-benchmark
+      - setWeight: 50
+      - pause:
+          duration: 10
+      - setWeight: 75
+      - pause:
+          duration: 10
