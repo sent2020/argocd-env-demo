@@ -8,6 +8,8 @@ image:
   tag: 0.2.7
 ingress:
   annotations:
+    alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/scheme: internet-facing
     kubernetes.io/ingress.class: alb
     # kubernetes.io/ssl-redirect: "true"
   enabled: true
